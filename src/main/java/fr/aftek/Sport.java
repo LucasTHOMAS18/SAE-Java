@@ -13,7 +13,6 @@ public class Sport {
         this.agilite = agilite;
         this.endurance = endurance;
     }
-
     
     public NomSport getNomSport() { return nomSport; }
     public int getForce() { return force; }
@@ -24,7 +23,7 @@ public class Sport {
     public void setAgilite(int agilite) { this.agilite = agilite; }
     public void setEndurance(int endurance) { this.endurance = endurance; }
 
-    public static int calculePoint() {
+    public int calculePoint() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
