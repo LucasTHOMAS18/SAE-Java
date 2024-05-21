@@ -29,4 +29,16 @@ public class Sport {
 
     @Override
     public String toString() { return nomSport.toString(); }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Sport other = (Sport) obj;
+        return nomSport == other.nomSport;
+    }
+
+    @Override
+    public int hashCode() { return nomSport.hashCode(); }
 }
