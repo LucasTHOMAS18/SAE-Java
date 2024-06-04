@@ -1,19 +1,12 @@
 package fr.aftek;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class Epreuve {
-    private static final double COEF_SANCTION_COMPETENCE_INFERIEUR_MIN = 2;
-    private static final double COEF_SANCTION_COMPETENCE_INFERIEUR_MAX = 7;
-    private static final int RANDOM_MAX = 70;
-    private static final int RANDOM_MIN = 10;
-    
-    
     private String nom;
     private Map<Athlete, Integer> classement;
     private List<Athlete> participants;
@@ -31,11 +24,7 @@ public class Epreuve {
     public Map<Athlete, Integer> simuleEpreuve() {
         Random random = new Random();
         for (Athlete athlete : participants) {
-            int points = 100;
-            if(athlete.getForce() < this.sport.getForce()) points -= (this.sport.getForce() - athlete.getForce()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
-            if(athlete.getAgilite() < this.sport.getAgilite()) points -= (this.sport.getAgilite() - athlete.getAgilite()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
-            if(athlete.getEndurance() < this.sport.getEndurance()) points -= (this.sport.getEndurance() - athlete.getEndurance()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
-            points -= random.nextInt(RANDOM_MIN, RANDOM_MAX);
+            int points = this.sport.calculePoint(athlete);
             for (Integer pts : classement.values()) {
                 if(pts == points) points += (random.nextInt(0, 1) == 1) ? 1 : -1;
             }
