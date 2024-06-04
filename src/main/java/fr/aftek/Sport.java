@@ -2,11 +2,11 @@ package fr.aftek;
 
 public class Sport {
     protected NomSport nomSport;
-    protected int force;
-    protected int agilite;
-    protected int endurance;
+    protected float force;
+    protected float agilite;
+    protected float endurance;
 
-    public Sport(NomSport nomSport, int force, int agilite, int endurance) {
+    public Sport(NomSport nomSport, float force, float agilite, float endurance) {
         this.nomSport = nomSport;
         
         this.force = force;
@@ -15,9 +15,9 @@ public class Sport {
     }
     
     public NomSport getNomSport() { return nomSport; }
-    public int getForce() { return force; }
-    public int getAgilite() { return agilite; }
-    public int getEndurance() { return endurance; }
+    public float getForce() { return force; }
+    public float getAgilite() { return agilite; }
+    public float getEndurance() { return endurance; }
 
     public void setForce(int force) { this.force = force; }
     public void setAgilite(int agilite) { this.agilite = agilite; }
@@ -41,4 +41,5 @@ public class Sport {
 
     @Override
     public int hashCode() { return nomSport.hashCode(); }
+    
 }

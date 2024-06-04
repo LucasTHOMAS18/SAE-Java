@@ -4,7 +4,7 @@ public class SportCollectif extends Sport {
     private int nbEquipes;
     private int nbJoueursParEquipe;
     
-    public SportCollectif(NomSport nomSport, int force, int agilite, int endurance, int nbEquipes, int nbJoueursParEquipe) {
+    public SportCollectif(NomSport nomSport, float force, float agilite, float endurance, int nbEquipes, int nbJoueursParEquipe) {
         super(nomSport, force, agilite, endurance);
         this.nbEquipes = nbEquipes;
         this.nbJoueursParEquipe = nbJoueursParEquipe;
