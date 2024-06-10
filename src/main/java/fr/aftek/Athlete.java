@@ -37,10 +37,6 @@ public class Athlete {
         this.pays = pays;
         this.pays.ajouteAthlete(this);
     }
-    
-    public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, String pays) {
-        this(nom, prenom, sexe, force, agilite, endurance, Pays.get(pays));
-    }
 
     public Athlete(String nom, String prenom, char sexe, Pays pays){
         this.nom = nom;
@@ -51,9 +47,6 @@ public class Athlete {
         this.force = (float)(Math.random() * 20);
         this.agilite = (float)(Math.random() * 20);
         this.endurance = (float)(Math.random() * 20);
-    }
-    public Athlete(String nom, String prenom, char sexe, String pays){
-        this(nom, prenom, sexe, Pays.get(pays));
     }
 
     public String getNom() {

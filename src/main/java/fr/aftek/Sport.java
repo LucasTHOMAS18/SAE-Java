@@ -30,11 +30,15 @@ public class Sport {
     public void setEndurance(int endurance) { this.endurance = endurance; }
 
     public int calculePoint(Athlete athlete) {
+        return this.calculePoint(athlete.getForce(), athlete.getAgilite(), athlete.getEndurance());
+    }
+
+    public int calculePoint(float force, float agilite, float endurance){
         int points = 100;
         Random random = new Random();
-        if(athlete.getForce() < this.getForce()) points -= (this.getForce() - athlete.getForce()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
-        if(athlete.getAgilite() < this.getAgilite()) points -= (this.getAgilite() - athlete.getAgilite()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
-        if(athlete.getEndurance() < this.getEndurance()) points -= (this.getEndurance() - athlete.getEndurance()) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
+        if(force < this.getForce()) points -= (this.getForce() - force) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
+        if(agilite < this.getAgilite()) points -= (this.getAgilite() - agilite) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
+        if(endurance < this.getEndurance()) points -= (this.getEndurance() - endurance) * random.nextDouble(COEF_SANCTION_COMPETENCE_INFERIEUR_MIN, COEF_SANCTION_COMPETENCE_INFERIEUR_MAX);
         points -= random.nextInt(RANDOM_MIN, RANDOM_MAX);
         return points;
     }

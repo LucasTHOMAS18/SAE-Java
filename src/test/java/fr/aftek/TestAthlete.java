@@ -53,7 +53,7 @@ public class TestAthlete
      */
     public void testAthlete()
     {
-        Athlete athlete = new Athlete("Michel", "Jean", 'h', "France");
+        Athlete athlete = new Athlete("Michel", "Jean", 'h', new Pays("France"));
         assertEquals("Jean", athlete.getPrenom());
         assertEquals("Michel", athlete.getNom());
         assertEquals('h', athlete.getSexe());
