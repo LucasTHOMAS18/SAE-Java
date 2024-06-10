@@ -1,4 +1,4 @@
-package src;
+package fr.aftek;
 
 import java.util.Scanner;
 
