@@ -44,7 +44,7 @@ public class Sport {
     }
 
     @Override
-    public String toString() { return nomSport.toString(); }
+    public String toString() { return nomSport.getNom(); }
 
     @Override
     public boolean equals(Object obj) {

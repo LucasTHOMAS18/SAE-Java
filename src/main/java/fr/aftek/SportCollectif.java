@@ -17,6 +17,9 @@ public class SportCollectif extends Sport {
     public int getNbEquipes() { return nbEquipes; }
     public int getNbJoueursParEquipe() { return nbJoueursParEquipe; }
     public int getNbJoueurs() { return nbEquipes * nbJoueursParEquipe; } 
+    public List<Equipe> getEquipes() {
+        return equipes;
+    }
     
     public int calculePoint(Equipe equipe) {
         int force = 0;

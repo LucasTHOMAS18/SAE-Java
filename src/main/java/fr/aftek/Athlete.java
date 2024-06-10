@@ -2,6 +2,8 @@ package fr.aftek;
 import java.util.List;
 import java.util.Objects;
 
+import fr.GenderException;
+
 public class Athlete {
     private String nom;
     private String prenom;
@@ -14,7 +16,8 @@ public class Athlete {
     private List<Epreuve> epreuves;
 
 
-    public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays, Equipe equipe, List<Epreuve> epreuves) {
+    public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays, Equipe equipe, List<Epreuve> epreuves) throws GenderException {
+        if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -27,7 +30,8 @@ public class Athlete {
         this.epreuves = epreuves;
     }
 
-    public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays) {
+    public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays) throws GenderException {
+        if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -38,7 +42,8 @@ public class Athlete {
         this.pays.ajouteAthlete(this);
     }
 
-    public Athlete(String nom, String prenom, char sexe, Pays pays){
+    public Athlete(String nom, String prenom, char sexe, Pays pays) throws GenderException{
+        if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;

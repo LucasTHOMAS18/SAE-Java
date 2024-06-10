@@ -33,9 +33,7 @@ public class TestEpreuve extends TestCase{
         assertEquals(epreuve.getParticipants().get(1), kathrine);
         assertEquals(epreuve.getParticipants().get(2), nezha);
         assertEquals(epreuve.getClassement().size(), 0);
-        System.out.println(epreuve);
         epreuve.simuleEpreuve();
-        System.out.println(epreuve);
         assertEquals(epreuve.getClassement().size(), 3);
     }
 }

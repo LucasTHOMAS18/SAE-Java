@@ -41,24 +41,29 @@ public class DataManager {
         return sportsCollectifs;
     }
 
-    public void addPays(Pays pays) {
+    public Pays addPays(Pays pays) {
         this.pays.add(pays);
+        return pays;
     }
 
-    public void addAthlete(Athlete athlete) {
+    public Athlete addAthlete(Athlete athlete) {
         this.athletes.add(athlete);
+        return athlete;
     }
 
-    public void addEquipe(Equipe equipe) {
+    public Equipe addEquipe(Equipe equipe) {
         this.equipes.add(equipe);
+        return equipe;
     }
 
-    public void addSport(Sport sport) {
+    public Sport addSport(Sport sport) {
         this.sports.add(sport);
+        return sport;
     }
 
-    public void addSportCollectif(SportCollectif sportCollectif) {
+    public SportCollectif addSportCollectif(SportCollectif sportCollectif) {
         this.sportsCollectifs.add(sportCollectif);
+        return sportCollectif;
     }
 
     public void removePays(Pays pays) {
@@ -101,5 +106,16 @@ public class DataManager {
 
     public Athlete getAthlete(String nom, String prenom, Pays pays){
         return this.getAthlete(nom, prenom, pays.getNom());
+    }
+
+    public Sport getSport(String sport){
+        Set<String> sportsS = new HashSet<>();
+        for(NomSport nom : NomSport.values()) sportsS.add(nom.getNom());
+        for (Sport s : this.sports) {
+            if (s.getNomSport().getNom().equals(sport)) {
+                return s;
+            }
+        }
+        return null;
     }
 }
