@@ -1,7 +1,12 @@
 package fr.aftek.data;
 
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
+
+import fr.aftek.Pays;
 
 public class DataProvider {
     private DataManager manager;
@@ -22,11 +27,18 @@ public class DataProvider {
             }
             scanner.close();
         } catch(Exception e){
-            
+
         }
     }
 
-    public void loadSQL(ConnexionMySQL connexion) {
+    public void loadSQL(ConnexionMySQL connexion) throws SQLException {
+        Statement st = connexion.createStatement();
+        ResultSet pays = st.executeQuery("SELECT * FROM PAYS");
+
+        while (pays.next()) {
+            manager.addPays(new Pays(pays.getString(1)));
+        }
+
         
     }
 

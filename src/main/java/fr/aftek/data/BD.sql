@@ -36,10 +36,7 @@ CREATE TABLE PARTICIPE_EQUIPE (
 );
 
 CREATE TABLE PAYS (
-  PRIMARY KEY (id_Pays),
-  id_Pays int,
-  nom_Pays varchar(25),
-  id_Equipe int
+  nom_Pays varchar(25) PRIMARY KEY,
 );
 
 CREATE TABLE SPORT (
