@@ -8,13 +8,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.DriverManager;
 
 public class TestBDD extends TestCase {
     private static final String NOM_SERVEUR = "servinfo-maria";
-    private static final String NOM_BASE = "DBkeskin";
-    private static final String USER = "keskin";
-    private static final String PASS = "keskin";
+    private static final String NOM_BASE = "DBcochet";
+    private static final String USER = "cochet";
+    private static final String PASS = "cochet";
 
     private Connection mysql = null;
     private boolean connecte = false;
@@ -91,4 +92,66 @@ public class TestBDD extends TestCase {
 
         return result;
     }
+
+    public void creerBDD() {
+        String[] tableDrops = {
+            "DROP TABLE IF EXISTS ATHLETE;",
+            "DROP TABLE IF EXISTS EQUIPE;",
+            "DROP TABLE IF EXISTS PAYS;",
+            "DROP TABLE IF EXISTS SPORT;"
+        };
+    
+        String[] tableCreates = {
+            "CREATE TABLE PAYS(" +
+            "id_Pays INT PRIMARY KEY NOT NULL," +
+            "nom_Pays VARCHAR(25)" +
+            ");",
+    
+            "CREATE TABLE EQUIPE(" +
+            "idEquipe INT PRIMARY KEY NOT NULL," +
+            "nom_Equipe VARCHAR(25)," +
+            "id_Pays INT," +
+            "FOREIGN KEY (id_Pays) REFERENCES PAYS(id_Pays)" +
+            ");",
+    
+            "CREATE TABLE SPORT(" +
+            "id_Sport INT PRIMARY KEY NOT NULL," +
+            "nom_Sport VARCHAR(25)," +
+            "forces_requis INT," +
+            "agiliter_requis INT," +
+            "endurance_requis INT," +
+            "Collectif BOOLEAN" +
+            ");",
+    
+            "CREATE TABLE ATHLETE(" +
+            "id_Athlete INT PRIMARY KEY NOT NULL," +
+            "nom_Athlete VARCHAR(25)," +
+            "sexe CHAR," +
+            "forces INT," +
+            "agiliter INT," +
+            "endurance INT," +
+            "id_Pays INT," +
+            "id_Equipe INT," +
+            "id_Sport INT," +
+            "nom_Epreuve VARCHAR(25)," +
+            "sexe_Epreuve CHAR," +
+            "FOREIGN KEY (id_Sport) REFERENCES SPORT(id_Sport)," +
+            "FOREIGN KEY (id_Equipe) REFERENCES EQUIPE(idEquipe)," +
+            "FOREIGN KEY (id_Pays) REFERENCES PAYS(id_Pays)" +
+            ");"
+        };
+    
+        try (Connection conn = this.mysql; Statement stmt = conn.createStatement()) {
+            for (String drop : tableDrops) {
+                stmt.executeUpdate(drop);
+            }
+            for (String create : tableCreates) {
+                stmt.executeUpdate(create);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            fail("Erreur de connection à la BDD");
+        }
+    }
+    
 }
