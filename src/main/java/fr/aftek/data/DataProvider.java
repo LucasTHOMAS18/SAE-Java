@@ -21,9 +21,13 @@ public class DataProvider {
                 System.out.println(scanner.nextLine());
             }
             scanner.close();
-        }catch(Exception e){
-
+        } catch(Exception e){
+            
         }
+    }
+
+    public void loadSQL(ConnexionMySQL connexion) {
+        
     }
 
     public DataManager getManager() {

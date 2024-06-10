@@ -13,7 +13,6 @@ public class Athlete {
     private Equipe equipe;
     private List<Epreuve> epreuves;
 
-
     public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays, Equipe equipe, List<Epreuve> epreuves) {
         this.nom = nom;
         this.prenom = prenom;
