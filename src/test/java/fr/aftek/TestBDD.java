@@ -5,16 +5,19 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class TestBDD extends TestCase {
-    // Assurez-vous que l'URL inclut le protocole JDBC, le nom d'hôte et le nom de la base de données
-    private static final String DB_URL = "jdbc:mysql://servinfo-maria/DBkeskin";
+    private static final String NOM_SERVEUR = "servinfo-maria";
+    private static final String NOM_BASE = "DBkeskin";
     private static final String USER = "keskin";
     private static final String PASS = "keskin";
+
+    private Connection mysql = null;
+    private boolean connecte = false;
 
     public TestBDD(String testName) {
         super(testName);
@@ -24,8 +27,38 @@ public class TestBDD extends TestCase {
         return new TestSuite(TestBDD.class);
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        Class.forName("org.mariadb.jdbc.Driver");
+        connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+        if (mysql != null && isConnecte()) {
+            close();
+        }
+    }
+
+    public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
+        String url = "jdbc:mysql://" + nomServeur + "/" + nomBase;
+        this.mysql = DriverManager.getConnection(url, nomLogin, motDePasse);
+        this.connecte = this.mysql != null;
+    }
+
+    public void close() throws SQLException {
+        this.mysql.close();
+        this.connecte = false;
+    }
+
+    public boolean isConnecte() {
+        return this.connecte;
+    }
+
     public void testAthleteInsertion() {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+        try (Connection conn = this.mysql) {
             assertTrue(verifyAthletes(conn));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +84,6 @@ public class TestBDD extends TestCase {
             System.out.println("Athlete ID: " + idAthlete + ", Nom: " + nomAthlete + 
                                ", Équipe ID: " + idEquipe + ", Nom de l'Équipe: " + nomEquipe);
 
-            // Here you can add more specific assertions to check athlete data
             if (nomAthlete == null || nomEquipe == null) {
                 result = false;
             }

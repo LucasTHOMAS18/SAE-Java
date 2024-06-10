@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import fr.aftek.*;
+
 public class DataProvider {
     private DataManager manager;
 
