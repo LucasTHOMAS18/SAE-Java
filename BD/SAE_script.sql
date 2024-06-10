@@ -1,42 +1,60 @@
-Drop table ATHLETE;
-Drop table EQUIPE;
-Drop table PAYS;
-Drop table SPORT;
+DROP TABLE Athlete;
+DROP TABLE Equipe;
+DROP TABLE Pays;
+DROP TABLE Sport;
 
-create table PAYS(
-    id_Pays INT PRIMARY KEY NOT NULL,
-    nom_Pays varchar(25)
+CREATE TABLE Pays (
+    nomPays VARCHAR(25) PRIMARY KEY NOT NULL
 );
 
-create table EQUIPE(
+CREATE TABLE Equipe (
     idEquipe INT PRIMARY KEY NOT NULL,
-    nom_Equipe varchar(25),
-    id_Pays int,
-    FOREIGN KEY (id_Pays) REFERENCES Pays(id_Pays)
+    nomEquipe VARCHAR(25),
+    idPays INT,
+    FOREIGN KEY (idPays) REFERENCES Pays(nomPays)
 );
 
-create table SPORT(
-  id_Sport INT PRIMARY KEY NOT NULL,
-  nom_Sport varchar(25),
-  forces_requis int,
-  agiliter_requis int,
-  endurance_requis int,
-  Collectif boolean
+CREATE TABLE Sport (
+    idSport INT PRIMARY KEY NOT NULL,
+    nomSport VARCHAR(25),
+    forcesRequis INT,
+    agiliteRequis INT,
+    enduranceRequis INT,
+    collectif BOOLEAN
 );
 
-create table ATHLETE(
-    id_Athlete INT PRIMARY KEY NOT NULL,
-    nom_Athlete varchar(25),
-    sexe char,
-    forces int,
-    agiliter int,
-    endurance int,
-    id_Pays int,
-    id_Equipe int,
-    id_Sport int,
-    nom_Epreuve varchar(25),
-    sexe_Epreuve char,
-    FOREIGN KEY (id_Sport) REFERENCES SPORT(id_Sport),
-    FOREIGN KEY (id_Equipe) REFERENCES EQUIPE(idEquipe),
-    FOREIGN KEY (id_Pays) REFERENCES PAYS(id_Pays)
+CREATE TABLE Athlete (
+    idAthlete INT PRIMARY KEY NOT NULL,
+    nomAthlete VARCHAR(25),
+    sexe CHAR,
+    forces INT,
+    agilite INT,
+    endurance INT,
+    idPays INT,
+    idEquipe INT,
+    nomEpreuve VARCHAR(25),
+    sexeEpreuve CHAR,
+    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
+    FOREIGN KEY (idPays) REFERENCES Pays(nomPays)
+);
+
+CREATE TABLE Participe (
+    idAthlete INT,
+    idEpreuve INT,
+    PRIMARY KEY (idAthlete, idEpreuve)
+);
+
+CREATE TABLE ParticipeCollectif (
+    idEquipe INT,
+    idEpreuve INT,
+    PRIMARY KEY (idEquipe, idEpreuve)
+);
+
+CREATE TABLE Epreuve (
+    idEpreuve INT PRIMARY KEY,
+    nomEpreuve VARCHAR(25),
+    sexeEpreuve CHAR(1),
+    idSport INT,
+    collective BOOLEAN,
+    FOREIGN KEY (idSport) REFERENCES Sport(idSport)
 );
