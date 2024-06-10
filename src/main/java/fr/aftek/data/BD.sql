@@ -1,61 +1,42 @@
-CREATE TABLE ATHLETE (
-  PRIMARY KEY (id_Athlete),
-  id_Athlete int,
-  nom_Athlete varchar(25),
-  sexe varchar(1),     
-  forces int,
-  agiliter int,
-  endurance int,
-  id_Equipe int
+Drop table ATHLETE;
+Drop table EQUIPE;
+Drop table PAYS;
+Drop table SPORT;
+
+create table PAYS(
+    id_Pays INT PRIMARY KEY NOT NULL,
+    nom_Pays varchar(25)
 );
 
-CREATE TABLE EPREUVE (
-  PRIMARY KEY (id_Epreuve),
-  id_Epreuve int,
-  nom_Epreuve varchar(25),
-  sexe_Epreuve varchar(1),
-  id_Sport int
+create table EQUIPE(
+    idEquipe INT PRIMARY KEY NOT NULL,
+    nom_Equipe varchar(25),
+    id_Pays int,
+    FOREIGN KEY (id_Pays) REFERENCES Pays(id_Pays)
 );
 
-CREATE TABLE EQUIPE (
-  PRIMARY KEY (id_Equipe),
-  id_Equipe  VARCHAR(42) NOT NULL,
-  nom_Equipe VARCHAR(42)
+create table SPORT(
+  id_Sport INT PRIMARY KEY NOT NULL,
+  nom_Sport varchar(25),
+  forces_requis int,
+  agiliter_requis int,
+  endurance_requis int,
+  Collectif boolean
 );
 
-CREATE TABLE PARTICIPE (
-  PRIMARY KEY (id_Athlete, id_Epreuve),
-  id_Athlete VARCHAR(42) NOT NULL,
-  id_Epreuve VARCHAR(42) NOT NULL
+create table ATHLETE(
+    id_Athlete INT PRIMARY KEY NOT NULL,
+    nom_Athlete varchar(25),
+    sexe char,
+    forces int,
+    agiliter int,
+    endurance int,
+    id_Pays int,
+    id_Equipe int,
+    id_Sport int,
+    nom_Epreuve varchar(25),
+    sexe_Epreuve char,
+    FOREIGN KEY (id_Sport) REFERENCES SPORT(id_Sport),
+    FOREIGN KEY (id_Equipe) REFERENCES EQUIPE(idEquipe),
+    FOREIGN KEY (id_Pays) REFERENCES PAYS(id_Pays)
 );
-
-CREATE TABLE PARTICIPE_EQUIPE (
-  PRIMARY KEY (id_Epreuve, id_Equipe),
-  id_Epreuve int,
-  id_Equipe int
-);
-
-CREATE TABLE PAYS (
-  nom_Pays varchar(25) PRIMARY KEY,
-);
-
-CREATE TABLE SPORT (
-  PRIMARY KEY (id_Sport),
-  id_Sport         VARCHAR(42) NOT NULL,
-  nom_Sport        VARCHAR(42),
-  forces_requis    VARCHAR(42),
-  agiliter_requis  VARCHAR(42),
-  endurance_requis VARCHAR(42),
-  Collectif        VARCHAR(42)
-);
-
-ALTER TABLE ATHLETE ADD FOREIGN KEY (id_Equipe) REFERENCES EQUIPE (id_Equipe);
-
-ALTER TABLE EPREUVE ADD FOREIGN KEY (id_Sport) REFERENCES SPORT (id_Sport);
-
-ALTER TABLE PARTICIPE ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
-ALTER TABLE PARTICIPE ADD FOREIGN KEY (id_Athlete) REFERENCES ATHLETE (id_Athlete);
-ALTER TABLE PARTICIPE_EQUIPE ADD FOREIGN KEY (id_Equipe) REFERENCES EQUIPE (id_Equipe);
-ALTER TABLE PARTICIPE_EQUIPE ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
-
-ALTER TABLE PAYS ADD FOREIGN KEY (id_Equipe) REFERENCES EQUIPE (id_Equipe);
