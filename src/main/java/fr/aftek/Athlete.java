@@ -2,8 +2,6 @@ package fr.aftek;
 import java.util.List;
 import java.util.Objects;
 
-import fr.GenderException;
-
 public class Athlete {
     private String nom;
     private String prenom;

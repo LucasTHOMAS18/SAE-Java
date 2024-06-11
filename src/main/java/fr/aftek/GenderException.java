@@ -1,4 +1,4 @@
-package fr;
+package fr.aftek;
 
 public class GenderException extends RuntimeException {
     public GenderException(String message){
