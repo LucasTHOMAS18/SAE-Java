@@ -13,9 +13,9 @@ import java.sql.DriverManager;
 
 public class TestBDD extends TestCase {
     private static final String NOM_SERVEUR = "servinfo-maria";
-    private static final String NOM_BASE = "DBcochet";
-    private static final String USER = "cochet";
-    private static final String PASS = "cochet";
+    private static final String NOM_BASE = "DBbeaujouan";
+    private static final String USER = "beaujouan";
+    private static final String PASS = "beaujouan";
 
     private Connection mysql = null;
     private boolean connecte = false;

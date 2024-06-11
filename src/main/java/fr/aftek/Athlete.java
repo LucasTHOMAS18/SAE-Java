@@ -14,6 +14,7 @@ public class Athlete {
     private List<Epreuve> epreuves;
 
     public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays, Equipe equipe, List<Epreuve> epreuves) throws GenderException {
+        sexe = Character.toUpperCase(sexe);
         if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;
@@ -28,6 +29,7 @@ public class Athlete {
     }
 
     public Athlete(String nom, String prenom, char sexe, float force, float agilite, float endurance, Pays pays) throws GenderException {
+        sexe = Character.toUpperCase(sexe);
         if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;
@@ -40,6 +42,7 @@ public class Athlete {
     }
 
     public Athlete(String nom, String prenom, char sexe, Pays pays) throws GenderException{
+        sexe = Character.toUpperCase(sexe);
         if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
         this.prenom = prenom;

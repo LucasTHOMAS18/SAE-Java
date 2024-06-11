@@ -1,5 +1,7 @@
 package fr.aftek;
 
+import java.io.FileNotFoundException;
+
 import fr.aftek.data.DataProvider;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -16,9 +18,13 @@ public class TestCSV extends TestCase{
 
     public void testCSV(){
         DataProvider dataProvider = new DataProvider();
-        dataProvider.loadCSV("/home/iut45/Etudiants/o22302103/Documents/donnees.csv");
-        System.out.println(dataProvider.getManager().getAthletes());
-        System.out.println(dataProvider.getManager().getEquipes());
-        System.out.println(dataProvider.getManager().getSports());
+        try {
+            dataProvider.loadCSV("../donnees.csv");
+        } catch (FileNotFoundException e) {
+            fail("FileNotFoundException");
+        }
+        assertEquals(dataProvider.getManager().getAthletes().size(), 400);
+        assertEquals(dataProvider.getManager().getEquipes().size(), 0); // Aucune equipe n'est créer à partie d'un fichier CSV
+        assertEquals(dataProvider.getManager().getSports().size(), 8);
     }
 }
