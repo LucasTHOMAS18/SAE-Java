@@ -6,11 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import fr.aftek.Athlete;
-import fr.aftek.NomSport;
-import fr.aftek.Pays;
-import fr.aftek.Sport;
-
 public class DataProvider {
     private DataManager manager;
 
