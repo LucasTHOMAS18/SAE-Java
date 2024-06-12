@@ -20,9 +20,9 @@ public class TestEpreuve extends TestCase{
          * Kathrine Switzer: Athlète américaine: force: 17, agilite: 19, endurance: 13
          * Nezha Bidouane: Athlète marocaine: force: 15, agilite: 15, endurance; 12
          */
-        Athlete marie = new Athlete("Pérec", "Marie-José", 'F', 18f, 17f, 10f, new Pays("France"));
-        Athlete kathrine = new Athlete("Switzer", "Kathrine", 'F', 17f, 19f, 13f, new Pays("Etats-Unis"));
-        Athlete nezha = new Athlete("Bidouane", "Nezha", 'F', 15f, 15f, 12f, new Pays("Maroc"));
+        Athlete marie = new Athlete("Pérec", "Marie-José", 'F', 18, 17, 10, new Pays("France"));
+        Athlete kathrine = new Athlete("Switzer", "Kathrine", 'F', 17, 19, 13, new Pays("Etats-Unis"));
+        Athlete nezha = new Athlete("Bidouane", "Nezha", 'F', 15, 15, 12, new Pays("Maroc"));
         Sport athletisme = new Sport(NomSport.ATHLETISME, 15, 15, 15);
         Epreuve epreuve = new Epreuve("Athlétisme féminin", 'F', athletisme);
         epreuve.ajouteAthlete(marie);

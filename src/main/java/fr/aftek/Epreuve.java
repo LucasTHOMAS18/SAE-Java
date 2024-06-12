@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 public class Epreuve {
@@ -49,6 +50,18 @@ public class Epreuve {
             }
         }
     }
+
+    public Epreuve fusionEpreuve(Epreuve e){
+        if(this.getSexe()!=e.getSexe()) throw new GenderException("Pas le même genre");
+        if(!this.getSport().equals(e.getSport())) throw new RuntimeException("Pas le même sport");
+        for (Athlete athlete : e.getParticipants()) {
+            this.participants.add(athlete);
+            athlete.retireEpreuve(e);
+            athlete.ajouteEpreuve(this);
+        }
+        this.classement.putAll(e.getClassement());
+        return this;
+    }
     
     public Map<Athlete, Integer> getClassement() {
         return classement;
@@ -68,6 +81,11 @@ public class Epreuve {
 
     public Sport getSport() {
         return sport;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, classement, participants, sport, sexe);
     }
 
     @Override

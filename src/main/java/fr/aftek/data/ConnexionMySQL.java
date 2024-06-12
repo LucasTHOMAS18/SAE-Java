@@ -1,6 +1,7 @@
 package fr.aftek.data;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,6 +15,8 @@ public class ConnexionMySQL {
 
 	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
 		// si tout c'est bien passé la connexion n'est plus nulle
+		String url = "jdbc:mysql://" + nomServeur + "/" + nomBase;
+        this.mysql = DriverManager.getConnection(url, nomLogin, motDePasse);
 		this.connecte=this.mysql!=null;
 	}
 

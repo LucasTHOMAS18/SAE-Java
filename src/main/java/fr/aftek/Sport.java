@@ -1,5 +1,6 @@
 package fr.aftek;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Sport {
@@ -56,6 +57,8 @@ public class Sport {
     }
 
     @Override
-    public int hashCode() { return nomSport.hashCode(); }
+    public int hashCode() {
+        return Objects.hash(nomSport,force,agilite,endurance);
+    }
     
 }

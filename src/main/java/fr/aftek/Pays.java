@@ -2,6 +2,7 @@ package fr.aftek;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Pays {
     private String nom;
@@ -47,6 +48,11 @@ public class Pays {
         }
         Pays pays = (Pays) o;
         return this.getNom().equals(pays.getNom());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.nom);
     }
 
     @Override
