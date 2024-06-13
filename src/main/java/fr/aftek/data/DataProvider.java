@@ -8,19 +8,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import fr.aftek.*;
+import fr.aftek.Athlete;
+import fr.aftek.NomSport;
+import fr.aftek.Pays;
+import fr.aftek.Sport;
+import fr.aftek.SportCollectif;
 
+/**
+ * Classe DataProvider, permet de charger et sauvegarder les données des athlètes, pays et sports à partir d'une BD ou d'un fichier CSV
+ */
 public class DataProvider {
     private DataManager manager;
 
+    /**
+     * Constructeur de la classe DataProvider
+     * @param manager le gestionnaire de données
+     */
     public DataProvider(DataManager manager) {
         this.manager = manager;
     }
 
+    /**
+     * Constructeur de la classe DataProvider
+     */
     public DataProvider() {
         manager = new DataManager();
     }
 
+    /**
+     * Charge les données des athlètes, pays et sports à partir d'un fichier CSV
+     * @param filename le nom du fichier CSV
+     * @throws FileNotFoundException
+     */
     public void loadCSV(String filename) throws FileNotFoundException{
         Scanner scanner = new Scanner(new File(filename));
         scanner.nextLine();
@@ -49,6 +68,11 @@ public class DataProvider {
         scanner.close();
     }
 
+    /**
+     * Sauvegarde les données des athlètes, pays et sports dans un fichier CSV
+     * @param filename le nom du fichier CSV
+     * @throws FileNotFoundException
+     */
     public void saveCSV(String filename) throws FileNotFoundException{
         File f = new File(filename);
         PrintWriter pw = new PrintWriter(f);
@@ -61,7 +85,13 @@ public class DataProvider {
         pw.close();
     }
 
+    /**
+     * Charge les données des athlètes, pays et sports à partir d'une base de données MySQL
+     * @param connexion la connexion à la base de données
+     * @throws SQLException
+     */
     public void loadSQL(ConnexionMySQL connexion) throws SQLException {
+        // TODO
         Statement st = connexion.createStatement();
         ResultSet pays = st.executeQuery("SELECT * FROM Pays");
 
@@ -90,9 +120,13 @@ public class DataProvider {
     }
 
     public void saveSQL(ConnexionMySQL connexion) throws SQLException{
-
+        // TODO
     }
 
+    /**
+     * Retourne le gestionnaire de données
+     * @return le gestionnaire de données
+     */
     public DataManager getManager() {
         return manager;
     }
