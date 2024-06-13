@@ -3,6 +3,9 @@ package fr.aftek;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Classe Sport, représente un sport des JO
+ */
 public class Sport {
     private static final double COEF_SANCTION_COMPETENCE_INFERIEUR_MIN = 2;
     private static final double COEF_SANCTION_COMPETENCE_INFERIEUR_MAX = 7;
@@ -13,6 +16,13 @@ public class Sport {
     protected float agilite;
     protected float endurance;
 
+    /**
+     * Constructeur de la classe Sport
+     * @param nomSport le nom du sport
+     * @param force la force requise pour le sport
+     * @param agilite l'agilité requise pour le sport
+     * @param endurance l'endurance requise pour le sport
+     */
     public Sport(NomSport nomSport, float force, float agilite, float endurance) {
         this.nomSport = nomSport;
         
@@ -21,19 +31,66 @@ public class Sport {
         this.endurance = endurance;
     }
     
+    /**
+     * Retourne le nom du sport
+     * @return le nom du sport
+     */
     public NomSport getNomSport() { return nomSport; }
+    
+    /**
+     * Retourne la force requise pour le sport
+     * @return la force requise pour le sport
+     */
     public float getForce() { return force; }
+    
+    /**
+     * Retourne l'agilité requise pour le sport
+     * @return l'agilité requise pour le sport
+     */
     public float getAgilite() { return agilite; }
+    
+    /** Retourne l'endurance requise pour le sport
+     * @return l'endurance requise pour le sport
+     */
     public float getEndurance() { return endurance; }
 
+
+    /**
+     * Modifie la force requise pour le sport
+     * @param force la force requise pour le sport
+     */
     public void setForce(int force) { this.force = force; }
+    
+    /**
+     * Modifie l'agilité requise pour le sport
+     * @param agilite l'agilité requise pour le sport
+     */
     public void setAgilite(int agilite) { this.agilite = agilite; }
+    
+    /**
+     * Modifie l'endurance requise pour le sport
+     * @param endurance l'endurance requise pour le sport
+     */
     public void setEndurance(int endurance) { this.endurance = endurance; }
 
+
+    /**
+     * Calcule les points d'un athlète pour ce sport
+     * @param athlete l'athlète
+     * @return les points de l'athlète pour ce sport
+     */
     public int calculePoint(Athlete athlete) {
         return this.calculePoint(athlete.getForce(), athlete.getAgilite(), athlete.getEndurance());
     }
 
+
+    /**
+     * Calcule les points d'un athlète pour ce sport
+     * @param force la force de l'athlète
+     * @param agilite l'agilité de l'athlète
+     * @param endurance l'endurance de l'athlète
+     * @return les points de l'athlète pour ce sport
+     */
     public int calculePoint(float force, float agilite, float endurance){
         int points = 100;
         Random random = new Random();
