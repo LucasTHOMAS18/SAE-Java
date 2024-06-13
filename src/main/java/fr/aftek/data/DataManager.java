@@ -15,6 +15,9 @@ import fr.aftek.Pays;
 import fr.aftek.Sport;
 import fr.aftek.SportCollectif;
 
+/**
+ * Classe DataManager, gère les données des pays, athlètes, équipes, épreuves, sports et sports collectifs
+ */
 public class DataManager {
     public final Set<Pays> pays;
     public final Set<Athlete> athletes;
