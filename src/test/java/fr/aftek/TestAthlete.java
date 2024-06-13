@@ -43,8 +43,8 @@ public class TestAthlete
         assertNotEquals(france, angleterre);
         Pays france2 = new Pays("France");
         assertEquals(france, france2);
-        france.ajouteAthlete(new Athlete("Cochet", "Raphaël", 'f', 20, 2, 5, france));
-        france.ajouteAthlete(new Athlete("Cochet", "Raphaël", 'f', 20, 2, 5, france));
+        france.ajouteAthlete(new Athlete("Cochet", "Raphaël", 'f', 20, 2, 5, france, null)); // TODO ajouter sport
+        france.ajouteAthlete(new Athlete("Cochet", "Raphaël", 'f', 20, 2, 5, france, null)); // TODO ajouter sport
         assertEquals(france, france2);
     }
 
@@ -53,7 +53,7 @@ public class TestAthlete
      */
     public void testAthlete()
     {
-        Athlete athlete = new Athlete("Michel", "Jean", 'M', new Pays("France"));
+        Athlete athlete = new Athlete("Michel", "Jean", 'M', new Pays("France"), null); // TODO ajouter sport
         assertEquals("Jean", athlete.getPrenom());
         assertEquals("Michel", athlete.getNom());
         assertEquals('M', athlete.getSexe());
@@ -68,8 +68,8 @@ public class TestAthlete
      */
     public void testEquipe(){
         Pays france = new Pays("France");
-        Athlete athlete = new Athlete("Michel", "Jean", 'M', france);
-        Athlete raphou = new Athlete("Cochet", "Raphaël", 'F', 20, 2, 5, france);
+        Athlete athlete = new Athlete("Michel", "Jean", 'M', france, null); // TODO ajouter sport
+        Athlete raphou = new Athlete("Cochet", "Raphaël", 'F', 20, 2, 5, france, null); // TODO ajouter sport
         Equipe equipefr = new Equipe("Equipe de france", france);
         assertEquals("Equipe de france", equipefr.getNom());
         assertEquals(france, equipefr.getPays());

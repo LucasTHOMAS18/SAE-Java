@@ -1,6 +1,5 @@
 package fr.aftek;
 
-import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -179,7 +178,7 @@ class ExecutableTerminal {
                     if(res != null){
                         Pays pays = provider.getManager().getPays(res[3]);
                         if(pays == null) pays = provider.getManager().addPays(new Pays(res[3]));
-                        provider.getManager().addAthlete(new Athlete(res[0], res[1], res[2].charAt(0), provider.getManager().getPays(res[3])));
+                        provider.getManager().addAthlete(new Athlete(res[0], res[1], res[2].charAt(0), provider.getManager().getPays(res[3]), null)); //TODO ajouter sport
                         afficher("L'athlète "+res[1]+" "+res[0]+(res[2].charAt(0) == 'F' ? " femme " : " homme ")+"de "+res[3]+" ajouté !");
                     }
                 }else if(commande.equals("SU")){

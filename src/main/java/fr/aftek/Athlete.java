@@ -17,6 +17,7 @@ public class Athlete {
     private Pays pays;
     private Equipe equipe;
     private List<Epreuve> epreuves;
+    private Sport sport;
 
     /**
      * Constructeur complet pour la classe Athlete.
@@ -32,7 +33,7 @@ public class Athlete {
      * @param epreuves La liste des épreuves auxquelles l'athlète participe.
      * @throws GenderException Si le sexe n'est pas 'M' ou 'F'.
      */
-    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Equipe equipe, List<Epreuve> epreuves) throws GenderException {
+    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Equipe equipe, Sport sport, List<Epreuve> epreuves) throws GenderException {
         sexe = Character.toUpperCase(sexe);
         if(sexe != 'F' && sexe != 'M') throw new GenderException();
         this.nom = nom;
@@ -44,6 +45,7 @@ public class Athlete {
         this.pays = pays;
         this.pays.ajouteAthlete(this);
         this.equipe = equipe;
+        this.sport = sport;
         this.epreuves = epreuves;
     }
 
@@ -59,8 +61,8 @@ public class Athlete {
      * @param pays Le pays de l'athlète.
      * @throws GenderException Si le sexe n'est pas 'M' ou 'F'.
      */
-    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays) throws GenderException {
-        this(nom, prenom, sexe, force, agilite, endurance, pays, null, new ArrayList<>());
+    public Athlete(String nom, String prenom, char sexe, int force, int agilite, int endurance, Pays pays, Sport sport) throws GenderException {
+        this(nom, prenom, sexe, force, agilite, endurance, pays, null, sport, new ArrayList<>());
     }
 
     /**
@@ -72,8 +74,8 @@ public class Athlete {
      * @param pays Le pays de l'athlète.
      * @throws GenderException Si le sexe n'est pas 'M' ou 'F'.
      */
-    public Athlete(String nom, String prenom, char sexe, Pays pays) throws GenderException{
-        this(nom, prenom, sexe, (int)(Math.random() * 20), (int)(Math.random() * 20), (int)(Math.random() * 20), pays);
+    public Athlete(String nom, String prenom, char sexe, Pays pays, Sport sport) throws GenderException{
+        this(nom, prenom, sexe, (int)(Math.random() * 20), (int)(Math.random() * 20), (int)(Math.random() * 20), pays, sport);
     }
 
     // Les getters
@@ -124,6 +126,13 @@ public class Athlete {
      */
     public Pays getPays() {
         return pays;
+    }
+
+    /**
+     * @return Le sport de l'athlète.
+     */
+    public Sport getSport() {
+        return sport;
     }
 
     /**

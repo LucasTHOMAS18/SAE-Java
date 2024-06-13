@@ -61,7 +61,7 @@ public class DataProvider {
                 sport = this.manager.addSport(new Sport(NomSport.getNomSport(sportS), force, agilite, endurance));
             }
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
-            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays);
+            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, null); // TODO ajouter sport
             this.manager.addAthlete(a);
             this.manager.createEpreuve(a, sport);
         }
@@ -102,7 +102,7 @@ public class DataProvider {
         ResultSet athletes = st.executeQuery("SELECT * FROM Athlete");
 
         while (athletes.next()) {
-            manager.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), manager.getPays(athletes.getString(8))));
+            manager.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), manager.getPays(athletes.getString(8)), null)); // TODO ajouter sport
         }
 
         ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE collectif=false");
