@@ -163,7 +163,7 @@ class ExecutableTerminal {
             String[] menuAthlete = new String[] {
                 "LI: Liste des athlète",
                 "CR: Créer un athlète",
-                "SU: Supprime un athlète",
+                "SU: Supprimer un athlète",
                 "Q: quitter"
             };
             boolean quitter = false;
@@ -173,7 +173,11 @@ class ExecutableTerminal {
                 if(commande.equals("Q")){
                     quitter = true;
                 }else if(commande.equals("LI")){
-                    afficher("Voici la liste des athlète:", provider.getManager().getAthletes().stream().map((a)->a.getPrenom()+" "+a.getNom()+": "+a.getPays().getNom()).sorted().collect(Collectors.toList()));
+                    if(provider.getManager().getAthletes().size() == 0){
+                        afficher("Il n'y a pas d'athlètes chargés !");
+                    }else{
+                        afficher("Voici la liste des athlète:", provider.getManager().getAthletes().stream().map((a)->a.getPrenom()+" "+a.getNom()+": "+a.getPays().getNom()).sorted().collect(Collectors.toList()));
+                    }
                 }else if(commande.equals("CR")){
                     String[] res = this.saisirInfosAthlete();
                     if(res != null){
@@ -200,7 +204,29 @@ class ExecutableTerminal {
             }
         }
         public void menuEP(){
-
+            String[] menuAthlete = new String[] {
+                "LI: Liste des épreuves",
+                "CR: Créer une épreuve",
+                "SU: Supprimer une épreuve",
+                "Q: quitter"
+            };
+            boolean quitter = false;
+            while(!quitter){
+                afficher("Que voulez vous faire?", menuAthlete);
+                String commande = scanner.nextLine().strip().toUpperCase();
+                if(commande.equals("Q")){
+                    quitter = true;
+                }else if(commande.equals("LI")){
+                    if(provider.getManager().getAthletes().size() == 0){
+                        afficher("Il n'y a pas d'épreuve chargés !");
+                    }else{
+                        afficher("Voici la liste des épreuves:", provider.getManager().getEpreuves().stream().map((e)->e.getNom() + " avec " + e.getParticipants().size() + " participants").sorted().collect(Collectors.toList()));
+                    }
+                }
+                else{
+                    afficher("Commande "+commande+" inconnue !");
+                }
+            }
         }
         public void menuPA(){
 

@@ -1,14 +1,14 @@
 package fr.aftek;
 
 public enum NomSport {
-    NATATION("Natation 100 brasse",false, 0, 0, 0), 
-    ESCRIME_FLEURET("Escrime fleuret",false, 0, 0, 0), 
-    ESCRIME_EPEE("Escrime épée",false, 0, 0, 0), 
-    ATHLETISME("Athétisme 110 haies",false, 0, 0, 0), 
-    ATHLETISME_RELAIS("Athlétisme relais 400m",true, 0, 0, 0),
-    NATATION_RELAIS("Natation relais libre",true, 0, 0, 0), 
-    HANDBALL("Handball",true, 0, 0, 0), 
-    VOLLEY_BALL("Volley-Ball",true, 0, 0, 0);
+    NATATION("Natation 100 brasse", false, 10, 15, 12), 
+    ESCRIME_FLEURET("Escrime fleuret", false, 6, 10, 17), 
+    ESCRIME_EPEE("Escrime épée", false, 7, 10, 16), 
+    ATHLETISME("Athétisme 110 haies", false, 10, 18, 12), 
+    ATHLETISME_RELAIS("Athlétisme relais 400m", true, 12, 17, 12),
+    NATATION_RELAIS("Natation relais libre", true, 11, 15, 13), 
+    HANDBALL("Handball", true, 13, 10, 14), 
+    VOLLEY_BALL("Volley-Ball", true, 11, 9, 16);
 
     private String nom;
     private boolean equipe;
