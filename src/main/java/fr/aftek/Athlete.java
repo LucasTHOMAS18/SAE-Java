@@ -101,21 +101,21 @@ public class Athlete {
     /**
      * @return La force de l'athlète.
      */
-    public float getForce() {
+    public int getForce() {
         return force;
     }
 
     /**
      * @return L'agilité de l'athlète.
      */
-    public float getAgilite() {
+    public int getAgilite() {
         return agilite;
     }
 
     /**
      * @return L'endurance de l'athlète.
      */
-    public float getEndurance() {
+    public int getEndurance() {
         return endurance;
     }
 

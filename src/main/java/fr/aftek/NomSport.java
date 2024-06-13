@@ -16,6 +16,15 @@ public enum NomSport {
     private float endurance;
     private float agilite;
 
+    /**
+     * Constructeur pour initialiser un sport avec ses attributs.
+     *
+     * @param nom Le nom du sport.
+     * @param equipe Indique si le sport est pratiqué en équipe.
+     * @param force Le niveau de force requis pour ce sport.
+     * @param endurance Le niveau d'endurance requis pour ce sport.
+     * @param agilite Le niveau d'agilité requis pour ce sport.
+     */
     NomSport(String nom, boolean equipe, float force, float endurance, float agilite) {
         this.nom = nom;
         this.equipe = equipe;
@@ -24,22 +33,47 @@ public enum NomSport {
         this.agilite = agilite;
     }
 
+    /**
+     * @return Le nom du sport.
+     */
     public String getNom() {
         return nom;
     }
 
-    public boolean estEquipe(){
+    /**
+     * @return Vrai si le sport est pratiqué en équipe, sinon faux.
+     */
+    public boolean estEquipe() {
         return equipe;
     }
+
+    /**
+     * @return Le niveau de force requis pour ce sport.
+     */
     public float getForce() {
         return force;
     }
+
+    /**
+     * @return Le niveau d'endurance requis pour ce sport.
+     */
     public float getEndurance() {
         return endurance;
     }
+
+    /**
+     * @return Le niveau d'agilité requis pour ce sport.
+     */
     public float getAgilite() {
         return agilite;
     }
+
+    /**
+     * Retourne les statistiques (force, endurance, agilité) pour un sport donné par son nom.
+     *
+     * @param nom Le nom du sport.
+     * @return Un tableau contenant les valeurs de force, endurance et agilité pour le sport.
+     */
     public static float[] getStats(String nom){
         for(NomSport ns : NomSport.values()){
             if(ns.getNom().equals(nom)){
@@ -48,6 +82,13 @@ public enum NomSport {
         }
         return null;
     }
+
+    /**
+     * Retourne l'énumération NomSport correspondant à un nom de sport donné.
+     *
+     * @param nom Le nom du sport.
+     * @return L'énumération NomSport correspondante, ou null si aucun sport ne correspond au nom donné.
+     */
     public static NomSport getNomSport(String nom){
         for(NomSport ns : NomSport.values()){
             if(ns.getNom().equals(nom)){
