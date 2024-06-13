@@ -14,6 +14,13 @@ public class Epreuve {
     private Sport sport;
     private char sexe;
 
+    /**
+     * Constructeur pour initialiser une épreuve avec un nom, un sexe et un sport.
+     *
+     * @param nom Le nom de l'épreuve.
+     * @param sexe Le sexe des participants ('M' pour masculin, 'F' pour féminin).
+     * @param sport Le sport de l'épreuve.
+     */
     public Epreuve(String nom, char sexe, Sport sport) {
         this.nom = nom;
         this.participants = new ArrayList<>();
@@ -22,6 +29,11 @@ public class Epreuve {
         this.sexe = sexe;
     }
 
+    /**
+     * Simule l'épreuve en calculant les points pour chaque athlète participant et retourne le classement.
+     *
+     * @return Le classement des athlètes avec leurs points.
+     */
     public Map<Athlete, Integer> simuleEpreuve() {
         Random random = new Random();
         for (Athlete athlete : participants) {
@@ -34,6 +46,11 @@ public class Epreuve {
         return classement;
     }
 
+    /**
+     * Ajoute un athlète à la liste des participants de l'épreuve.
+     *
+     * @param athlete L'athlète à ajouter.
+     */
     public void ajouteAthlete(Athlete athlete) {
         this.participants.add(athlete);
     }
@@ -42,6 +59,12 @@ public class Epreuve {
         this.participants.remove(athlete);
     }
 
+    /**
+     * Retire un athlète de la liste des participants de l'épreuve.
+     *
+     * @param nom Le de nom de l'athlète à retirer.
+     * @param prenom Le de prenom de l'athlète à retirer.
+     */
     public void retireAthlete(String nom, String prenom){
         for (Athlete athlete : participants) {
             if(athlete.getNom().equals(nom) && athlete.getPrenom().equals(prenom)){
@@ -51,6 +74,14 @@ public class Epreuve {
         }
     }
 
+    /**
+     * Fusionne cette épreuve avec une autre épreuve.
+     *
+     * @param e L'épreuve à fusionner.
+     * @return L'épreuve fusionnée.
+     * @throws GenderException Si les épreuves ne sont pas pour le même sexe.
+     * @throws RuntimeException Si les épreuves ne sont pas pour le même sport.
+     */
     public Epreuve fusionEpreuve(Epreuve e){
         if(this.getSexe()!=e.getSexe()) throw new GenderException("Pas le même genre");
         if(!this.getSport().equals(e.getSport())) throw new RuntimeException("Pas le même sport");
@@ -63,22 +94,39 @@ public class Epreuve {
         return this;
     }
     
+// Getters
+
+    /**
+     * @return Le classement des athlètes avec leurs points.
+     */
     public Map<Athlete, Integer> getClassement() {
         return classement;
     }
 
+    /**
+     * @return Le nom de l'épreuve.
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * @return La liste des participants à l'épreuve.
+     */
     public List<Athlete> getParticipants() {
         return participants;
     }
 
+    /**
+     * @return Le sexe des participants ('M' pour masculin, 'F' pour féminin).
+     */
     public char getSexe() {
         return sexe;
     }
 
+    /**
+     * @return Le sport de l'épreuve.
+     */
     public Sport getSport() {
         return sport;
     }
