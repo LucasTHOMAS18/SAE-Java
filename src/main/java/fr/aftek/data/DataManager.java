@@ -130,6 +130,15 @@ public class DataManager {
         return null;
     }
 
+    public Athlete getAthlete(String nom, String prenom){
+        for (Athlete athlete : this.athletes) {
+            if (athlete.getNom().equals(nom) && athlete.getPrenom().equals(prenom)) {
+                return athlete;
+            }
+        }
+        return null;
+    }
+
     public Athlete getAthlete(String nom, String prenom, Pays pays){
         return this.getAthlete(nom, prenom, pays.getNom());
     }
