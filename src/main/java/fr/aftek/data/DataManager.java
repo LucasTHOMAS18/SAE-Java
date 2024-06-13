@@ -262,6 +262,21 @@ public class DataManager {
     }
 
     /**
+     * Récupère le premier athlète à partir de son nom, prénom, si plusieurs athlètes ont le même nom et prénom il renvoie le premier trouvé
+     * @param nom le nom de l'athlète
+     * @param prenom le prénom de l'athlète
+     * @return l'athlète correspondant au nom, prénom et pays, null si l'athlète n'existe pas
+     */
+    public Athlete getAthlete(String nom, String prenom){
+        for (Athlete athlete : this.athletes) {
+            if (athlete.getNom().equals(nom) && athlete.getPrenom().equals(prenom)) {
+                return athlete;
+            }
+        }
+        return null;
+    }    
+
+    /**
      * Récupère un sport à partir de son nom
      * @param sport le nom du sport
      * @return le sport correspondant au nom, null si le sport n'existe pas
