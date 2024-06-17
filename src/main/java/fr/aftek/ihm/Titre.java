@@ -1,5 +1,6 @@
 package fr.aftek.ihm;
 
+import fr.aftek.ihm.providers.ImagesProvider;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;

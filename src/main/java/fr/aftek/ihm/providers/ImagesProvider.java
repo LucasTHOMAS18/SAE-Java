@@ -1,4 +1,4 @@
-package fr.aftek.ihm;
+package fr.aftek.ihm.providers;
 
 import java.io.File;
 import java.net.URI;
