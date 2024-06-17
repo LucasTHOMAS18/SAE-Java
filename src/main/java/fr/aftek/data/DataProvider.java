@@ -6,9 +6,14 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import fr.aftek.Athlete;
+import fr.aftek.Epreuve;
+import fr.aftek.EpreuveCollective;
+import fr.aftek.Equipe;
 import fr.aftek.NomSport;
 import fr.aftek.Pays;
 import fr.aftek.Sport;
@@ -91,31 +96,74 @@ public class DataProvider {
      * @throws SQLException
      */
     public void loadSQL(ConnexionMySQL connexion) throws SQLException {
-        // TODO
         Statement st = connexion.createStatement();
+        
+        // Creation des pays
         ResultSet pays = st.executeQuery("SELECT * FROM Pays");
-
         while (pays.next()) {
             manager.addPays(new Pays(pays.getString(1)));
         }
 
-        ResultSet athletes = st.executeQuery("SELECT * FROM Athlete");
-
-        while (athletes.next()) {
-            manager.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), manager.getPays(athletes.getString(8)), null)); // TODO ajouter sport
+        // Creation des equipes
+        ResultSet equipes = st.executeQuery("SELECT * FROM Equipe");
+        Map<Integer, Equipe> equipesMap = new HashMap<>(); 
+        while (equipes.next()) {
+            Equipe equipe = new Equipe(equipes.getString(2), equipes.getString(3));
+            equipesMap.put(equipes.getInt(1), equipe);
+            manager.addEquipe(equipe);
         }
 
-        ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE collectif=false");
-
+        // Creation des sports et sport collectifs
+        ResultSet sports = st.executeQuery("SELECT * FROM Sport");
         while (sports.next()) {
-            manager.addSport(new Sport(NomSport.getNomSport(sports.getString(2)), sports.getInt(3), sports.getInt(4), sports.getInt(5)));
+            if (sports.getBoolean(5)) {
+                manager.addSport(new Sport(NomSport.getNomSport(sports.getString(1)), sports.getInt(2), sports.getInt(3), sports.getInt(4)));
+            } else {
+                manager.addSport(new SportCollectif(NomSport.getNomSport(sports.getString(1)), sports.getInt(2), sports.getInt(3), sports.getInt(4), sports.getInt(5), sports.getInt(6)));
+            }
         }
 
-        ResultSet sportsCollectifs = st.executeQuery("SELECT * FROM Sport WHERE collectif=true");
+        // Creation des athletes
+        ResultSet athletes = st.executeQuery("SELECT * FROM Athlete");
+        Map<Integer, Athlete> athletesMap = new HashMap<>();
+        while (athletes.next()) {
+            Pays lePlays = manager.getPays(athletes.getString(8));
+            Sport leSport = manager.getSport(athletes.getString(9));
+            Athlete athlete = new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), lePlays, leSport);
+            
+            athletesMap.put(athletes.getInt(1), athlete);
+            manager.addAthlete(athlete);
+        
+            // Ajouter l'ahtlete à l'équipe
+            equipesMap.get(athletes.getInt(10)).ajouteAthlete(athlete);
+        }
 
-        while(sportsCollectifs.next()) {
-            ResultSet athletesConcernes = st.executeQuery("SELECT nomAthlete, prenomAthlete, sexe,forces,agilite,endurance,nomPays,idEquipe FROM Athlete natural join ParticipeCollectif WHERE idEpreuve");
-            manager.addSportCollectif(new SportCollectif(NomSport.getNomSport(sports.getString(2)), sports.getInt(3), sports.getInt(4), sports.getInt(5), 0, 0));
+        // Creation des epreuves
+        ResultSet epreuves = st.executeQuery("SELECT * FROM Epreuve");
+        Map<Integer, Epreuve> epreuvesMap = new HashMap<>();
+        Map<Integer, EpreuveCollective> epreuvesCollectivesMap = new HashMap<>();
+        while (epreuves.next()) {
+            if (epreuves.getBoolean(5)) {
+                Epreuve epreuve = new Epreuve(epreuves.getString(2), epreuves.getString(3).charAt(0), manager.getSport(epreuves.getString(4)));
+                epreuvesMap.put(epreuves.getInt(1), epreuve);
+                manager.addEpreuve(epreuve);
+            } else {
+                EpreuveCollective epreuve = new EpreuveCollective(epreuves.getString(2), epreuves.getString(3).charAt(0), manager.getSport(epreuves.getString(4)));
+                epreuvesCollectivesMap.put(epreuves.getInt(1), epreuve);
+                manager.addEpreuveCollective(epreuve);
+            }
+        }
+        
+        // Ajout des athletes aux epreuves
+        ResultSet participeIndividuel = st.executeQuery("SELECT * FROM Participe");
+        while (participeIndividuel.next()) {
+            epreuvesMap.get(participeIndividuel.getInt(1)).ajouteAthlete(athletesMap.get(participeIndividuel.getInt(2)));
+        }
+
+        // Ajout des equipes aux epreuves
+        ResultSet participeCollectif = st.executeQuery("SELECT * FROM ParticipeCollectif");
+        while (participeCollectif.next()) {
+            epreuvesCollectivesMap.get(participeCollectif.getInt(1)).ajouteEquipe(equipesMap.get(participeCollectif.getInt(2)));
         }
     }
 

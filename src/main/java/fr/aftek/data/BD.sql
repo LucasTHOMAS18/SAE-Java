@@ -14,12 +14,13 @@ CREATE TABLE Pays (
 
 -- Création de la table Sport
 CREATE TABLE Sport (
-    idSport INT PRIMARY KEY NOT NULL,
-    nomSport VARCHAR(25),
+    nomSport VARCHAR(25) PRIMARY KEY NOT NULL,
     forcesRequis INT,
     agiliteRequis INT,
     enduranceRequis INT,
-    collectif BOOLEAN
+    individuel BOOLEAN NOT NULL,
+    nbEquipes INT,
+    nbJoueursParEquipe INT
 );
 
 -- Création de la table Equipe
@@ -50,15 +51,18 @@ CREATE TABLE Athlete (
     agilite INT,
     endurance INT,
     nomPays VARCHAR(25),
+    nomSport VARCHAR(25),
     idEquipe INT,
+
+    Foreign Key (nomSport) REFERENCES Sport(nomSport),
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
     FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)
 );
 
 -- Création de la table Participe
 CREATE TABLE Participe (
-    idAthlete INT,
     idEpreuve INT,
+    idAthlete INT,
     PRIMARY KEY (idAthlete, idEpreuve),
     FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),
     FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)
@@ -66,8 +70,8 @@ CREATE TABLE Participe (
 
 -- Création de la table ParticipeCollectif
 CREATE TABLE ParticipeCollectif (
-    idEquipe INT,
     idEpreuve INT,
+    idEquipe INT,
     PRIMARY KEY (idEquipe, idEpreuve),
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
     FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import fr.aftek.Athlete;
 import fr.aftek.Epreuve;
+import fr.aftek.EpreuveCollective;
 import fr.aftek.Equipe;
 import fr.aftek.GenderException;
 import fr.aftek.NomSport;
@@ -23,6 +24,7 @@ public class DataManager {
     public final Set<Athlete> athletes;
     public final Set<Equipe> equipes;
     public final Set<Epreuve> epreuves;
+    public final Set<EpreuveCollective> epreuvesCollectives;
     public final Set<Sport> sports;
     public final Set<SportCollectif> sportsCollectifs;
 
@@ -36,6 +38,7 @@ public class DataManager {
         epreuves = new HashSet<Epreuve>();
         sports = new HashSet<Sport>();
         sportsCollectifs = new HashSet<SportCollectif>();
+        epreuvesCollectives = new HashSet<EpreuveCollective>();
     }
 
     /**
@@ -114,6 +117,26 @@ public class DataManager {
     public Equipe addEquipe(Equipe equipe) {
         this.equipes.add(equipe);
         return equipe;
+    }
+
+    /**
+     * Ajoute une épreuve à la liste des épreuves
+     * @param epreuve l'épreuve à ajouter
+     * @return l'épreuve ajoutée
+     */
+    public Epreuve addEpreuve(Epreuve epreuve) {
+        this.epreuves.add(epreuve);
+        return epreuve;
+    }
+
+    /**
+     * Ajoute une épreuve collective à la liste des épreuves collectives
+     * @param epreuveCollective l'épreuve collective à ajouter
+     * @return l'épreuve collective ajoutée
+     */
+    public EpreuveCollective addEpreuveCollective(EpreuveCollective epreuveCollective) {
+        this.epreuvesCollectives.add(epreuveCollective);
+        return epreuveCollective;
     }
 
     /**
