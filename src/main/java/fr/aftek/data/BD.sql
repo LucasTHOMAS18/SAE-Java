@@ -6,6 +6,51 @@ DROP TABLE IF EXISTS Epreuve;
 DROP TABLE IF EXISTS Equipe;
 DROP TABLE IF EXISTS Sport;
 DROP TABLE IF EXISTS Pays;
+DROP TABLE IF EXISTS Journaliste;
+DROP TABLE IF EXISTS Organisateur;
+DROP TABLE IF EXISTS Admin;
+
+-- Création des tables pour les administrateurs, organisateurs et journalistes
+CREATE TABLE Admin(
+    idAdmin int PRIMARY KEY,
+    mdpAdmi VARCHAR(25)
+);
+
+CREATE TABLE Organisateur(
+    idOrga int PRIMARY KEY,
+    mdpOrga VARCHAR(25)
+);
+
+CREATE TABLE Journaliste(
+    idJourna int PRIMARY KEY,
+    mdpJourna VARCHAR(25)
+);
+
+-- Création des rôles
+CREATE ROLE Admin;
+CREATE ROLE Organisateur;
+CREATE ROLE Journaliste;
+
+-- Affectation pour Admin
+GRANT ALL PRIVILEGES ON DATABASE BD TO Admin;
+
+-- Affectation pour Organisateur
+GRANT SELECT, INSERT, UPDATE, DELETE ON Pays TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Sport TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Equipe TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Epreuve TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Athlete TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Participe TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ParticipeCollectif TO Organisateur;
+
+-- Affectation pour Journaliste
+GRANT SELECT ON Pays TO Journaliste;
+GRANT SELECT ON Sport TO Journaliste;
+GRANT SELECT ON Equipe TO Journaliste;
+GRANT SELECT ON Epreuve TO Journaliste;
+GRANT SELECT ON Athlete TO Journaliste;
+GRANT SELECT ON Participe TO Journaliste;
+GRANT SELECT ON ParticipeCollectif TO Journaliste;
 
 -- Création de la table Pays
 CREATE TABLE Pays (
