@@ -6,6 +6,35 @@ DROP TABLE IF EXISTS Epreuve;
 DROP TABLE IF EXISTS Equipe;
 DROP TABLE IF EXISTS Sport;
 DROP TABLE IF EXISTS Pays;
+DROP TABLE IF EXISTS Journaliste;
+DROP TABLE IF EXISTS Organisateur;
+DROP TABLE IF EXISTS Admin;
+
+-- Création des tables pour les administrateurs, organisateurs et journalistes
+CREATE TABLE Admin(
+    idAdmin int PRIMARY KEY,
+    mdpAdmi VARCHAR(25)
+);
+
+CREATE TABLE Organisateur(
+    idOrga int PRIMARY KEY,
+    mdpOrga VARCHAR(25)
+);
+
+CREATE TABLE Journaliste(
+    idJourna int PRIMARY KEY,
+    mdpJourna VARCHAR(25)
+);
+
+-- Création des rôles
+CREATE ROLE Admin;
+CREATE ROLE Organisateur;
+CREATE ROLE Journaliste;
+
+-- Affectation des privilèges
+GRANT ALL PRIVILEGES ON DATABASE BD TO Admin;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES TO Organisateur;
+GRANT SELECT ON ALL TABLES TO employe;
 
 -- Création de la table Pays
 CREATE TABLE Pays (
