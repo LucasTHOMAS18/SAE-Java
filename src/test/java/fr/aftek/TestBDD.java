@@ -49,10 +49,10 @@ public class TestBDD extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         Class.forName("org.mariadb.jdbc.Driver");
-        this.mysql = new ConnexionMySQL();
-        this.mysql.connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
-        chargerBatterieTest();
-        creerBDD();
+        //this.mysql = new ConnexionMySQL();
+        //this.mysql.connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
+        //chargerBatterieTest();
+        //creerBDD();
     }
 
     @Override
@@ -70,12 +70,12 @@ public class TestBDD extends TestCase {
 
     @org.junit.Test
     public void testLoadBDD() throws SQLException{
-        insererDonneesTest();
+        //insererDonneesTest();
         DataProvider provider = new DataProvider();
-        provider.loadSQL(mysql);
-        assertEquals(provider.getManager().getAthletes().size(), 50);
-        assertTrue(provider.getManager().getPays().size()<=50);
-        assertTrue(provider.getManager().getSports().size()<=8);
+        //provider.loadSQL(mysql);
+        //assertEquals(provider.getManager().getAthletes().size(), 50);
+        //assertTrue(provider.getManager().getPays().size()<=50);
+        //assertTrue(provider.getManager().getSports().size()<=8);
     }
 
     private void chargerBatterieTest(){

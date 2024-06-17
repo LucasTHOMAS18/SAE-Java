@@ -31,6 +31,11 @@
       <version>5.10.2</version>
       <scope>test</scope>
   </dependency>
+  <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>22.0.1</version>
+  </dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,7 +54,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>fr.aftek.App</mainClass>
+          <mainClass>fr.aftek.ihm.ApplicationJO</mainClass>
         </configuration>
       </plugin>
       <plugin>
