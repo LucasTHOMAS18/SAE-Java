@@ -168,7 +168,61 @@ public class DataProvider {
     }
 
     public void saveSQL(ConnexionMySQL connexion) throws SQLException{
-        // TODO
+        Statement st = connexion.createStatement();
+        
+        st.executeUpdate("DELETE FROM ParticipeCollectif");
+        st.executeUpdate("DELETE FROM Participe");
+        st.executeUpdate("DELETE FROM Epreuve");
+        st.executeUpdate("DELETE FROM Athlete");
+        st.executeUpdate("DELETE FROM Equipe");
+        st.executeUpdate("DELETE FROM Sport");
+        st.executeUpdate("DELETE FROM Pays");
+
+        // Pays
+        for (Pays pays : manager.getPays()) {
+            st.executeUpdate("INSERT INTO Pays VALUES ('" + pays.getNom() + "')");
+        }   
+
+        // Sports
+        for (Sport sport : manager.getSports()) {
+            if (sport instanceof SportCollectif) {
+                SportCollectif sportCollectif = (SportCollectif) sport;
+                st.executeUpdate("INSERT INTO Sport VALUES ('" + sport.getNomSport().getNom() + "', " + sport.getForce() + ", " + sport.getEndurance() + ", " + sport.getAgilite() + ", true, " + sportCollectif.getNbEquipes() + ", " + sportCollectif.getNbJoueursParEquipe() + ")");
+            } else {
+                st.executeUpdate("INSERT INTO Sport VALUES ('" + sport.getNomSport().getNom() + "', " + sport.getForce() + ", " + sport.getEndurance() + ", " + sport.getAgilite() + ", 0, NULL, NULL)");
+            }
+        }
+
+        // Equipes
+        Map<Equipe, Integer> idEquipes = new HashMap<>();
+        int id = 0;
+        for (Equipe equipe : manager.getEquipes()) {
+            idEquipes.put(equipe, ++id);
+            st.executeUpdate("INSERT INTO Equipe VALUES (" + id + "'" + equipe.getNom() + "', '" + equipe.getPays().getNom() + "')");
+        }
+
+        // Athletes
+        Map<Athlete, Integer> idAthletes = new HashMap<>();
+        int idAthlete = 0;
+        for (Athlete athlete : manager.getAthletes()) {
+            idAthletes.put(athlete, ++idAthlete);
+            st.executeUpdate("INSERT INTO Athlete VALUES (" + idAthlete + "'" + athlete.getNom() + "', '" + athlete.getPrenom() + "', '" + athlete.getSexe() + "', " + athlete.getForce() + ", " + athlete.getAgilite() + ", " + athlete.getEndurance() + ", '" + athlete.getPays().getNom() + "', '" + athlete.getSport().getNomSport().getNom() + "', " + idEquipes.get(athlete.getEquipe()) + ")");
+        }
+
+        // Epreuves
+        for (Epreuve epreuve : manager.getEpreuves()) {
+            st.executeUpdate("INSERT INTO Epreuve VALUES (NULL, '" + epreuve.getNom() + "', '" + epreuve.getSexe() + "', '" + epreuve.getSport().getNomSport().getNom() + "', false)");
+            for (Athlete athlete : epreuve.getParticipants()) {
+                st.executeUpdate("INSERT INTO Participe VALUES (" + id + ", " + idAthletes.get(athlete) + ")");
+            }
+        }
+
+        for (EpreuveCollective epreuveCollective : manager.getEpreuvesCollectives()) {
+            st.executeUpdate("INSERT INTO Epreuve VALUES (NULL, '" + epreuveCollective.getNom() + "', '" + epreuveCollective.getSexe() + "', '" + epreuveCollective.getSport().getNomSport().getNom() + "', true)");
+            for (Equipe equipe : epreuveCollective.getEquipes()) {
+                st.executeUpdate("INSERT INTO ParticipeCollectif VALUES (" + id + ", " + idEquipes.get(equipe) + ")");
+            }
+        }
     }
 
     /**

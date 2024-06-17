@@ -74,6 +74,14 @@ public class DataManager {
     }
 
     /**
+     * Récupère la liste des épreuves collectives
+     * @return la liste des épreuves collectives
+     */
+    public Set<EpreuveCollective> getEpreuvesCollectives() {
+        return epreuvesCollectives;
+    }
+
+    /**
      * Récupère la liste des sports
      * @return la liste des sports
      */

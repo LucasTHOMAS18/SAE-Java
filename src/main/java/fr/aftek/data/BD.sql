@@ -70,7 +70,7 @@ CREATE TABLE Sport (
 
 -- Création de la table Equipe
 CREATE TABLE Equipe (
-    idEquipe INT PRIMARY KEY NOT NULL,
+    idEquipe INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nomEquipe VARCHAR(25),
     nomPays VARCHAR(25),
     FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)
@@ -78,7 +78,7 @@ CREATE TABLE Equipe (
 
 -- Création de la table Epreuve
 CREATE TABLE Epreuve (
-    idEpreuve INT PRIMARY KEY,
+    idEpreuve INT PRIMARY KEY AUTO_INCREMENT,
     nomEpreuve VARCHAR(25),
     sexeEpreuve CHAR(1),
     idSport INT,
@@ -88,7 +88,7 @@ CREATE TABLE Epreuve (
 
 -- Création de la table Athlete
 CREATE TABLE Athlete (
-    idAthlete INT PRIMARY KEY NOT NULL,
+    idAthlete INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     nomAthlete VARCHAR(25),
     prenomAthlete VARCHAR(25),
     sexe CHAR(1),
@@ -106,7 +106,7 @@ CREATE TABLE Athlete (
 
 -- Création de la table Participe
 CREATE TABLE Participe (
-    idEpreuve INT,
+    idEpreuve INT AUTO_INCREMENT,
     idAthlete INT,
     PRIMARY KEY (idAthlete, idEpreuve),
     FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),
@@ -115,7 +115,7 @@ CREATE TABLE Participe (
 
 -- Création de la table ParticipeCollectif
 CREATE TABLE ParticipeCollectif (
-    idEpreuve INT,
+    idEpreuve INT AUTO_INCREMENT,
     idEquipe INT,
     PRIMARY KEY (idEquipe, idEpreuve),
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
