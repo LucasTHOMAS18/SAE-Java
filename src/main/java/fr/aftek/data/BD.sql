@@ -31,10 +31,26 @@ CREATE ROLE Admin;
 CREATE ROLE Organisateur;
 CREATE ROLE Journaliste;
 
--- Affectation des privilèges
+-- Affectation pour Admin
 GRANT ALL PRIVILEGES ON DATABASE BD TO Admin;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES TO Organisateur;
-GRANT SELECT ON ALL TABLES TO employe;
+
+-- Affectation pour Organisateur
+GRANT SELECT, INSERT, UPDATE, DELETE ON Pays TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Sport TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Equipe TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Epreuve TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Athlete TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Participe TO Organisateur;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ParticipeCollectif TO Organisateur;
+
+-- Affectation pour Journaliste
+GRANT SELECT ON Pays TO Journaliste;
+GRANT SELECT ON Sport TO Journaliste;
+GRANT SELECT ON Equipe TO Journaliste;
+GRANT SELECT ON Epreuve TO Journaliste;
+GRANT SELECT ON Athlete TO Journaliste;
+GRANT SELECT ON Participe TO Journaliste;
+GRANT SELECT ON ParticipeCollectif TO Journaliste;
 
 -- Création de la table Pays
 CREATE TABLE Pays (
