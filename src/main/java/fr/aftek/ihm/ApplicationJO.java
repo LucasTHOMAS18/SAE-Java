@@ -1,6 +1,8 @@
 package fr.aftek.ihm;
 
 import fr.aftek.ihm.connection.PageConnexion;
+import fr.aftek.ihm.providers.BackgroundsProvider;
+import fr.aftek.ihm.providers.ImagesProvider;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -18,6 +20,7 @@ public class ApplicationJO extends Application{
     @Override
     public void init() throws Exception {
         ImagesProvider.loadImages(getClass().getClassLoader().getResource("images").toURI());
+        BackgroundsProvider.loadBackgrounds(getClass().getClassLoader().getResource("backgrounds.json").toURI());
     }
 
     @Override
