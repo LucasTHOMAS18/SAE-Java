@@ -3,6 +3,8 @@ package fr.aftek.ihm;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class Titre extends HBox{
     private ImageView logo;
@@ -10,7 +12,11 @@ public class Titre extends HBox{
     public Titre(String text){
         super();
         this.logo = new ImageView(ImagesProvider.LOGO);
+        this.logo.setFitHeight(ImagesProvider.LOGO.getHeight()*0.5);
+        this.logo.setFitWidth(ImagesProvider.LOGO.getWidth()*0.5);
         this.label = new Label(text);
+        this.label.setFont(Font.font("Sans serif", FontWeight.BOLD, 30));
+        this.getChildren().addAll(logo,label);
     }
     public Titre(){
         this("Bienvenue aux jeux IUT'Olympiques");
