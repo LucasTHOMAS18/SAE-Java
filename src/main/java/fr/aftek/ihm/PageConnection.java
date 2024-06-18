@@ -9,11 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
 public class PageConnection extends BorderPane {
     private ConnexionMySQL connexion;
-   
+    
     @FXML
     private TextField identifiantTxtField;
 
@@ -31,9 +32,9 @@ public class PageConnection extends BorderPane {
         loader.setRoot(this);
         loader.load();
     }
-    
 
-    public void seConnecter() throws SQLException {
+    @FXML
+    public void seConnecter() {
         String identifiant = identifiantTxtField.getText();
         String mdp = mdpPwrdField.getText();
         String serveur = "servinfo-maria";
@@ -50,6 +51,13 @@ public class PageConnection extends BorderPane {
             System.out.println("Connexion réussie");
         } else {
             System.out.println("Connexion échouée");
+        }
+    }
+
+    @FXML
+    public void mdpKeyPressed(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            seConnecter();
         }
     }
 }
