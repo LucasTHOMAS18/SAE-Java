@@ -11,11 +11,11 @@ public class ApplicationJO extends Application{
     private Scene scene;
     private ConnexionMySQL connexion;
 
+
     @Override
     public void start(Stage stage) throws Exception {
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
-
         // Création de la scène
         BorderPane root = new PageConnection(connexion);
         this.scene = new Scene(root, 800, 600);

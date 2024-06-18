@@ -49,6 +49,7 @@ public class PageConnection extends BorderPane {
 
         if (connexion.isConnecte()) {
             System.out.println("Connexion réussie");
+            
         } else {
             System.out.println("Connexion échouée");
         }
