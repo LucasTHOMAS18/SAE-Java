@@ -27,7 +27,7 @@ public class ApplicationJO extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         // Création d'une instance de FXMLLoader
-        FXMLLoader loader = new FXMLLoader (getClass().getResource("/PageAccueil.fxml"));
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("/PageAdmin.fxml"));
         
         // Définir ce contrôleur comme celui utilisé par le fichier FXML
         loader.setController(this);
