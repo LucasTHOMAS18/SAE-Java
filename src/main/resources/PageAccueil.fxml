@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox maxWidth="-Infinity" prefHeight="310.0" prefWidth="253.0" style="-fx-background-color: F4F4F4;" BorderPane.alignment="CENTER">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="310.0" prefWidth="253.0" style="-fx-background-color: F4F4F4;" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="15.0" prefWidth="297.0" text="Connectez vous">
                <font>
@@ -26,14 +26,14 @@
                   <Insets bottom="10.0" top="30.0" />
                </padding>
             </Label>
-            <TextField style="-fx-background-color: white; -fx-border-color: FFCF54;" />
+            <TextField fx:id="identifiantTxtField" style="-fx-background-color: white; -fx-border-color: FFCF54;" />
             <Label prefHeight="6.0" prefWidth="181.0" text="Mot de passe">
                <padding>
                   <Insets bottom="10.0" top="20.0" />
                </padding>
             </Label>
-            <PasswordField style="-fx-background-color: white; -fx-border-color: FFCF54;" />
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: FFCF54;" text="Se connecter">
+            <PasswordField fx:id="mdpPwrdField" style="-fx-background-color: white; -fx-border-color: FFCF54;" />
+            <Button fx:id="btnConnection" alignment="CENTER" mnemonicParsing="false" onAction="#seConnecter" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: FFCF54; -fx-background-radius: 0px;" text="Se connecter">
                <VBox.margin>
                   <Insets bottom="10.0" left="100.0" top="80.0" />
                </VBox.margin>
@@ -85,4 +85,4 @@
    <bottom>
       <HBox prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </bottom>
-</BorderPane>
+</fx:root>
