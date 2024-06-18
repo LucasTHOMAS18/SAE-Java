@@ -20,9 +20,6 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
             </Label>
             <Label prefHeight="0.0" prefWidth="181.0" text="Identifiant">
                <padding>
