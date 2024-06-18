@@ -206,7 +206,7 @@ public class DataProvider {
         int idAthlete = 0;
         for (Athlete athlete : manager.getAthletes()) {
             idAthletes.put(athlete, ++idAthlete);
-            st.executeUpdate("INSERT INTO Athlete VALUES (" + idAthlete + "'" + athlete.getNom() + "', '" + athlete.getPrenom() + "', '" + athlete.getSexe() + "', " + athlete.getForce() + ", " + athlete.getAgilite() + ", " + athlete.getEndurance() + ", '" + athlete.getPays().getNom() + "', '" + athlete.getSport().getNomSport().getNom() + "', " + idEquipes.get(athlete.getEquipe()) + ")");
+            st.executeUpdate("INSERT INTO Athlete VALUES (" + idAthlete + ",'" + athlete.getNom() + "', '" + athlete.getPrenom() + "', '" + athlete.getSexe() + "', " + athlete.getForce() + ", " + athlete.getAgilite() + ", " + athlete.getEndurance() + ", '" + athlete.getPays().getNom() + "', '" + athlete.getSport().getNomSport().getNom() + "', " + idEquipes.get(athlete.getEquipe()) + ")");
         }
 
         // Epreuves

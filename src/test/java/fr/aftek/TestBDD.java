@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.xml.crypto.Data;
+
 import org.junit.Ignore;
 
 import fr.aftek.data.ConnexionMySQL;
@@ -37,14 +39,23 @@ public class TestBDD extends TestCase {
     private static Set<Sport> sportsSansDoublons = new HashSet<>();
 
     private ConnexionMySQL mysql = null;
+    private DataProvider data;
 
     public static Test suite() {
         return new TestSuite(TestBDD.class);
     }
 
     @org.junit.Test
-    public void testSaveBDD() throws SQLException{
-        
+    public void testSaveBDD() throws Exception{
+        Class.forName("org.mariadb.jdbc.Driver");
+        this.mysql = new ConnexionMySQL();
+        this.mysql.connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
+        chargerBatterieTest();
+        creerBDD();
+        data.saveSQL(mysql);
+        DataProvider temp = new DataProvider();
+        temp.loadSQL(mysql);
+        assertEquals(data, temp);
     }
 
     @org.junit.Test
@@ -65,9 +76,9 @@ public class TestBDD extends TestCase {
     @Ignore
     private void chargerBatterieTest() throws FileNotFoundException{
         System.out.println("Loading data...");
-        DataProvider temp = new DataProvider();
-        temp.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
-        List<Athlete> athletes = temp.getManager().getAthletes().stream().collect(Collectors.toList()).subList(0,50);
+        data = new DataProvider();
+        data.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
+        List<Athlete> athletes = data.getManager().getAthletes().stream().collect(Collectors.toList()).subList(0,50);
         Collections.shuffle(athletes);
         noms = athletes.stream().map(Athlete::getNom).collect(Collectors.toList());
         prenoms = athletes.stream().map(Athlete::getPrenom).collect(Collectors.toList());
