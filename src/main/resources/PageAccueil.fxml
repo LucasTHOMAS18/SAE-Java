@@ -26,13 +26,13 @@
                   <Insets bottom="10.0" top="30.0" />
                </padding>
             </Label>
-            <TextField />
+            <TextField style="-fx-background-color: white; -fx-border-color: FFCF54;" />
             <Label prefHeight="6.0" prefWidth="181.0" text="Mot de passe">
                <padding>
                   <Insets bottom="10.0" top="20.0" />
                </padding>
             </Label>
-            <PasswordField />
+            <PasswordField style="-fx-background-color: white; -fx-border-color: FFCF54;" />
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: FFCF54;" text="Se connecter">
                <VBox.margin>
                   <Insets bottom="10.0" left="100.0" top="80.0" />
