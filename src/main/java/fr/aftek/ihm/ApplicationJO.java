@@ -1,22 +1,23 @@
 package fr.aftek.ihm;
 
-import fr.aftek.ihm.connection.PageConnexion;
 import fr.aftek.ihm.providers.BackgroundsProvider;
 import fr.aftek.ihm.providers.ImagesProvider;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 
 public class ApplicationJO extends Application{
     private Scene scene;
     private BorderPane root;
+
     @Override
     public void init() throws Exception {
         ImagesProvider.loadImages(getClass().getClassLoader().getResource("images").toURI());
@@ -25,9 +26,17 @@ public class ApplicationJO extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        initRoot();
-        this.root.setCenter(new PageConnexion());
-        scene = new Scene(root, 1000, 800);
+        // Création d'une instance de FXMLLoader
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("/Choix sport.fxml"));
+        
+        // Définir ce contrôleur comme celui utilisé par le fichier FXML
+        loader.setController(this);
+        
+        // Chargement du fichier FXML
+        BorderPane root = loader.load();
+
+        // Création de la scène
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques");
         stage.show();

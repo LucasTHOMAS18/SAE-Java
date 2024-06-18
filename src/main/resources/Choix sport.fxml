@@ -47,9 +47,9 @@
                   <Button mnemonicParsing="false" style="-fx-background-color: #fcedc1; -fx-background-radius: 0px;" text="Femme" />
                </children>
             </HBox>
-            <FlowPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
+            <FlowPane alignment="TOP_CENTER" hgap="10.0" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -67,7 +67,85 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/cours.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/cours.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/cours.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/cours.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/cours.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </FlowPane>
          </children>
       </VBox>
