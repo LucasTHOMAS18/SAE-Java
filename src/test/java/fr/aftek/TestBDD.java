@@ -5,9 +5,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -17,15 +14,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.junit.Ignore;
+
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
 
 
 public class TestBDD extends TestCase {
-    private static final String NOM_SERVEUR = "servinfo-maria";
-    private static final String NOM_BASE = "DBbeaujouan";
-    private static final String USER = "beaujouan";
-    private static final String PASS = "beaujouan";
+    private static final String NOM_SERVEUR = "localhost";
+    private static final String NOM_BASE = "IUTO";
+    private static final String USER = "root";
+    private static final String PASS = "rootroot";
 
     private static List<String> noms = new ArrayList<>();
     private static List<String> prenoms = new ArrayList<>();
@@ -34,33 +33,13 @@ public class TestBDD extends TestCase {
     private static List<Integer> agilites = new ArrayList<>();
     private static List<Integer> endurances = new ArrayList<>();
     private static List<String> nomsPays = new ArrayList<>();
+    private static List<String> nomsSports = new ArrayList<>();
+    private static Set<Sport> sportsSansDoublons = new HashSet<>();
 
     private ConnexionMySQL mysql = null;
 
-    public TestBDD(String testName) {
-        super(testName);
-    }
-
     public static Test suite() {
         return new TestSuite(TestBDD.class);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        Class.forName("org.mariadb.jdbc.Driver");
-        this.mysql = new ConnexionMySQL();
-        this.mysql.connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
-        chargerBatterieTest();
-        creerBDD();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        if (mysql != null && this.mysql.isConnecte()) {
-            this.mysql.close();
-        }
     }
 
     @org.junit.Test
@@ -69,7 +48,12 @@ public class TestBDD extends TestCase {
     }
 
     @org.junit.Test
-    public void testLoadBDD() throws SQLException{
+    public void testLoadBDD() throws Exception{
+        Class.forName("org.mariadb.jdbc.Driver");
+        this.mysql = new ConnexionMySQL();
+        this.mysql.connecter(NOM_SERVEUR, NOM_BASE, USER, PASS);
+        chargerBatterieTest();
+        creerBDD();
         insererDonneesTest();
         DataProvider provider = new DataProvider();
         provider.loadSQL(mysql);
@@ -78,26 +62,25 @@ public class TestBDD extends TestCase {
         assertTrue(provider.getManager().getSports().size()<=8);
     }
 
-    private void chargerBatterieTest(){
-        try {
-            System.out.println("Loading data...");
-            DataProvider temp = new DataProvider();
-            temp.loadCSV("../donnees.csv");
-            List<Athlete> athletes = temp.getManager().getAthletes().stream().collect(Collectors.toList());
-            Collections.shuffle(athletes);
-            noms = athletes.subList(0, 50).stream().map(Athlete::getNom).collect(Collectors.toList());
-            prenoms = athletes.subList(0, 50).stream().map(Athlete::getPrenom).collect(Collectors.toList());
-            sexes = athletes.subList(0, 50).stream().map(Athlete::getSexe).collect(Collectors.toList());
-            forces = athletes.subList(0, 50).stream().map(Athlete::getForce).collect(Collectors.toList());
-            agilites = athletes.subList(0, 50).stream().map(Athlete::getAgilite).collect(Collectors.toList());
-            endurances = athletes.subList(0, 50).stream().map(Athlete::getEndurance).collect(Collectors.toList());
-            nomsPays = athletes.subList(0, 50).stream().map(Athlete::getPays).map(Pays::getNom).collect(Collectors.toList());
-            System.out.println("Data loaded");
-        } catch (FileNotFoundException e) {
-            fail("FileNotFoundException");
-        }
+    @Ignore
+    private void chargerBatterieTest() throws FileNotFoundException{
+        System.out.println("Loading data...");
+        DataProvider temp = new DataProvider();
+        temp.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
+        List<Athlete> athletes = temp.getManager().getAthletes().stream().collect(Collectors.toList()).subList(0,50);
+        Collections.shuffle(athletes);
+        noms = athletes.stream().map(Athlete::getNom).collect(Collectors.toList());
+        prenoms = athletes.stream().map(Athlete::getPrenom).collect(Collectors.toList());
+        sexes = athletes.stream().map(Athlete::getSexe).collect(Collectors.toList());
+        forces = athletes.stream().map(Athlete::getForce).collect(Collectors.toList());
+        agilites = athletes.stream().map(Athlete::getAgilite).collect(Collectors.toList());
+        endurances = athletes.stream().map(Athlete::getEndurance).collect(Collectors.toList());
+        nomsPays = athletes.stream().map(Athlete::getPays).map(Pays::getNom).collect(Collectors.toList());
+        nomsSports = athletes.stream().map(Athlete::getSport).map(Sport::getNomSport).map(NomSport::getNom).collect(Collectors.toList());
+        sportsSansDoublons = athletes.stream().map(Athlete::getSport).collect(Collectors.toSet());
+        System.out.println("Data loaded");
     }
-
+    @Ignore
     private void creerBDD() {
         String[] tableDrops = {
             // Suppression des tables existantes pour éviter les conflits
@@ -107,74 +90,70 @@ public class TestBDD extends TestCase {
             "DROP TABLE IF EXISTS Epreuve;",
             "DROP TABLE IF EXISTS Equipe;",
             "DROP TABLE IF EXISTS Sport;",
-            "DROP TABLE IF EXISTS Pays;",
+            "DROP TABLE IF EXISTS Pays;"
         };
     
         String[] tableCreates = {
-            // Création de la table Pays
-            "CREATE TABLE Pays (" +
-            "    nomPays VARCHAR(25) PRIMARY KEY NOT NULL" +
+            "CREATE TABLE Pays (\n" +
+            "    nomPays VARCHAR(25) PRIMARY KEY NOT NULL\n" +
             ");",
 
-            // Création de la table Sport
-            "CREATE TABLE Sport (" +
-            "    idSport INT PRIMARY KEY NOT NULL," +
-            "    nomSport VARCHAR(25)," +
-            "    forcesRequis INT," +
-            "    agiliteRequis INT," +
-            "    enduranceRequis INT," +
-            "    collectif BOOLEAN" +
+            "CREATE TABLE Sport (\n" +
+            "    nomSport VARCHAR(25) PRIMARY KEY NOT NULL,\n" +
+            "    forcesRequis INT,\n" +
+            "    agiliteRequis INT,\n" +
+            "    enduranceRequis INT,\n" +
+            "    individuel BOOLEAN NOT NULL,\n" +
+            "    nbEquipes INT,\n" +
+            "    nbJoueursParEquipe INT\n" +
             ");",
 
-            // Création de la table Equipe
-            "CREATE TABLE Equipe (" +
-            "    idEquipe INT PRIMARY KEY NOT NULL," +
-            "    nomEquipe VARCHAR(25)," +
-            "    nomPays VARCHAR(25)," +
-            "    FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)" +
+            "CREATE TABLE Equipe (\n" +
+            "    idEquipe INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\n" +
+            "    nomEquipe VARCHAR(25),\n" +
+            "    nomPays VARCHAR(25),\n" +
+            "    FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)\n" +
             ");",
 
-            // Création de la table Epreuve
-            "CREATE TABLE Epreuve (" +
-            "    idEpreuve INT PRIMARY KEY," +
-            "    nomEpreuve VARCHAR(25)," +
-            "    sexeEpreuve CHAR(1)," +
-            "    idSport INT," +
-            "    collective BOOLEAN," +
-            "    FOREIGN KEY (idSport) REFERENCES Sport(idSport)" +
+            "CREATE TABLE Epreuve (\n" +
+            "    idEpreuve INT PRIMARY KEY AUTO_INCREMENT,\n" +
+            "    nomEpreuve VARCHAR(25),\n" +
+            "    sexeEpreuve CHAR(1),\n" +
+            "    nomSport VARCHAR(25),\n" +
+            "    collective BOOLEAN,\n" +
+            "    FOREIGN KEY (nomSport) REFERENCES Sport(nomSport)\n" +
             ");",
 
-            // Création de la table Athlete
-            "CREATE TABLE Athlete (" +
-            "    idAthlete INT PRIMARY KEY NOT NULL," +
-            "    nomAthlete VARCHAR(25)," +
-            "    prenomAthlete VARCHAR(25)," +
-            "    sexe CHAR(1)," +
-            "    forces INT," +
-            "    agilite INT," +
-            "    endurance INT," +
-            "    nomPays VARCHAR(25)," +
-            "    idEquipe INT," +
-            "    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe)," +
-            "    FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)" +
+            "CREATE TABLE Athlete (\n" +
+            "    idAthlete INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\n" +
+            "    nomAthlete VARCHAR(25),\n" +
+            "    prenomAthlete VARCHAR(25),\n" +
+            "    sexe CHAR(1),\n" +
+            "    forces INT,\n" +
+            "    agilite INT,\n" +
+            "    endurance INT,\n" +
+            "    nomPays VARCHAR(25),\n" +
+            "    nomSport VARCHAR(25),\n" +
+            "    idEquipe INT,\n" +
+            "    Foreign Key (nomSport) REFERENCES Sport(nomSport),\n" +
+            "    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),\n" +
+            "    FOREIGN KEY (nomPays) REFERENCES Pays(nomPays)\n" +
             ");",
 
-            // Création de la table Participe
-            "CREATE TABLE Participe (" +
-            "    idAthlete INT," +
-            "    idEpreuve INT," +
-            "    PRIMARY KEY (idAthlete, idEpreuve)," +
-            "    FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete)," +
-            "    FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)" +
+            "CREATE TABLE Participe (\n" +
+            "    idEpreuve INT AUTO_INCREMENT,\n" +
+            "    idAthlete INT,\n" +
+            "    PRIMARY KEY (idAthlete, idEpreuve),\n" +
+            "    FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),\n" +
+            "    FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)\n" +
             ");",
 
-            // Création de la table ParticipeCollectif
-            "CREATE TABLE ParticipeCollectif (" +
-            "    idEquipe INT," +
-            "    idEpreuve INT," +
-            "    PRIMARY KEY (idEquipe, idEpreuve)," +
-            "    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe)," +
-            "    FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)" +
+            "CREATE TABLE ParticipeCollectif (\n" +
+            "    idEpreuve INT AUTO_INCREMENT,\n" +
+            "    idEquipe INT,\n" +
+            "    PRIMARY KEY (idEquipe, idEpreuve),\n" +
+            "    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),\n" +
+            "    FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)\n" +
             ");"
         };
     
@@ -194,8 +173,8 @@ public class TestBDD extends TestCase {
             fail("Erreur de connection à la BDD");
         }
     }
-    
-    private void insererDonneesTest(){
+    @Ignore
+    private void insererDonneesTest() throws SQLException{
         try{
             System.out.println("Inserting Pays...");
             Statement st = mysql.createStatement();
@@ -213,22 +192,44 @@ public class TestBDD extends TestCase {
             st.execute(sb.toString());
             System.out.println("Pays inserted");
         }catch (SQLException e) {
-            fail("Erreur insertion des pays: "+e.getMessage());
+            throw new SQLException("Erreur de chargement des pays: "+e.getMessage());
+        }
+        try{
+            System.out.println("Inserting Sports...");
+            Statement st = mysql.createStatement();
+            StringBuilder sb = new StringBuilder();
+            List<Sport> sports = new ArrayList<Sport>(sportsSansDoublons);
+            sb.append("INSERT INTO Sport(nomSport,forcesRequis,agiliteRequis,enduranceRequis,individuel,nbEquipes,nbJoueursParEquipe) values ");
+            for (int i = 0; i < sports.size(); i++) {
+                sb.append("('"+sports.get(i)+"',");
+                sb.append(sports.get(i).getForce()+",");
+                sb.append(sports.get(i).getAgilite()+",");
+                sb.append(sports.get(i).getEndurance()+",");
+                sb.append((sports.get(i).enEquipe() ? "false" : "true")+",");
+                sb.append(sports.get(i).getNomSport().getNbEquipes()+",");
+                sb.append(sports.get(i).getNomSport().getNbJoueursParEquipe()+"),");
+            }
+            sb.deleteCharAt(sb.length()-1);
+            sb.append(';');
+            st.execute(sb.toString());
+            System.out.println("Sports inserted");
+        }catch(SQLException e) {
+            throw new SQLException("Erreur de chargement des sports: "+e.getMessage());
         }
         try{
             System.out.println("Inserting Athlete...");
             Statement st = mysql.createStatement();
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO Athlete(idAthlete,nomAthlete, prenomAthlete,sexe,forces,agilite,endurance,nomPays,idEquipe) values");
+            sb.append("INSERT INTO Athlete(nomAthlete, prenomAthlete,sexe,forces,agilite,endurance,nomPays,nomSport,idEquipe) values");
             for (int i = 0; i < 50; i++) {
-                sb.append("("+i+",");
-                sb.append("'"+noms.get(i)+"',");
+                sb.append("('"+noms.get(i)+"',");
                 sb.append("'"+prenoms.get(i)+"',");
                 sb.append("'"+sexes.get(i)+"',");
                 sb.append(forces.get(i)+",");
                 sb.append(agilites.get(i)+",");
                 sb.append(endurances.get(i)+",");
                 sb.append("'"+nomsPays.get(i)+"',");
+                sb.append("'"+nomsSports.get(i)+"',");
                 sb.append("NULL),");
             }
             sb.deleteCharAt(sb.length()-1);
@@ -236,7 +237,7 @@ public class TestBDD extends TestCase {
             st.execute(sb.toString());
             System.out.println("Athlete inserted");
         }catch (SQLException e) {
-            fail("Erreur insertion des athletes: "+e.getMessage());
+            throw new SQLException("Erreur de chargement des athletes: "+e.getMessage());
         }
     }
 }

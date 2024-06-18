@@ -73,6 +73,12 @@ public class Sport {
      */
     public void setEndurance(int endurance) { this.endurance = endurance; }
 
+    /**
+     * Renvoie true si le sport est en équipe
+     * @return est-ce que le sport est en équipe
+     */
+    public boolean enEquipe(){ return this.nomSport.estEquipe();}
+
 
     /**
      * Calcule les points d'un athlète pour ce sport

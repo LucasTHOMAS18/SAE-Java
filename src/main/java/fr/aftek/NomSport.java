@@ -1,17 +1,19 @@
 package fr.aftek;
 
 public enum NomSport {
-    NATATION("Natation 100 brasse", false, 10, 15, 12), 
-    ESCRIME_FLEURET("Escrime fleuret", false, 6, 10, 17), 
-    ESCRIME_EPEE("Escrime épée", false, 7, 10, 16), 
-    ATHLETISME("Athétisme 110 haies", false, 10, 18, 12), 
-    ATHLETISME_RELAIS("Athlétisme relais 400m", true, 12, 17, 12),
-    NATATION_RELAIS("Natation relais libre", true, 11, 15, 13), 
-    HANDBALL("Handball", true, 13, 10, 14), 
-    VOLLEY_BALL("Volley-Ball", true, 11, 9, 16);
+    NATATION("Natation 100 brasse", false, 0, 0, 10, 15, 12), 
+    ESCRIME_FLEURET("Escrime fleuret", false, 0, 0, 6, 10, 17), 
+    ESCRIME_EPEE("Escrime épée", false, 0, 0, 7, 10, 16), 
+    ATHLETISME("Athétisme 110 haies", false, 0, 0, 10, 18, 12), 
+    ATHLETISME_RELAIS("Athlétisme relais 400m", true, 5, 5, 12, 17, 12),
+    NATATION_RELAIS("Natation relais libre", true, 5, 2, 11, 15, 13), 
+    HANDBALL("Handball", true, 2, 12, 13, 10, 14), 
+    VOLLEY_BALL("Volley-Ball", true, 2, 6, 11, 9, 16);
 
     private String nom;
     private boolean equipe;
+    private int nbEquipes;
+    private int nbJoueursParEquipe;
     private float force;
     private float endurance;
     private float agilite;
@@ -25,9 +27,11 @@ public enum NomSport {
      * @param endurance Le niveau d'endurance requis pour ce sport.
      * @param agilite Le niveau d'agilité requis pour ce sport.
      */
-    NomSport(String nom, boolean equipe, float force, float endurance, float agilite) {
+    NomSport(String nom, boolean equipe, int nbEquipes, int nbJoueursParEquipe, float force, float endurance, float agilite) {
         this.nom = nom;
         this.equipe = equipe;
+        this.nbEquipes = nbEquipes;
+        this.nbJoueursParEquipe = nbJoueursParEquipe;
         this.force = force;
         this.endurance = endurance;
         this.agilite = agilite;
@@ -45,6 +49,20 @@ public enum NomSport {
      */
     public boolean estEquipe() {
         return equipe;
+    }
+
+    /**
+     * @return nombre d'équipes sur le terrain
+     */
+    public int getNbEquipes() {
+        return nbEquipes;
+    }
+
+    /**
+     * @return Le nombre de joueurs par équipe sur le terrain.
+     */
+    public int getNbJoueursParEquipe() {
+        return nbJoueursParEquipe;
     }
 
     /**

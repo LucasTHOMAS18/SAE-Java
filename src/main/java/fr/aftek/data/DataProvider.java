@@ -66,7 +66,7 @@ public class DataProvider {
                 sport = this.manager.addSport(new Sport(NomSport.getNomSport(sportS), force, agilite, endurance));
             }
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
-            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, null); // TODO ajouter sport
+            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, sport);
             this.manager.addAthlete(a);
             this.manager.createEpreuve(a, sport);
         }
@@ -135,7 +135,7 @@ public class DataProvider {
             manager.addAthlete(athlete);
         
             // Ajouter l'ahtlete à l'équipe
-            equipesMap.get(athletes.getInt(10)).ajouteAthlete(athlete);
+            if(athletes.getInt(10)!= 0) equipesMap.get(athletes.getInt(10)).ajouteAthlete(athlete);
         }
 
         // Creation des epreuves

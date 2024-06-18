@@ -1,9 +1,10 @@
 package fr.aftek;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
+import java.util.Iterator;
 
 import org.junit.Rule;
 import org.junit.jupiter.api.io.TempDir;
@@ -23,16 +24,13 @@ public class TestCSV extends TestCase{
 
     public static Test suite() {
         return new TestSuite( TestCSV.class );
+
     }
 
     @org.junit.Test
-    public void testLoadCSV(){
+    public void testLoadCSV() throws IOException{
         DataProvider provider = new DataProvider();
-        try {
-            provider.loadCSV("../donnees.csv");
-        } catch (FileNotFoundException e) {
-            fail("FileNotFoundException");
-        }
+        provider.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
         assertEquals(provider.getManager().getAthletes().size(), 400);
         assertEquals(provider.getManager().getEquipes().size(), 0); // Aucune equipe n'est créer à partie d'un fichier CSV
         assertEquals(provider.getManager().getSports().size(), 8);
@@ -42,15 +40,11 @@ public class TestCSV extends TestCase{
     public void testSaveCSV(@TempDir Path tempdir) throws IOException{
         Path testSave = tempdir.resolve("testCSV.csv");
         DataProvider provider = new DataProvider();
-        try {
-            provider.loadCSV("../donnees.csv");
-            provider.saveCSV(testSave.toAbsolutePath().toString());
-            DataProvider provider1 = new DataProvider();
-            provider1.loadCSV(testSave.toAbsolutePath().toString());
-            assertEquals(provider, provider1);
-        } catch (FileNotFoundException e) {
-            fail("FileNotFoundException");
-        }
+        provider.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
+        provider.saveCSV(testSave.toAbsolutePath().toString());
+        DataProvider provider1 = new DataProvider();
+        provider1.loadCSV(testSave.toAbsolutePath().toString());
+        assertEquals(provider, provider1);
 
     }
 }
