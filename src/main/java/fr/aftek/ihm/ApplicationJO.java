@@ -27,7 +27,7 @@ public class ApplicationJO extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         // Création d'une instance de FXMLLoader
-        FXMLLoader loader = new FXMLLoader (getClass().getResource("/Choix sport.fxml"));
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("/PageAccueil.fxml"));
         
         // Définir ce contrôleur comme celui utilisé par le fichier FXML
         loader.setController(this);
@@ -39,6 +39,7 @@ public class ApplicationJO extends Application{
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques");
+        stage.setResizable(false);
         stage.show();
     }
 
