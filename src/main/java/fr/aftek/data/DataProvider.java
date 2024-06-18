@@ -68,7 +68,6 @@ public class DataProvider {
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
             Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, sport);
             this.manager.addAthlete(a);
-            this.manager.createEpreuve(a, sport);
         }
         scanner.close();
     }
@@ -153,6 +152,9 @@ public class DataProvider {
                 manager.addEpreuveCollective(epreuve);
             }
         }
+
+        System.out.println(epreuvesMap);
+        System.out.println(epreuvesCollectivesMap);
         
         // Ajout des athletes aux epreuves
         ResultSet participeIndividuel = st.executeQuery("SELECT * FROM Participe");
@@ -209,18 +211,21 @@ public class DataProvider {
             st.executeUpdate("INSERT INTO Athlete VALUES (" + idAthlete + ",'" + athlete.getNom() + "', '" + athlete.getPrenom() + "', '" + athlete.getSexe() + "', " + athlete.getForce() + ", " + athlete.getAgilite() + ", " + athlete.getEndurance() + ", '" + athlete.getPays().getNom() + "', '" + athlete.getSport().getNomSport().getNom() + "', " + idEquipes.get(athlete.getEquipe()) + ")");
         }
 
+        int idEpreuve = 0;
         // Epreuves
         for (Epreuve epreuve : manager.getEpreuves()) {
-            st.executeUpdate("INSERT INTO Epreuve VALUES (NULL, '" + epreuve.getNom() + "', '" + epreuve.getSexe() + "', '" + epreuve.getSport().getNomSport().getNom() + "', false)");
+            idEpreuve++;
+            st.executeUpdate("INSERT INTO Epreuve VALUES ("+idEpreuve+", '" + epreuve.getNom() + "', '" + epreuve.getSexe() + "', '" + epreuve.getSport().getNomSport().getNom() + "', false)");
             for (Athlete athlete : epreuve.getParticipants()) {
-                st.executeUpdate("INSERT INTO Participe VALUES (" + id + ", " + idAthletes.get(athlete) + ")");
+                st.executeUpdate("INSERT INTO Participe VALUES (" + idEpreuve + ", " + idAthletes.get(athlete) + ")");
             }
         }
 
         for (EpreuveCollective epreuveCollective : manager.getEpreuvesCollectives()) {
-            st.executeUpdate("INSERT INTO Epreuve VALUES (NULL, '" + epreuveCollective.getNom() + "', '" + epreuveCollective.getSexe() + "', '" + epreuveCollective.getSport().getNomSport().getNom() + "', true)");
+            idEpreuve++;
+            st.executeUpdate("INSERT INTO Epreuve VALUES ("+idEpreuve+", '" + epreuveCollective.getNom() + "', '" + epreuveCollective.getSexe() + "', '" + epreuveCollective.getSport().getNomSport().getNom() + "', true)");
             for (Equipe equipe : epreuveCollective.getEquipes()) {
-                st.executeUpdate("INSERT INTO ParticipeCollectif VALUES (" + id + ", " + idEquipes.get(equipe) + ")");
+                st.executeUpdate("INSERT INTO ParticipeCollectif VALUES (" + idEpreuve + ", " + idEquipes.get(equipe) + ")");
             }
         }
     }
@@ -242,5 +247,10 @@ public class DataProvider {
         }
         DataProvider provider = (DataProvider) obj;
         return this.getManager().equals(provider.getManager());
+    }
+
+    @Override
+    public String toString() {
+        return manager.toString();
     }
 }

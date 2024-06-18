@@ -55,6 +55,8 @@ public class TestBDD extends TestCase {
         data.saveSQL(mysql);
         DataProvider temp = new DataProvider();
         temp.loadSQL(mysql);
+        System.out.println(data);
+        System.out.println(temp);
         assertEquals(data, temp);
     }
 
@@ -152,7 +154,7 @@ public class TestBDD extends TestCase {
             ");",
 
             "CREATE TABLE Participe (\n" +
-            "    idEpreuve INT AUTO_INCREMENT,\n" +
+            "    idEpreuve INT,\n" +
             "    idAthlete INT,\n" +
             "    PRIMARY KEY (idAthlete, idEpreuve),\n" +
             "    FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),\n" +
@@ -160,7 +162,7 @@ public class TestBDD extends TestCase {
             ");",
 
             "CREATE TABLE ParticipeCollectif (\n" +
-            "    idEpreuve INT AUTO_INCREMENT,\n" +
+            "    idEpreuve INT,\n" +
             "    idEquipe INT,\n" +
             "    PRIMARY KEY (idEquipe, idEpreuve),\n" +
             "    FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),\n" +

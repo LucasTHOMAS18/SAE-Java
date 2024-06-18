@@ -336,4 +336,15 @@ public class DataManager {
         && this.sports.equals(other.sports) 
         && this.sportsCollectifs.equals(other.sportsCollectifs);
     }
+
+    @Override
+    public String toString() {
+        return "pays=" + this.pays.toString()+"\n"
+        + "athletes=" + this.athletes.toString()+"\n"
+        + "equipes=" + this.equipes.toString()+"\n"
+        + "epreuves=" + this.epreuves.toString()+"\n"
+        + "epreuvesCollectives=" + this.epreuvesCollectives.toString()+"\n"
+        + "sports=" + this.sports.toString()+"\n"
+        + "sportsCollectifs=" + this.sportsCollectifs.toString()+"\n";
+    }
 }

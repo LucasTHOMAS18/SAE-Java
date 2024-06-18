@@ -106,7 +106,7 @@ CREATE TABLE Athlete (
 
 -- Création de la table Participe
 CREATE TABLE Participe (
-    idEpreuve INT AUTO_INCREMENT,
+    idEpreuve INT,
     idAthlete INT,
     PRIMARY KEY (idAthlete, idEpreuve),
     FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),
@@ -115,7 +115,7 @@ CREATE TABLE Participe (
 
 -- Création de la table ParticipeCollectif
 CREATE TABLE ParticipeCollectif (
-    idEpreuve INT AUTO_INCREMENT,
+    idEpreuve INT,
     idEquipe INT,
     PRIMARY KEY (idEquipe, idEpreuve),
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
