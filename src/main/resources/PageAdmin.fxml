@@ -14,16 +14,16 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: #f7d16a;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="60.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/logo.png" />
+                  <Image url="@images/logo_rond.png" />
                </image>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quel Sport mon Reuf ?" wrappingWidth="339.953125">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quel Sport mon Reuf ?" wrappingWidth="364.953125">
                <font>
-                  <Font name="System Bold" size="32.0" />
+                  <Font size="32.0" />
                </font>
             </Text>
          </children>
@@ -33,9 +33,9 @@
       </HBox>
    </top>
    <left>
-      <ImageView fitHeight="248.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="248.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../../Téléchargements/image%2014.png" />
+            <Image url="@images/mascotteAdmin.png" />
          </image>
       </ImageView>
    </left>
@@ -44,11 +44,11 @@
          <children>
             <FlowPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="46.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="Charger csv">
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/icons/cours.png" />
+                              <Image url="@images/logocsv.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -62,11 +62,11 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/icons/cours.png" />
+                              <Image url="@images/logouser.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -80,7 +80,7 @@
                         <Insets bottom="10.0" left="10.0" right="33.0" top="10.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="76.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
                      <padding>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
@@ -90,7 +90,7 @@
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/icons/cours.png" />
+                              <Image url="@images/logoexportbd.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -133,6 +133,9 @@
                      </FlowPane.margin>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </FlowPane>
          </children>
       </VBox>
