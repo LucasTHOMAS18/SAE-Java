@@ -147,7 +147,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="btnEpreuve1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" />
+                              <Button fx:id="btnEpreuve1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherEpreuves" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" />
                            </children>
                         </VBox>
                      </children>
