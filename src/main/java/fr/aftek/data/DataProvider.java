@@ -41,7 +41,7 @@ public class DataProvider {
      * @throws FileNotFoundException
      */
     public void loadCSV(String filename) throws FileNotFoundException{
-        Scanner scanner = new Scanner(new File(filename));
+        Scanner scanner = new Scanner(new File(getClass().getClassLoader().getResource(filename).getFile()));
         scanner.nextLine();
         while(scanner.hasNextLine()){
             String[] data = scanner.nextLine().split(",");
