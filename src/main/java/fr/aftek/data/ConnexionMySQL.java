@@ -1,5 +1,8 @@
 package fr.aftek.data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,8 +33,47 @@ public class ConnexionMySQL {
 		this.connecte=this.mysql!=null;
 	}
 
+	public void connecter(String nomServeur, String nomLogin, String motDePasse) throws SQLException{
+		// si tout c'est bien passé la connexion n'est plus nulle
+        String url = "jdbc:mysql://" + nomServeur;
+        this.mysql = DriverManager.getConnection(url, nomLogin, motDePasse);
+        this.connecte=this.mysql!=null;
+	}
+
+	public void executerFichier(String nomFichier) throws SQLException, IOException {
+		BufferedReader br = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(nomFichier).getFile()));
+          
+          // String Builder to build the query line by line.
+		  Statement statement = createStatement();
+		  StringBuilder query = new StringBuilder();
+        String line;
+        
+        while((line = br.readLine()) != null) {
+          
+            if(line.trim().startsWith("-- ")) {
+                continue;
+            }
+          
+          // Append the line into the query string and add a space after that
+            query.append(line).append(" ");
+         
+            if(line.trim().endsWith(";")) {
+              // Execute the Query
+                statement.execute(query.toString().trim());
+              // Empty the Query string to add new query from the file
+                query = new StringBuilder();
+            }
+        }
+		br.close();
+	}
+
+	public void creerStructure() throws SQLException, IOException {
+		executerFichier("BD.sql");
+	}
+
 	public void close() throws SQLException {
 		// fermer la connexion
+		this.mysql.close();
 		this.connecte=false;
 	}
 

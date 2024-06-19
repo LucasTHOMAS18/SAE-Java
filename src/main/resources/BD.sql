@@ -1,3 +1,8 @@
+-- Création de la base
+DROP DATABASE IF EXISTS JO2024;
+CREATE DATABASE JO2024;
+USE JO2024;
+
 -- Suppression des tables existantes pour éviter les conflits
 DROP TABLE IF EXISTS ParticipeCollectif;
 DROP TABLE IF EXISTS Participe;
