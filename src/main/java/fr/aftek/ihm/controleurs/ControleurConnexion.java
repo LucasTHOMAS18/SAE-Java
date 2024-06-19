@@ -3,6 +3,7 @@ package fr.aftek.ihm.controleurs;
 import java.sql.SQLException;
 
 import fr.aftek.data.ConnexionMySQL;
+import fr.aftek.ihm.ApplicationJO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
 public class ControleurConnexion {
+    private ApplicationJO application;
     private ConnexionMySQL connexion;
 
     @FXML
@@ -24,8 +26,9 @@ public class ControleurConnexion {
     @FXML
     private Button btnConnection;
 
-    public ControleurConnexion(ConnexionMySQL connexion) {
-        this.connexion = connexion;
+    public ControleurConnexion(ApplicationJO application) {
+        this.application = application;
+        this.connexion = application.getConnexion();
     }
 
     @FXML

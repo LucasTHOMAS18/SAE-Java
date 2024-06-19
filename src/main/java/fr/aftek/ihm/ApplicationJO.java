@@ -12,13 +12,12 @@ public class ApplicationJO extends Application{
     private Scene scene;
     private ConnexionMySQL connexion;
 
-
     @Override
     public void start(Stage stage) throws Exception {
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
         // Création de la scène
-        BorderPane root = new PageConnexion(connexion);
+        BorderPane root = new PageConnexion(this);
         this.scene = new Scene(root, 900, 600);
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques");
@@ -26,7 +25,15 @@ public class ApplicationJO extends Application{
         stage.show();
         //new PopUp("Erreur détectée !","Attention mon reuf, je crois que t'as un bug dans ton appli faut que tu le règle","On a détécté un bug dans ton appli faudrait peut-être le réglé quand même c'est important").showAndWait();
     }
+
+    public ConnexionMySQL getConnexion() {
+        return connexion;
+    }
     
+    public void menu() {
+        // TODO
+    }
+
     public static void main(String[] args) {
         launch(ApplicationJO.class);
     }
