@@ -33,7 +33,7 @@ public class ControleurConnexion {
     }
 
     @FXML
-    public void seConnecter() throws IOException {
+    public void seConnecter() throws IOException, SQLException {
         String identifiant = identifiantTxtField.getText();
         String mdp = mdpPwrdField.getText();
         String serveur = "servinfo-maria";
@@ -55,7 +55,7 @@ public class ControleurConnexion {
     }
 
     @FXML
-    public void mdpKeyPressed(KeyEvent event) throws IOException {
+    public void mdpKeyPressed(KeyEvent event) throws IOException, SQLException {
         if (event.getCode().toString().equals("ENTER")) {
             seConnecter();
         }
