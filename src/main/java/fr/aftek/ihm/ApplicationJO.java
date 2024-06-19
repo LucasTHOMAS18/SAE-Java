@@ -44,6 +44,7 @@ public class ApplicationJO extends Application{
         stage.show(); // Affiche la fenêtre
         // Définit l'action à réaliser lors de la fermeture de la fenêtre
         stage.setOnCloseRequest((e)->System.exit(0));
+        choixSport();
     }
 
     /**
@@ -62,10 +63,11 @@ public class ApplicationJO extends Application{
      * @throws SQLException Si une erreur SQL survient
      */
     public void menu() throws IOException, SQLException {
-        stage.setScene(new Scene(new Menu(this), 900, 600));
+        stage.getScene().setRoot(new Menu(this));
 
         // Récupère le rôle de l'utilisateur connecté
         String role = connexion.getRole();
+        System.out.println(role);
         if (role == "admin") {
             // Affiche un message si l'utilisateur est un administrateur
             System.out.println("Il faut afficher le bouton admin");

@@ -10,16 +10,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="64.0" BorderPane.alignment="CENTER">
          <children>
             <TableView prefHeight="300.0" prefWidth="865.0" HBox.hgrow="ALWAYS">
               <columns>
                 <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Classement" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Athlète" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Temps" />
+                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'or" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'argent" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles de bronze" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nombre d'athlètes" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -40,7 +41,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voila les classements mon oeuf" wrappingWidth="789.953125">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pays participants aux JO 2024" wrappingWidth="789.953125">
                <font>
                   <Font size="35.0" />
                </font>
