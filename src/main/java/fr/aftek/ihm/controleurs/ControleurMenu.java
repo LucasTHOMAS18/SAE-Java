@@ -1,12 +1,27 @@
 package fr.aftek.ihm.controleurs;
 
 import fr.aftek.ihm.ApplicationJO;
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public class ControleurMenu {
     public ApplicationJO application;
 
-    public ControleurMenu(ApplicationJO application) {
+    @FXML public VBox vboxAdm;
+
+    private boolean afficherAdm;
+
+    public ControleurMenu(ApplicationJO application, boolean afficherAdm) {
         this.application = application;
+    }
+
+    @FXML
+    public void initialize() {
+        vboxAdm.setVisible(afficherAdm);
+    }
+
+    public void afficherAthletes() {
+        // TODO
     }
 
     public void afficherEquipes() {
@@ -19,5 +34,9 @@ public class ControleurMenu {
 
     public void afficherPays() {
         // TODO
-    }    
+    }
+    
+    public void afficherAdmin() {
+        // TODO
+    }
 }

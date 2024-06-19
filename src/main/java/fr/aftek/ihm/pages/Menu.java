@@ -10,11 +10,11 @@ import javafx.scene.layout.BorderPane;
 public class Menu extends BorderPane {
     private ApplicationJO application;
 
-    public Menu(ApplicationJO application) throws IOException {
+    public Menu(ApplicationJO application, boolean afficherAdm) throws IOException {
         this.application = application;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenueScrollBar.fxml"));
-        loader.setController(new ControleurMenu(application));
+        loader.setController(new ControleurMenu(application, afficherAdm));
         loader.setRoot(this);
         loader.load();
     }
