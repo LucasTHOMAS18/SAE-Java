@@ -21,4 +21,8 @@ public class PageAdmin extends BorderPane {
         loader.setController(new fr.aftek.ihm.controleurs.ControleurAdmin());
         loader.load();
     }
+
+
 }
+
+

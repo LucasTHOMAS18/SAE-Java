@@ -1,6 +1,7 @@
 package fr.aftek.data;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -37,7 +38,7 @@ public class DataManager {
         sports = new HashSet<Sport>();
         sportsCollectifs = new HashSet<SportCollectif>();
     }
-
+    
     /**
      * Récupère la liste des pays
      * @return la liste des pays
@@ -95,6 +96,37 @@ public class DataManager {
         this.pays.add(pays);
         return pays;
     }
+
+    public List<Epreuve> getEpreuvesByPays(String nomPays) {
+        List<Epreuve> epreuvesPays = new ArrayList<>();
+        Pays pays = getPays(nomPays);
+
+        if (pays == null) {
+            return epreuvesPays; // Le pays n'existe pas dans la liste
+        }
+
+        for (Epreuve epreuve : epreuves) {
+            for (Athlete athlete : epreuve.getParticipants()) {
+                if (athlete.getPays().equals(pays)) {
+                    epreuvesPays.add(epreuve);
+                    break;
+                }
+            }
+
+            // Vérifier les équipes
+            if (epreuve.getSport().getNomSport().estEquipe()) {
+                for (Equipe equipe : ((SportCollectif) epreuve.getSport()).getEquipes()) {
+                    if (equipe.getPays().equals(pays)) {
+                        epreuvesPays.add(epreuve);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return epreuvesPays;
+    }
+
 
     /**
      * Ajoute un athlète à la liste des athlètes
