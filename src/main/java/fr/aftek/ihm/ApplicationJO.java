@@ -3,6 +3,7 @@ package fr.aftek.ihm;
 import fr.aftek.data.ConnexionMySQL;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -23,6 +24,7 @@ public class ApplicationJO extends Application{
         stage.setTitle("Jeux IUT'Olympiques");
         stage.setResizable(false);
         stage.show();
+        new PopUp("Erreur détectée !","Attention mon reuf, je crois que t'as un bug dans ton appli faut que tu le règle","On a détécté un bug dans ton appli faudrait peut-être le réglé quand même c'est important").showAndWait();
     }
     
     public static void main(String[] args) {
