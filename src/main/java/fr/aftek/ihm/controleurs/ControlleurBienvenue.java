@@ -17,9 +17,13 @@ public class ControlleurBienvenue {
     @FXML
     private Button btnAdmin;
 
-    @FXML
-    private void retourAccueil() {
+    public ControlleurBienvenue(){
         //TODO
+    }
+
+    @FXML
+    public void retourAcceuil(){
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
     @FXML
@@ -44,6 +48,11 @@ public class ControlleurBienvenue {
 
     @FXML
     private void afficherAdmin() {
+        //TODO
+    }
+
+    @FXML
+    private void init() {
         //TODO
     }
 

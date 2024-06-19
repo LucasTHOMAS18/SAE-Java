@@ -2,15 +2,21 @@ package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 
+import fr.aftek.ihm.ApplicationJO;
+import fr.aftek.ihm.controleurs.ControleurAdmin;
+import fr.aftek.ihm.controleurs.ControlleurBienvenue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 
 public class PageBienvenueScrollBar extends ScrollPane {
-    public PageBienvenueScrollBar()throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/aftek/ihm/fxml/PageBienvenueScrollBar.fxml"));
-        loader.setRoot(this);
-        loader.setController(new fr.aftek.ihm.controleurs.ControlleurBienvenue());
-        loader.load();
+    private ApplicationJO application;
 
+    public PageBienvenueScrollBar(ApplicationJO application) throws IOException {
+        this.application = application;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenueScrollBar.fxml"));
+        ControlleurBienvenue ControlleurBienvenue = new ControlleurBienvenue();
+        loader.setController(ControlleurBienvenue);
+        loader.setRoot(this);
+        loader.load();
     }
 }
