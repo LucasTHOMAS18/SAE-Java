@@ -56,12 +56,16 @@
    <top>
       <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: FFCF54;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/logo_rond.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="57.0" prefWidth="458.0" text="Jeu IUT olympiques">
+            <Button fx:id="btnRetour" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#retourAccueil" style="-fx-background-color: 00000000;">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo_rond.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label prefHeight="70.0" prefWidth="458.0" text="Jeu IUT olympiques">
                <font>
                   <Font size="35.0" />
                </font>
