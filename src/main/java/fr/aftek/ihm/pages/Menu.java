@@ -20,7 +20,7 @@ public class Menu extends BorderPane {
      */
     public Menu(ApplicationJO application, boolean afficherAdm) throws IOException {
         // Charge le fichier FXML pour le menu et initialise le contrôleur
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenueScrollBar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenue.fxml"));
         loader.setController(new ControleurMenu(application, afficherAdm));
         loader.setRoot(this);
         loader.load();

@@ -19,7 +19,7 @@
          <children>
             <ImageView fitHeight="297.0" fitWidth="277.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/mascotte%20gentille.png" />
+                  <Image url="@images/mascotte_gentille.png" />
                </image>
             </ImageView>
             <VBox maxHeight="-Infinity" prefHeight="283.0" prefWidth="320.0" spacing="18.0" style="-fx-padding: 20; -fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
