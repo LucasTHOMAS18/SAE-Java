@@ -1,6 +1,8 @@
 package fr.aftek.ihm;
 
 import fr.aftek.data.ConnexionMySQL;
+import fr.aftek.ihm.pages.PageConnection;
+import fr.aftek.ihm.pages.PopUp;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -24,7 +26,7 @@ public class ApplicationJO extends Application{
         stage.setTitle("Jeux IUT'Olympiques");
         stage.setResizable(false);
         stage.show();
-        new PopUp("Erreur détectée !","Attention mon reuf, je crois que t'as un bug dans ton appli faut que tu le règle","On a détécté un bug dans ton appli faudrait peut-être le réglé quand même c'est important").showAndWait();
+        //new PopUp("Erreur détectée !","Attention mon reuf, je crois que t'as un bug dans ton appli faut que tu le règle","On a détécté un bug dans ton appli faudrait peut-être le réglé quand même c'est important").showAndWait();
     }
     
     public static void main(String[] args) {

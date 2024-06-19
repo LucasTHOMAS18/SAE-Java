@@ -1,7 +1,8 @@
-package fr.aftek.ihm;
+package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 import fr.aftek.data.ConnexionMySQL;
+import fr.aftek.ihm.controleurs.ControleurConnexion;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 

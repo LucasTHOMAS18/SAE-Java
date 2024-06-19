@@ -1,4 +1,4 @@
-package fr.aftek.ihm;
+package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 import java.sql.SQLException;

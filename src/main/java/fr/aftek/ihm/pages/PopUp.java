@@ -1,4 +1,4 @@
-package fr.aftek.ihm;
+package fr.aftek.ihm.pages;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;

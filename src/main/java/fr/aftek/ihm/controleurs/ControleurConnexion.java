@@ -1,4 +1,4 @@
-package fr.aftek.ihm;
+package fr.aftek.ihm.controleurs;
 
 import java.sql.SQLException;
 import fr.aftek.data.ConnexionMySQL;
