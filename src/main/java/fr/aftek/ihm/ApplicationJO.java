@@ -1,7 +1,7 @@
 package fr.aftek.ihm;
 
 import fr.aftek.data.ConnexionMySQL;
-import fr.aftek.ihm.pages.PageConnection;
+import fr.aftek.ihm.pages.PageConnexion;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -18,7 +18,7 @@ public class ApplicationJO extends Application{
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
         // Création de la scène
-        BorderPane root = new PageConnection(connexion);
+        BorderPane root = new PageConnexion(connexion);
         this.scene = new Scene(root, 900, 600);
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques");

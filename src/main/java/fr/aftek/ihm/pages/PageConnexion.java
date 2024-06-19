@@ -7,10 +7,10 @@ import fr.aftek.ihm.controleurs.ControleurConnexion;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
-public class PageConnection extends BorderPane {
+public class PageConnexion extends BorderPane {
     private ConnexionMySQL connexion;
 
-    public PageConnection(ConnexionMySQL connexion) throws IOException {
+    public PageConnexion(ConnexionMySQL connexion) throws IOException {
         this.connexion = connexion;
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageConnexion.fxml"));
