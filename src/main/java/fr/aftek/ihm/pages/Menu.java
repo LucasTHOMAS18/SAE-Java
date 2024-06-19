@@ -3,6 +3,7 @@ package fr.aftek.ihm.pages;
 import java.io.IOException;
 
 import fr.aftek.ihm.ApplicationJO;
+import fr.aftek.ihm.controleurs.ControleurMenu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
@@ -12,8 +13,8 @@ public class Menu extends BorderPane {
     public Menu(ApplicationJO application) throws IOException {
         this.application = application;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
-        loader.setController(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenueScrollBar.fxml"));
+        loader.setController(new ControleurMenu(application));
         loader.setRoot(this);
         loader.load();
     }

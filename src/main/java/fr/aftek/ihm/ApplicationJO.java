@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import fr.aftek.data.ConnexionMySQL;
-import fr.aftek.ihm.pages.*;
+import fr.aftek.ihm.pages.Menu;
+import fr.aftek.ihm.pages.PageConnexion;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -38,7 +38,7 @@ public class ApplicationJO extends Application{
     }
     
     public void menu() throws IOException, SQLException {
-        stage.setScene(new Scene(new Menu(this), 900, 600));
+        stage.getScene().setRoot(new Menu(this));
 
         String role = connexion.getRole();
         if (role == "admin") {
