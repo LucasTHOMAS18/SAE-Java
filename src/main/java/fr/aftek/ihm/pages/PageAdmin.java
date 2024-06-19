@@ -20,4 +20,8 @@ public class PageAdmin extends BorderPane {
         loader.setRoot(this);
         loader.load();
     }
+
+
 }
+
+
