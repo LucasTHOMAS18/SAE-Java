@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
-import fr.aftek.ihm.pages.Menu;
+import fr.aftek.ihm.pages.*;
 import fr.aftek.ihm.pages.PageChoixSport;
 import fr.aftek.ihm.pages.PageConnexion;
 import javafx.application.Application;
@@ -70,6 +70,10 @@ public class ApplicationJO extends Application{
             // Affiche un message si l'utilisateur est un administrateur
             System.out.println("Il faut afficher le bouton admin");
         }
+    }
+
+    public void choixSport() throws IOException{
+        stage.getScene().setRoot(new PageChoixSport(this));
     }
 
     /**
