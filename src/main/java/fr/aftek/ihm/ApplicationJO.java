@@ -2,6 +2,7 @@ package fr.aftek.ihm;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.stream.Collectors;
 
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
@@ -34,8 +35,9 @@ public class ApplicationJO extends Application{
     public void start(Stage stage) throws Exception {
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
+        PROVIDER.loadCSV("donnees1.csv");
         // Création de la scène
-        BorderPane root = new PageConnexion(this);
+        BorderPane root = new PageClassementAthletes(this, ApplicationJO.PROVIDER.getManager().getAthletes());
         this.scene = new Scene(root, 900, 600);
         this.stage = stage;
         stage.setScene(scene);
@@ -44,7 +46,7 @@ public class ApplicationJO extends Application{
         stage.show(); // Affiche la fenêtre
         // Définit l'action à réaliser lors de la fermeture de la fenêtre
         stage.setOnCloseRequest((e)->System.exit(0));
-        choixSport();
+        //choixSport();
     }
 
     /**
@@ -85,5 +87,15 @@ public class ApplicationJO extends Application{
      */
     public static void main(String[] args) {
         launch(ApplicationJO.class);
+    }
+
+    public void retourAcceuil() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'retourAcceuil'");
+    }
+
+    public void retourAccueil() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'retourAccueil'");
     }
 }

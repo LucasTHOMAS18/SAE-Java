@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 
-public class ControleurAdmin {
+public class ControleurAdmin extends Controleur{
     @FXML
     private Button btnRetour;
     @FXML
@@ -32,10 +32,6 @@ public class ControleurAdmin {
     private Button btnModifierData;
 
     public ControleurAdmin() {
-    }
-
-    @FXML
-    private void retourAccueil() {
     }
 
     @FXML

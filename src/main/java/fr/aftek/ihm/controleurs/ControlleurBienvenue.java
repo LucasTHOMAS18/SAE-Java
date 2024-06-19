@@ -3,7 +3,7 @@ package fr.aftek.ihm.controleurs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class ControlleurBienvenue {
+public class ControlleurBienvenue extends Controleur {
     @FXML
     private Button btnRetour;
     @FXML

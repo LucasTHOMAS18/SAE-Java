@@ -10,17 +10,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" type="BorderPane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="64.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="300.0" prefWidth="865.0" HBox.hgrow="ALWAYS">
+            <TableView fx:id="table" prefHeight="300.0" prefWidth="865.0" stylesheets="@tableau.css" HBox.hgrow="ALWAYS">
               <columns>
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nom" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Prénom" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Sport" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nombre de médailles" />
+                <TableColumn fx:id="pays" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
+                <TableColumn fx:id="nom" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nom" />
+                  <TableColumn fx:id="prenom" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Prénom" />
+                  <TableColumn fx:id="sport" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Sport" />
+                  <TableColumn fx:id="or" editable="false" maxWidth="80.0" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Or" />
+                  <TableColumn fx:id="argent" editable="false" maxWidth="80.0" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Arg" />
+                  <TableColumn fx:id="bronze" editable="false" maxWidth="80.0" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Bro" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -41,7 +43,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Athlètes participants aux JO 2024" wrappingWidth="789.953125">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voila les athlètes mon oeuf" wrappingWidth="789.953125">
                <font>
                   <Font size="35.0" />
                </font>
@@ -49,4 +51,4 @@
          </children>
       </HBox>
    </top>
-</BorderPane>
+</fx:root>

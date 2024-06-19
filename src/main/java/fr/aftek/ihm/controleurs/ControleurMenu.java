@@ -2,8 +2,7 @@ package fr.aftek.ihm.controleurs;
 
 import fr.aftek.ihm.ApplicationJO;
 
-public class ControleurMenu {
-    public ApplicationJO application;
+public class ControleurMenu extends Controleur {
 
     public ControleurMenu(ApplicationJO application) {
         this.application = application;

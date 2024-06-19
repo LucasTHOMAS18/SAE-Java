@@ -19,8 +19,7 @@ import javafx.scene.input.KeyEvent;
  * Contrôleur pour la page de connexion.
  * Gère les interactions de l'utilisateur pour se connecter à la base de données.
  */
-public class ControleurConnexion {
-    private ApplicationJO application;
+public class ControleurConnexion extends Controleur {
     private ConnexionMySQL connexion;
 
     @FXML
