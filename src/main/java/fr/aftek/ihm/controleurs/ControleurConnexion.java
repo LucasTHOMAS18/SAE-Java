@@ -1,5 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import fr.aftek.data.ConnexionMySQL;
@@ -32,7 +33,7 @@ public class ControleurConnexion {
     }
 
     @FXML
-    public void seConnecter() {
+    public void seConnecter() throws IOException {
         String identifiant = identifiantTxtField.getText();
         String mdp = mdpPwrdField.getText();
         String serveur = "servinfo-maria";
@@ -47,13 +48,14 @@ public class ControleurConnexion {
 
         if (connexion.isConnecte()) {
             System.out.println("Connexion réussie");
+            application.menu();
         } else {
             System.out.println("Connexion échouée");
         }
     }
 
     @FXML
-    public void mdpKeyPressed(KeyEvent event) {
+    public void mdpKeyPressed(KeyEvent event) throws IOException {
         if (event.getCode().toString().equals("ENTER")) {
             seConnecter();
         }

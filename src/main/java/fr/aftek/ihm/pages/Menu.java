@@ -17,4 +17,24 @@ public class Menu extends BorderPane {
         loader.setRoot(this);
         loader.load();
     }
+
+    public void btnAthletes() {
+        // TODO
+    }
+
+    public void btnEpreuves() {
+        // TODO
+    }
+
+    public void btnEquipes() {
+        // TODO
+    }
+
+    public void btnPays() {
+        // TODO
+    }
+
+    public void btnAdmin() {
+        // TODO
+    }
 }
