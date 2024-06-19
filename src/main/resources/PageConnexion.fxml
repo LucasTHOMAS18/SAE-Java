@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" type="BorderPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -31,13 +32,17 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="urlTxtField" layoutX="30.0" layoutY="76.0" promptText="URL de la BDD" style="-fx-background-color: white; -fx-background-radius: 50px;" />
-                  <TextField fx:id="identifiantTxtField" prefWidth="185.0" promptText="Identifiant" style="-fx-background-color: white; -fx-background-radius: 50px;" />
-                  <PasswordField fx:id="mdpPwrdField" onKeyPressed="#mdpKeyPressed" promptText="Mot de passe" style="-fx-background-color: white; -fx-background-radius: 50px;" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seConnecter" prefHeight="28.0" prefWidth="162.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Se connecter" textAlignment="CENTER" />
+                  <TextField fx:id="urlTxtField" layoutX="30.0" layoutY="76.0" prefHeight="32.0" prefWidth="280.0" promptText="URL de la BDD" style="-fx-background-color: white; -fx-background-radius: 50px;" />
+                  <TextField fx:id="identifiantTxtField" prefHeight="32.0" prefWidth="280.0" promptText="Identifiant" style="-fx-background-color: white; -fx-background-radius: 50px;" />
+                  <PasswordField fx:id="mdpPwrdField" onKeyPressed="#mdpKeyPressed" prefHeight="32.0" prefWidth="280.0" promptText="Mot de passe" style="-fx-background-color: white; -fx-background-radius: 50px;" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="280.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seConnecter" prefHeight="32.0" prefWidth="162.0" style="-fx-background-color: black; -fx-background-radius: 50px;" text="Se connecter" textAlignment="CENTER" textFill="WHITE" />
+                     </children>
+                  </HBox>
                </children>
                <HBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </HBox.margin>
             </VBox>
          </children>
@@ -47,24 +52,25 @@
       </HBox>
    </center>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="800.0" style="-fx-background-color: FFCF54;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/logo_rond.png" />
-               </image>
+            <Button fx:id="btnRetour" mnemonicParsing="false" style="-fx-background-color: 00000000;">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo_rond.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
-            </ImageView>
-            <Label prefHeight="57.0" prefWidth="458.0" text="Jeux IUT’Olympiques">
+            </Button>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeux IUT’Olympiques" wrappingWidth="631.953125">
                <font>
-                  <Font name="Arial" size="35.0" />
+                  <Font size="32.0" />
                </font>
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
-            </Label>
+            </Text>
          </children>
       </HBox>
    </top>
