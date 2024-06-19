@@ -5,12 +5,23 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class PageAdmin extends BorderPane {
+import fr.aftek.ihm.ApplicationJO;
+import fr.aftek.ihm.controleurs.ControleurAdmin;
+import fr.aftek.ihm.controleurs.ControlleurBienvenue;
 
-    public PageAdmin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/aftek/ihm/fxml/PageAdmin.fxml"));
+public class PageAdmin extends BorderPane {
+    private ApplicationJO application;
+
+    public PageAdmin(ApplicationJO application) throws IOException {
+        this.application = application;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageAdmin.fxml"));
+        ControleurAdmin ControleurAdmin = new ControleurAdmin();
+        loader.setController(ControleurAdmin);
         loader.setRoot(this);
-        loader.setController(new fr.aftek.ihm.controleurs.ControleurAdmin());
         loader.load();
     }
+
+
 }
+
+

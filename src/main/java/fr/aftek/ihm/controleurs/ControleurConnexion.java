@@ -15,8 +15,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-public class ControleurConnexion {
-    private ApplicationJO application;
+/**
+ * Contrôleur pour la page de connexion.
+ * Gère les interactions de l'utilisateur pour se connecter à la base de données.
+ */
+public class ControleurConnexion extends Controleur {
     private ConnexionMySQL connexion;
 
     @FXML
@@ -31,11 +34,23 @@ public class ControleurConnexion {
     @FXML
     private Button btnConnection;
 
+    /**
+     * Constructeur du contrôleur de connexion.
+     * 
+     * @param application L'application principale pour accéder aux fonctionnalités globales.
+     */
     public ControleurConnexion(ApplicationJO application) {
         this.application = application;
         this.connexion = application.getConnexion();
     }
 
+    /**
+     * Méthode appelée lors de la tentative de connexion.
+     * Essaie de se connecter à la base de données et gère les erreurs éventuelles.
+     * 
+     * @throws IOException Si une erreur d'entrée/sortie survient.
+     * @throws SQLException Si une erreur SQL survient.
+     */
     @FXML
     public void seConnecter() throws IOException, SQLException {
         String identifiant = identifiantTxtField.getText();
@@ -45,7 +60,7 @@ public class ControleurConnexion {
 
         try {
             connexion.connecter(serveur, nomBDD, identifiant, mdp);
-            new PopUp(AlertType.INFORMATION,"Succès !", "La connexion à la base de données a réussi", "La connexion à la base de donnée à réussi").showAndWait();
+            new PopUp(AlertType.INFORMATION,"Succès !", "La connexion à la base de données a réussi", "La connexion à la base de donnée a réussi").showAndWait();
         } catch (SQLException e) {
             System.out.println("Erreur de connexion à la base de données : " + e.getMessage());
             if(e.getErrorCode() == 1049){
@@ -55,7 +70,7 @@ public class ControleurConnexion {
                         try {
                             connexion.connecter(serveur, identifiant, mdp);
                             connexion.creerStructure();
-                            new PopUp(AlertType.INFORMATION,"Succès!", "La structure à bien été créer !", "La structure essentiel au bon fonctionnement de l'application a été créer dans la base de donnée: JO2024").showAndWait();
+                            new PopUp(AlertType.INFORMATION,"Succès!", "La structure à bien été créer !", "La structure essentielle au bon fonctionnement de l'application a été créée dans la base de donnée: JO2024").showAndWait();
                         } catch (SQLException e1) {
                             System.out.println(e1.getMessage());
                             new PopUp(AlertType.ERROR,"Erreur!", "La connexion à la base de données a échouée","La connexion à la base de données a échouée").showAndWait();
@@ -65,7 +80,7 @@ public class ControleurConnexion {
                         }
                     }
                 });
-            }else{
+            } else {
                 new PopUp(AlertType.ERROR,"Erreur !", "La connexion à la base de données a échouée","La connexion à la base de données a échouée").showAndWait();
             }
         }
@@ -76,6 +91,14 @@ public class ControleurConnexion {
         }
     }
 
+    /**
+     * Méthode appelée lors de la pression d'une touche dans le champ de mot de passe.
+     * Lance la tentative de connexion si la touche "ENTER" est pressée.
+     * 
+     * @param event L'événement de pression de touche.
+     * @throws IOException Si une erreur d'entrée/sortie survient.
+     * @throws SQLException Si une erreur SQL survient.
+     */
     @FXML
     public void mdpKeyPressed(KeyEvent event) throws IOException, SQLException {
         if (event.getCode().toString().equals("ENTER")) {

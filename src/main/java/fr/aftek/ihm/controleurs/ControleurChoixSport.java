@@ -7,7 +7,7 @@ import javafx.scene.control.ToggleGroup;
 
 import fr.aftek.NomSport;
 
-public class ControleurChoixSport {
+public class ControleurChoixSport extends Controleur{
     @FXML
     private ToggleButton btnHomme;
     @FXML

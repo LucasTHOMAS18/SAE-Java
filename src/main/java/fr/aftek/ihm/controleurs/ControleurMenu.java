@@ -4,8 +4,7 @@ import fr.aftek.ihm.ApplicationJO;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
-public class ControleurMenu {
-    public ApplicationJO application;
+public class ControleurMenu extends Controleur {
 
     @FXML public VBox vboxAdm;
 

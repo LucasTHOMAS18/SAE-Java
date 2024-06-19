@@ -1,9 +1,11 @@
 package fr.aftek.data;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import fr.aftek.Athlete;
@@ -37,7 +39,7 @@ public class DataManager {
         sports = new HashSet<Sport>();
         sportsCollectifs = new HashSet<SportCollectif>();
     }
-
+    
     /**
      * Récupère la liste des pays
      * @return la liste des pays
@@ -95,6 +97,37 @@ public class DataManager {
         this.pays.add(pays);
         return pays;
     }
+
+    public List<Epreuve> getEpreuvesByPays(String nomPays) {
+        List<Epreuve> epreuvesPays = new ArrayList<>();
+        Pays pays = getPays(nomPays);
+
+        if (pays == null) {
+            return epreuvesPays; // Le pays n'existe pas dans la liste
+        }
+
+        for (Epreuve epreuve : epreuves) {
+            for (Athlete athlete : epreuve.getParticipants()) {
+                if (athlete.getPays().equals(pays)) {
+                    epreuvesPays.add(epreuve);
+                    break;
+                }
+            }
+
+            // Vérifier les équipes
+            if (epreuve.getSport().getNomSport().estEquipe()) {
+                for (Equipe equipe : ((SportCollectif) epreuve.getSport()).getEquipes()) {
+                    if (equipe.getPays().equals(pays)) {
+                        epreuvesPays.add(epreuve);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return epreuvesPays;
+    }
+
 
     /**
      * Ajoute un athlète à la liste des athlètes
@@ -290,6 +323,44 @@ public class DataManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Récupère les médailles d'or, d'argent et de bronze pour un athlète donnée en paramètre
+     * @param nom le nom d'un athlete
+     * @param prenom le prénom d'un athlete
+     * @return Les médailles d'or, d'argent et de bronze pour un athlète sous la forme d'une array de int
+     */
+    public int[] getNbMedailles(String nom, String prenom) {
+        Athlete athlete = getAthlete(nom, prenom);
+        if (athlete == null) {
+            return new int[]{0, 0, 0};
+        }
+
+        int nbOr = 0;
+        int nbArgent = 0;
+        int nbBronze = 0;
+
+        for (Epreuve epreuve : epreuves) {
+            Map<Athlete, Integer> classement = epreuve.getClassement();
+            if (classement.containsKey(athlete)) {
+                int position = 1;
+                for (Map.Entry<Athlete, Integer> entry : classement.entrySet()) {
+                    if (entry.getKey().equals(athlete)) {
+                        if (position == 1) {
+                            nbOr++;
+                        } else if (position == 2) {
+                            nbArgent++;
+                        } else if (position == 3) {
+                            nbBronze++;
+                        }
+                        break;
+                    }
+                    position++;
+                }
+            }
+        }
+        return new int[]{nbOr, nbArgent, nbBronze};
     }
 
     @Override

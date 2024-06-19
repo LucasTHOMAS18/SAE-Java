@@ -61,7 +61,7 @@ public class DataProvider {
                 sport = this.manager.addSport(new Sport(NomSport.getNomSport(sportS), force, agilite, endurance));
             }
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
-            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, null); // TODO ajouter sport
+            Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, sport); // TODO ajouter sport
             this.manager.addAthlete(a);
             this.manager.createEpreuve(a, sport);
         }
