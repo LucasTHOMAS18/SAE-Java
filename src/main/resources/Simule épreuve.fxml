@@ -34,7 +34,7 @@
       </HBox>
    </top>
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@table.css" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="900.0">
                <children>
@@ -97,7 +97,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <TableView maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="620.0">
+            <TableView maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="620.0" style="-fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
               <columns>
                 <TableColumn prefWidth="126.40002512596378" text="Pays" />
                 <TableColumn minWidth="4.799957275390625" prefWidth="175.0" text="Nom" />
