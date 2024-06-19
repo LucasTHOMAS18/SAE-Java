@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,28 +13,37 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" type="BorderPane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" type="BorderPane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <ImageView fitHeight="201.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="346.0" fitWidth="525.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@images/mascotte%20gentille.png" />
          </image>
       </ImageView>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="378.0" spacing="12.0">
                <children>
-                  <Button fx:id="btnHomme" mnemonicParsing="false" onAction="#changeToHomme" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Homme" />
-                  <Button fx:id="btnFemme" disable="true" mnemonicParsing="false" onAction="#changeToFemme" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Femme" />
+                  <ToggleButton fx:id="btnHomme" mnemonicParsing="false" onAction="#changeToHomme" selected="true" stylesheets="@button.css" text="Homme">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="sexe" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="26.0" />
+                     </font></ToggleButton>
+                  <ToggleButton fx:id="btnFemme" mnemonicParsing="false" onAction="#changeToFemme" stylesheets="@button.css" text="Femme" toggleGroup="$sexe">
+                     <font>
+                        <Font size="26.0" />
+                     </font></ToggleButton>
                </children>
             </HBox>
-            <FlowPane alignment="TOP_CENTER" hgap="10.0" minHeight="-Infinity" vgap="10.0" VBox.vgrow="ALWAYS">
+            <FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="463.0" prefWidth="549.0" vgap="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="btn110mHaies" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#select110mHaies" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="110m Haies" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btn110mHaies" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#select110mHaies" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="110m Haies" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/cours.png" />
                            </image>
@@ -45,12 +56,12 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn4x100mRelais" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#select4x100mRelais" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="4x100m relais" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btn4x100mRelais" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#select4x100mRelais" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="4x100m relais" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/cours.png" />
                            </image>
@@ -60,15 +71,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnHandball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectHandball" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Handball" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnHandball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectHandball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Handball" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/hand.png" />
                            </image>
@@ -78,15 +89,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnVolleyball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectVolleyball" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Volley-ball" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnVolleyball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectVolleyball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Volley-ball" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/volley.png" />
                            </image>
@@ -96,15 +107,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnNatation100mBrasse" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectNatation100mBrasse" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Natation 100m brasse" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnNatation100mBrasse" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectNatation100mBrasse" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 100m brasse" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/natation.png" />
                            </image>
@@ -114,15 +125,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnNatation4x100m" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectNatation4x100m" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Natation 4x100m nage libre" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnNatation4x100m" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectNatation4x100m" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 4x100m nage libre" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/natation.png" />
                            </image>
@@ -132,15 +143,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnEscrimeEpee" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeEpee" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Escrime épée" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnEscrimeEpee" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeEpee" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime épée" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/escrime.png" />
                            </image>
@@ -150,15 +161,15 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnEscrimeFleuret" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeFleuret" prefHeight="120.0" prefWidth="80.0" style="-fx-background-color: ffcf54; -fx-background-radius: 0px;" text="Escrime fleuret" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="btnEscrimeFleuret" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeFleuret" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime fleuret" textAlignment="CENTER" wrapText="true">
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/icons/escrime.png" />
                            </image>
@@ -168,7 +179,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets />
@@ -181,7 +192,7 @@
             </FlowPane>
          </children>
          <BorderPane.margin>
-            <Insets />
+            <Insets top="10.0" />
          </BorderPane.margin>
       </VBox>
    </center>

@@ -18,8 +18,8 @@ public class ApplicationJO extends Application{
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
         // Création de la scène
-        BorderPane root = new PageConnexion(connexion);
-        this.scene = new Scene(root, 900, 600);
+        BorderPane root = new PageChoixSport();
+        this.scene = new Scene(root, 600, 400);
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques");
         stage.setResizable(false);

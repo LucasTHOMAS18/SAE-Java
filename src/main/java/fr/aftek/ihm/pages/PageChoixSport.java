@@ -9,8 +9,10 @@ import javafx.scene.layout.BorderPane;
 public class PageChoixSport extends BorderPane{
     public PageChoixSport() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChoixSport.fxml"));
-        loader.setController(new ControleurChoixSport());
+        ControleurChoixSport controleurChoixSport = new ControleurChoixSport();
+        loader.setController(controleurChoixSport);
         loader.setRoot(this);
         loader.load();
+        controleurChoixSport.init();
     }
 }
