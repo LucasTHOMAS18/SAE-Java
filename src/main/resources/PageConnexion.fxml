@@ -21,20 +21,20 @@
                   <Image url="@images/mascotte%20gentille.png" />
                </image>
             </ImageView>
-            <VBox maxHeight="-Infinity" prefHeight="144.0" prefWidth="268.0" spacing="10" style="-fx-padding: 20; -fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
+            <VBox maxHeight="-Infinity" prefHeight="283.0" prefWidth="320.0" spacing="18.0" style="-fx-padding: 20; -fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
                <children>
                   <Label text="Se connecter">
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TextField fx:id="urlTxtField" layoutX="30.0" layoutY="76.0" promptText="URL de la BDD" style="-fx-background-color: white; -fx-background-radius: 50px;" />
                   <TextField fx:id="identifiantTxtField" prefWidth="185.0" promptText="Identifiant" style="-fx-background-color: white; -fx-background-radius: 50px;" />
                   <PasswordField fx:id="mdpPwrdField" onKeyPressed="#mdpKeyPressed" promptText="Mot de passe" style="-fx-background-color: white; -fx-background-radius: 50px;" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seConnecter" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Se connecter" textAlignment="CENTER" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seConnecter" prefHeight="28.0" prefWidth="162.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Se connecter" textAlignment="CENTER" />
                </children>
                <HBox.margin>
                   <Insets top="20.0" />
@@ -57,7 +57,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <Label prefHeight="57.0" prefWidth="458.0" text="Les J.O là">
+            <Label prefHeight="57.0" prefWidth="458.0" text="Jeux IUT’Olympiques">
                <font>
                   <Font name="Arial" size="35.0" />
                </font>
