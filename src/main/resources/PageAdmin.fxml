@@ -16,12 +16,12 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: #f7d16a;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="94.0" onMouseClicked="#retourAcc" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo_rond.png" />
                </image>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quel Sport mon Reuf ?" wrappingWidth="364.953125">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pannel administrateur" wrappingWidth="364.953125">
                <font>
                   <Font size="32.0" />
                </font>
@@ -40,11 +40,11 @@
       </ImageView>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="340.0" prefWidth="436.0" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="46.0">
+            <FlowPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="423.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="Charger csv">
+                  <Button fx:id="btnChargerCSV" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chargerCSV" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="Charger csv">
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +62,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button fx:id="btnShowUsers" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showUsers" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="Utilisateurs">
                      <graphic>
                         <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,7 +80,7 @@
                         <Insets bottom="10.0" left="10.0" right="33.0" top="10.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="110m Haies">
+                  <Button fx:id="btnExportData" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exportData" prefHeight="98.0" prefWidth="100.0" style="-fx-background-color: #f7d16a; -fx-background-radius: 0px;" text="Exporter">
                      <padding>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
@@ -88,7 +88,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="61.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="61.0" fitWidth="60.0" onMouseDragged="#BexportData" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/logoexportbd.png" />
                            </image>
@@ -98,18 +98,18 @@
                         <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
                      </FlowPane.margin>
                   </Button>
-                  <VBox prefHeight="103.0" prefWidth="133.0" spacing="3.0" style="-fx-background-color: #f7d16a;">
+                  <VBox prefHeight="136.0" prefWidth="153.0" spacing="5.0" style="-fx-background-color: #f7d16a;">
                      <FlowPane.margin>
                         <Insets left="10.0" top="10.0" />
                      </FlowPane.margin>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une donnée :" />
-                        <RadioButton mnemonicParsing="false" text="Epreuve" />
-                        <RadioButton mnemonicParsing="false" text="Athlete" />
-                        <RadioButton mnemonicParsing="false" text="Pays" />
-                        <Button mnemonicParsing="false" text="Button">
+                        <RadioButton fx:id="btnAjouterEpreuve" mnemonicParsing="false" onAction="#ajouterEpreuve" text="Epreuve" />
+                        <RadioButton fx:id="btnAjouterAthlete" mnemonicParsing="false" onAction="#ajouterAthlete" text="Athlete" />
+                        <RadioButton fx:id="btnAjouterPays" mnemonicParsing="false" onAction="#ajouterPays" text="Pays" />
+                        <Button fx:id="btnAjouterData" mnemonicParsing="false" onAction="#ajouterData" text="Ajouter">
                            <VBox.margin>
-                              <Insets left="45.0" />
+                              <Insets />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -117,13 +117,16 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="103.0" prefWidth="133.0" spacing="3.0" style="-fx-background-color: #f7d16a;">
+                  <VBox prefHeight="136.0" prefWidth="156.0" spacing="5.0" style="-fx-background-color: #f7d16a;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une donnée :" />
-                        <RadioButton mnemonicParsing="false" text="Epreuve" />
-                        <RadioButton mnemonicParsing="false" text="Athlete" />
-                        <RadioButton mnemonicParsing="false" text="Pays" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier une donnée :" />
+                        <RadioButton fx:id="btnModifierEpreuve" mnemonicParsing="false" onAction="#modifierEpreuve" text="Epreuve" />
+                        <RadioButton fx:id="btnModifierAthlete" mnemonicParsing="false" onAction="#modifierAthlete" text="Athlete" />
+                        <RadioButton mnemonicParsing="false" onAction="#modifierPays" text="Pays" />
+                        <Button fx:id="btnModifierData" mnemonicParsing="false" onAction="#modifierData" text="Modifier">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
