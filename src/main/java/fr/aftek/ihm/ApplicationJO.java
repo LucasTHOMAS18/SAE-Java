@@ -7,6 +7,7 @@ import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.pages.Menu;
 import fr.aftek.ihm.pages.PageChoixSport;
+import fr.aftek.ihm.pages.PageConnexion;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -29,7 +30,7 @@ public class ApplicationJO extends Application{
         this.connexion = new ConnexionMySQL();
         PROVIDER.loadCSV("donnees1.csv");
         // Création de la scène
-        BorderPane root = new PageChoixSport(this);
+        BorderPane root = new PageConnexion(this);
         PROVIDER.loadCSV("donnees.csv");
         System.out.println(PROVIDER.getManager().getAthletes().size());
         this.scene = new Scene(root, 900, 600);
@@ -59,15 +60,7 @@ public class ApplicationJO extends Application{
      * @throws SQLException Si une erreur SQL survient
      */
     public void menu() throws IOException, SQLException {
-        stage.getScene().setRoot(new Menu(this));
-
-        // Récupère le rôle de l'utilisateur connecté
-        String role = connexion.getRole();
-        System.out.println(role);
-        if (role == "admin") {
-            // Affiche un message si l'utilisateur est un administrateur
-            System.out.println("Il faut afficher le bouton admin");
-        }
+        stage.getScene().setRoot(new Menu(this, connexion.getRole() == "admin"));
     }
 
     public void choixSport() throws IOException{
