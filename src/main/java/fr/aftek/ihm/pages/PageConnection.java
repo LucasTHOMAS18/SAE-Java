@@ -1,6 +1,7 @@
 package fr.aftek.ihm.pages;
 
 import java.io.IOException;
+
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.ihm.controleurs.ControleurConnexion;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ public class PageConnection extends BorderPane {
     public PageConnection(ConnexionMySQL connexion) throws IOException {
         this.connexion = connexion;
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageAccueil.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageConnexion.fxml"));
         loader.setController(new ControleurConnexion(connexion));
         loader.setRoot(this);
         loader.load();

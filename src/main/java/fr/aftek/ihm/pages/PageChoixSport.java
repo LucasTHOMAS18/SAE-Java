@@ -5,7 +5,6 @@ import java.io.IOException;
 import fr.aftek.ihm.controleurs.ControleurChoixSport;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 
 public class PageChoixSport extends BorderPane{
     public PageChoixSport() throws IOException {

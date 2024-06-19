@@ -1,6 +1,7 @@
 package fr.aftek.ihm.controleurs;
 
 import java.sql.SQLException;
+
 import fr.aftek.data.ConnexionMySQL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,9 @@ import javafx.scene.input.KeyEvent;
 
 public class ControleurConnexion {
     private ConnexionMySQL connexion;
+
+    @FXML
+    private TextField urlTxtField;
 
     @FXML
     private TextField identifiantTxtField;
