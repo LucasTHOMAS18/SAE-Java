@@ -58,7 +58,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="btnEquipes1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherEquipes" prefHeight="21.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Voir les résultats" textAlignment="CENTER" />
+                              <Button fx:id="btnAthletes" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherAthletes" prefHeight="21.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Voir les résultats" textAlignment="CENTER" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="200.0" spacing="7.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 16px; -fx-padding: 20;">
@@ -149,7 +149,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="btnEpreuve1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherEpreuves" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" />
+                              <Button fx:id="btnAdmin" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherAdmin" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: FFCF54 FFCF54; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" />
                            </children>
                         </VBox>
                      </children>
