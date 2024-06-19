@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -10,38 +10,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="60.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/logo.png" />
-               </image>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page de résultats" wrappingWidth="447.15313720703125">
-               <font>
-                  <Font name="System Bold" size="32.0" />
-               </font>
-            </Text>
-         </children>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </HBox>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="64.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="300.0" prefWidth="865.0">
+            <TableView prefHeight="300.0" prefWidth="865.0" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="97.5999755859375" style="-fx-background-color: #f5e6e5;" text="Pays" />
-                <TableColumn prefWidth="102.4000244140625" style="-fx-background-color: #f5e6e5;" text="Classement" />
-                  <TableColumn prefWidth="268.79998779296875" style="-fx-background-color: #f5e6e5;" text="Athlète" />
-                  <TableColumn prefWidth="132.0" style="-fx-background-color: #f5e6e5;" text="Temps" />
+                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
+                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Classement" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Athlète" />
+                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Temps" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
          </children>
       </HBox>
    </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: FFCF54;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retourAccueil" style="-fx-background-color: 00000000;">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo_rond.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voila les classements mon oeuf" wrappingWidth="789.953125">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
