@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import fr.aftek.Athlete;
@@ -322,6 +323,44 @@ public class DataManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Récupère les médailles d'or, d'argent et de bronze pour un athlète donnée en paramètre
+     * @param nom le nom d'un athlete
+     * @param prenom le prénom d'un athlete
+     * @return Les médailles d'or, d'argent et de bronze pour un athlète sous la forme d'une array de int
+     */
+    public int[] getNbMedailles(String nom, String prenom) {
+        Athlete athlete = getAthlete(nom, prenom);
+        if (athlete == null) {
+            return new int[]{0, 0, 0};
+        }
+
+        int nbOr = 0;
+        int nbArgent = 0;
+        int nbBronze = 0;
+
+        for (Epreuve epreuve : epreuves) {
+            Map<Athlete, Integer> classement = epreuve.getClassement();
+            if (classement.containsKey(athlete)) {
+                int position = 1;
+                for (Map.Entry<Athlete, Integer> entry : classement.entrySet()) {
+                    if (entry.getKey().equals(athlete)) {
+                        if (position == 1) {
+                            nbOr++;
+                        } else if (position == 2) {
+                            nbArgent++;
+                        } else if (position == 3) {
+                            nbBronze++;
+                        }
+                        break;
+                    }
+                    position++;
+                }
+            }
+        }
+        return new int[]{nbOr, nbArgent, nbBronze};
     }
 
     @Override
