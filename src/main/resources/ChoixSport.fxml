@@ -26,14 +26,14 @@
          <children>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="378.0" spacing="12.0">
                <children>
-                  <ToggleButton fx:id="btnHomme" mnemonicParsing="false" onAction="#changeToHomme" selected="true" stylesheets="@button.css" text="Homme">
+                  <ToggleButton fx:id="btnHomme" mnemonicParsing="false" selected="true" stylesheets="@button.css" text="Homme">
                      <toggleGroup>
                         <ToggleGroup fx:id="sexe" />
                      </toggleGroup>
                      <font>
                         <Font size="26.0" />
                      </font></ToggleButton>
-                  <ToggleButton fx:id="btnFemme" mnemonicParsing="false" onAction="#changeToFemme" stylesheets="@button.css" text="Femme" toggleGroup="$sexe">
+                  <ToggleButton fx:id="btnFemme" mnemonicParsing="false" stylesheets="@button.css" text="Femme" toggleGroup="$sexe">
                      <font>
                         <Font size="26.0" />
                      </font></ToggleButton>
@@ -41,7 +41,7 @@
             </HBox>
             <FlowPane alignment="TOP_CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="463.0" prefWidth="549.0" vgap="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="btn110mHaies" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#select110mHaies" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="110m Haies" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#select110mHaies" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="110m Haies" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,7 +59,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn4x100mRelais" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#select4x100mRelais" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="4x100m relais" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#select4x100mRelais" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="4x100m relais" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,7 +77,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnHandball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectHandball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Handball" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="86.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectHandball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Handball" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,7 +95,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnVolleyball" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectVolleyball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Volley-ball" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="162.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectVolleyball" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Volley-ball" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -113,7 +113,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnNatation100mBrasse" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectNatation100mBrasse" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 100m brasse" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectNatation100mBrasse" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 100m brasse" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -131,7 +131,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnNatation4x100m" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectNatation4x100m" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 4x100m nage libre" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectNatation4x100m" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Natation 4x100m nage libre" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -149,7 +149,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnEscrimeEpee" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeEpee" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime épée" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeEpee" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime épée" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -167,7 +167,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnEscrimeFleuret" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeFleuret" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime fleuret" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#selectEscrimeFleuret" prefHeight="180.0" prefWidth="120.0" stylesheets="@button.css" text="Escrime fleuret" textAlignment="CENTER" wrapText="true">
                      <graphic>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -199,7 +199,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: ffcf54;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRetour" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#retourAcceuil" style="-fx-background-color: #00000000;" text="Button">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#retourAcceuil" style="-fx-background-color: #00000000;" text="Button">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>

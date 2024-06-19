@@ -5,29 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
+import fr.aftek.NomSport;
+
 public class ControleurChoixSport {
     @FXML
     private ToggleButton btnHomme;
     @FXML
     private ToggleButton btnFemme;
-    @FXML
-    private Button btn110mHaies;
-    @FXML
-    private Button btn4x100mRelais;
-    @FXML
-    private Button btnHandball;
-    @FXML
-    private Button btnVolleyball;
-    @FXML
-    private Button btnNatation100mBrasse;
-    @FXML
-    private Button btnNatation4x100m;
-    @FXML
-    private Button btnEscrimeEpee;
-    @FXML
-    private Button btnEscrimeFleuret;
-    @FXML
-    private Button btnRetour;
     @FXML
     private ToggleGroup sexe;
     public ControleurChoixSport(){
@@ -38,44 +22,44 @@ public class ControleurChoixSport {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
     @FXML
-    public void changeToHomme(){
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-    }
-    @FXML
-    public void changeToFemme(){
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-    }
-    @FXML
     public void select110mHaies(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.ATHLETISME, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void select4x100mRelais(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.ATHLETISME_RELAIS, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectHandball(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.HANDBALL, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectVolleyball(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.VOLLEY_BALL, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectNatation100mBrasse(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.NATATION, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectNatation4x100m(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.NATATION_RELAIS, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectEscrimeEpee(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.ESCRIME_EPEE, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     @FXML
     public void selectEscrimeFleuret(){
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        this.choix(NomSport.ESCRIME_FLEURET, this.btnFemme.isSelected() ? 'F' : 'M');
     }
     public void init() {
         sexe.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
@@ -84,5 +68,7 @@ public class ControleurChoixSport {
         });
     }
 
-
+    private void choix(NomSport sport, char sexe){
+        System.out.println(sport + " " + sexe);
+    }
 }

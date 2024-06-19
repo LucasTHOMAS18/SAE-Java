@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import fr.aftek.data.ConnexionMySQL;
-import fr.aftek.ihm.pages.*;
+import fr.aftek.data.DataProvider;
+import fr.aftek.ihm.pages.Menu;
+import fr.aftek.ihm.pages.PageChoixSport;
+import fr.aftek.ihm.pages.PageConnexion;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -20,6 +22,7 @@ public class ApplicationJO extends Application{
     private Scene scene; // Scène principale de l'application
     private ConnexionMySQL connexion; // Connexion à la base de données MySQL
     private Stage stage; // Fenêtre principale de l'application
+    public static final DataProvider PROVIDER = new DataProvider();
 
     /**
      * Point d'entrée de l'application.
@@ -31,7 +34,7 @@ public class ApplicationJO extends Application{
     public void start(Stage stage) throws Exception {
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
-        // Création de la scène principale avec la page de connexion
+        // Création de la scène
         BorderPane root = new PageConnexion(this);
         this.scene = new Scene(root, 900, 600);
         this.stage = stage;
@@ -59,7 +62,6 @@ public class ApplicationJO extends Application{
      * @throws SQLException Si une erreur SQL survient
      */
     public void menu() throws IOException, SQLException {
-        // Change la scène actuelle pour le menu principal
         stage.setScene(new Scene(new Menu(this), 900, 600));
 
         // Récupère le rôle de l'utilisateur connecté

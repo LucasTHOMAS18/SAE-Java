@@ -1,6 +1,5 @@
 package fr.aftek.ihm.controleurs;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -9,11 +8,11 @@ import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.pages.PopUp;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 
 public class ControleurConnexion {
@@ -69,6 +68,11 @@ public class ControleurConnexion {
             }else{
                 new PopUp(AlertType.ERROR,"Erreur !", "La connexion à la base de données a échouée","La connexion à la base de données a échouée").showAndWait();
             }
+        }
+
+        if (connexion.isConnecte()) {
+            System.out.println("Affichage du menu");
+            application.menu();
         }
     }
 

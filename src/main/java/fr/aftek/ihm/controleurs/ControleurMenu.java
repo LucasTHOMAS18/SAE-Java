@@ -9,5 +9,15 @@ public class ControleurMenu {
         this.application = application;
     }
 
-    
+    public void afficherEquipes() {
+        // TODO
+    }
+
+    public void afficherEpreuves() {
+        // TODO
+    }
+
+    public void afficherPays() {
+        // TODO
+    }    
 }
