@@ -51,6 +51,7 @@ public class ApplicationJO extends Application{
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques"); // Titre de la fenêtre
         stage.setResizable(false); // Empêche le redimensionnement de la fenêtre
+        
         stage.show(); // Affiche la fenêtre
         // Définit l'action à réaliser lors de la fermeture de la fenêtre
         stage.setOnCloseRequest((e)->System.exit(0));
@@ -113,7 +114,7 @@ public class ApplicationJO extends Application{
         this.historique.add(admin);
     }
 
-    private <T extends Page> void afficherPage(Task<T> task, String titre, String header){
+    public <T extends Page> void afficherPage(Task<T> task, String titre, String header){
         PopUp<ButtonType> popUp = new PopUp<>(PopUpType.PROGRESS, titre, header);
         task.setOnSucceeded((wse)->{
             stage.getScene().setRoot(task.getValue());
@@ -132,6 +133,10 @@ public class ApplicationJO extends Application{
                 th.interrupt();
             }
         });
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
     /**

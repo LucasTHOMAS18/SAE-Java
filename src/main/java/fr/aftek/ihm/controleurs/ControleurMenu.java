@@ -38,7 +38,8 @@ public class ControleurMenu extends Controleur {
         // TODO
     }
     
-    public void afficherAdmin() {
+    public void afficherAdmin() throws IOException {
         // TODO
+        application.admin();
     }
 }
