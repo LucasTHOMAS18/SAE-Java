@@ -92,7 +92,5 @@ public class ControleurClassementAthlete extends Controleur {
         public String getSport() {
             return sport;
         }
-
-
     }
 }

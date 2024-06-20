@@ -73,10 +73,14 @@ public class PopUp<T> extends Dialog<T> {
         
 
         if(this.getType() == PopUpType.PROGRESS){
-            this.getDialogPane().getButtonTypes().clear();
+            this.getDialogPane().getButtonTypes().remove(0);
             this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             ProgressBar pb = new ProgressBar();
             this.getDialogPane().setContent(pb);
+        }else if(this.getType() == PopUpType.CONFIRMATION){
+            this.getDialogPane().getButtonTypes().remove(0);
+            this.getDialogPane().getButtonTypes().addAll(ButtonType.OK,ButtonType.CANCEL);
+            this.setContentText(contenu);
         } else {
             this.setContentText(contenu);
         }
@@ -87,7 +91,8 @@ public class PopUp<T> extends Dialog<T> {
         Button cancel = (Button) this.getDialogPane().lookupButton(ButtonType.CANCEL);
         if (ok != null) {
             ok.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 50px;");
-        } else if (cancel != null) {
+        }
+        if (cancel != null) {
             cancel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 50px;");
         }
     }

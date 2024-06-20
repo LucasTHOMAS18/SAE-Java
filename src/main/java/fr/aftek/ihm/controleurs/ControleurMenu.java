@@ -8,11 +8,8 @@ import javafx.scene.layout.VBox;
 
 public class ControleurMenu extends Controleur {
 
-    @FXML
-    public VBox vboxOrg;
     @FXML 
     public VBox vboxAdm;
-
     private boolean afficherAdm;
 
     public ControleurMenu(ApplicationJO application, boolean afficherAdm) {

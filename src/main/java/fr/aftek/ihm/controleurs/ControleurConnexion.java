@@ -2,6 +2,7 @@ package fr.aftek.ihm.controleurs;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 
 import fr.aftek.data.ConnexionMySQL;
@@ -60,30 +61,41 @@ public class ControleurConnexion extends Controleur {
         String nomBDD = "JO2024"; 
 
         try {
-            connexion.connecter(serveur, nomBDD, identifiant, mdp);
-            new PopUp<ButtonType>(PopUpType.INFORMATION,"Succès !", "La connexion à la base de données a réussi", "La connexion à la base de donnée a réussi").showAndWait();
-        } catch (SQLException e) {
-            System.out.println("Erreur de connexion à la base de données : " + e.getMessage());
-            if(e.getErrorCode() == 1049){
+            connexion.connecter(serveur, identifiant, mdp);
+            //connexion.connecter(serveur, nomBDD, identifiant, mdp);
+            try{
+                Statement st = connexion.createStatement();
+                st.execute("USE "+nomBDD);
+                System.out.println("c'est bon");
+                new PopUp<ButtonType>(PopUpType.INFORMATION,"Succès !", "La connexion à la base de données a réussi", "La connexion à la base de donnée a réussi").showAndWait();
+            }catch(SQLException e1){
                 Optional<ButtonType> result = new PopUp<ButtonType>(PopUpType.CONFIRMATION,"Attention !", "La connexion à la base de donnée a réussi.","Cependant, nous avons détecté que votre base de donnée ne contient pas la structure nécessaire au bon fonctionnement de l'application. Voulez-vous créer toute la structure ?").showAndWait();
-                result.ifPresent((r) -> {
+                result.ifPresentOrElse((r) -> {
                     if(result.get() == ButtonType.OK){
                         try {
-                            connexion.connecter(serveur, identifiant, mdp);
                             connexion.creerStructure();
                             new PopUp<ButtonType>(PopUpType.INFORMATION,"Succès!", "La structure à bien été créer !", "La structure essentielle au bon fonctionnement de l'application a été créée dans la base de donnée: JO2024").showAndWait();
-                        } catch (SQLException e1) {
-                            System.out.println(e1.getMessage());
-                            new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur!", "La connexion à la base de données a échouée","La connexion à la base de données a échouée").showAndWait();
-                        } catch(IOException e2){
+                        } catch (SQLException e2) {
                             System.out.println(e2.getMessage());
+                            new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur!", "La connexion à la base de données a échouée","La connexion à la base de données a échouée.\n"+e2.getMessage()).showAndWait();
+                        } catch(IOException e3){
+                            System.out.println(e3.getMessage());
                             new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur!", "Le fichier de création n'a pas été trouvé","Le fichier de création n'a pas été trouvé").showAndWait();
                         }
+                    }else{
+                        try {
+                            connexion.close();
+                        } catch (SQLException e) {}
                     }
+                }, () -> {
+                    try {
+                        connexion.close();
+                    } catch (SQLException e) {}
                 });
-            } else {
-                new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur !", "La connexion à la base de données a échouée","La connexion à la base de données a échouée").showAndWait();
             }
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion à la base de données : " + e.getMessage());
+            new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur !", "La connexion à la base de données a échouée","La connexion à la base de données a échouée.\n"+e.getMessage()).showAndWait();
         }
 
         if (connexion.isConnecte()) {
