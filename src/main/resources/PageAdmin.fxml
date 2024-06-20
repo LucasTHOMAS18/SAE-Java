@@ -103,13 +103,12 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Text>
-                        <RadioButton fx:id="btnModifierEpreuve" mnemonicParsing="false" onAction="#modifierEpreuve" selected="true" text="Epreuve" textFill="WHITE">
+                        <RadioButton fx:id="btnModifierEpreuve" mnemonicParsing="false" selected="true" text="Epreuve" textFill="WHITE">
                            <toggleGroup>
                               <ToggleGroup fx:id="modif" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="btnModifierAthlete" mnemonicParsing="false" onAction="#modifierAthlete" text="Athlete" textFill="WHITE" toggleGroup="$modif" />
-                        <RadioButton fx:id="btnModifierPays" mnemonicParsing="false" onAction="#modifierPays" text="Pays" textFill="WHITE" toggleGroup="$modif" />
-                        <Button fx:id="btnModifierData" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifierData" style="-fx-background-color: ffffff; -fx-background-radius: 50px;" text="Modifier">
+                        <RadioButton fx:id="btnModifierAthlete" mnemonicParsing="false" text="Athlete" textFill="WHITE" toggleGroup="$modif" />
+                        <Button fx:id="btnModifierData" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: ffffff; -fx-background-radius: 50px;" text="Modifier">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -129,13 +128,12 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Text>
-                        <RadioButton fx:id="btnAjouterEpreuve" mnemonicParsing="false" onAction="#ajouterEpreuve" selected="true" text="Epreuve" textFill="WHITE">
+                        <RadioButton fx:id="btnAjouterEpreuve" mnemonicParsing="false" selected="true" text="Epreuve" textFill="WHITE">
                            <toggleGroup>
                               <ToggleGroup fx:id="ajout" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="btnAjouterAthlete" mnemonicParsing="false" onAction="#ajouterAthlete" text="Athlete" textFill="WHITE" toggleGroup="$ajout" />
-                        <RadioButton fx:id="btnAjouterPays" mnemonicParsing="false" onAction="#ajouterPays" text="Pays" textFill="WHITE" toggleGroup="$ajout" />
-                        <Button fx:id="btnAjouterData" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterData" style="-fx-background-color: ffffff; -fx-background-radius: 50px;" text="Ajouter">
+                        <RadioButton fx:id="btnAjouterAthlete" mnemonicParsing="false" text="Athlete" textFill="WHITE" toggleGroup="$ajout" />
+                        <Button fx:id="btnAjouterData" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: ffffff; -fx-background-radius: 50px;" text="Ajouter">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

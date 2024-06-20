@@ -24,7 +24,9 @@ import fr.aftek.ihm.pages.PageClassementEpreuve;
 import fr.aftek.ihm.pages.PageClassementEquipes;
 import fr.aftek.ihm.pages.PageClassementResultatEpreuve;
 import fr.aftek.ihm.pages.PageConnexion;
+import fr.aftek.ihm.pages.PageModifier;
 import fr.aftek.ihm.pages.PopUp;
+import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -145,6 +147,16 @@ public class ApplicationJO extends Application{
             };
         };
         afficherPage(task, "Création du classement", "Veuillez patienter...");
+    }
+
+    public void modifier(TypeModification type){
+        final ApplicationJO application = this;
+        Task<PageModifier> task = new Task<PageModifier>() {
+            protected PageModifier call() throws Exception {
+                return new PageModifier(application,type);
+            };
+        };
+        afficherPage(task, "Chargement des données", "Veuillez patienter...");
     }
 
     public <T extends Page> void afficherPage(Task<T> task, String titre, String header){
