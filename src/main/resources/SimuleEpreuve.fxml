@@ -102,10 +102,10 @@
             </HBox>
             <TableView maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="620.0" style="-fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
               <columns>
-                <TableColumn prefWidth="126.40002512596378" text="Pays" />
-                <TableColumn minWidth="4.799957275390625" prefWidth="175.0" text="Nom" />
-                  <TableColumn minWidth="0.0" prefWidth="175.0" text="Prenom" />
-                  <TableColumn prefWidth="140.0" text="Score" />
+                <TableColumn fx:id="pays" prefWidth="126.40002512596378" text="Pays" />
+                <TableColumn fx:id="nom" minWidth="4.799957275390625" prefWidth="175.0" text="Nom" />
+                  <TableColumn fx:id="prenom" minWidth="0.0" prefWidth="175.0" text="Prenom" />
+                  <TableColumn fx:id="score" prefWidth="140.0" text="Score" />
               </columns>
             </TableView>
          </children>

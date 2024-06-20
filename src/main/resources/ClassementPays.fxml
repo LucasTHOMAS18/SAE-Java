@@ -16,11 +16,11 @@
          <children>
             <TableView prefHeight="300.0" prefWidth="865.0" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'or" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'argent" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles de bronze" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nombre d'athlètes" />
+                <TableColumn fx:id="pays" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Pays" />
+                <TableColumn fx:id="or" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'or" />
+                  <TableColumn fx:id="argent" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles d'argent" />
+                  <TableColumn fx:id="bronze" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Médailles de bronze" />
+                  <TableColumn fx:id="nb_athletes" maxWidth="1.7976931348623157E308" prefWidth="200.0" style="-fx-background-color: #f5e6e5;" text="Nombre d'athlètes" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
