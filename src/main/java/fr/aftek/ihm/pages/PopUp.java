@@ -1,16 +1,11 @@
 package fr.aftek.ihm.pages;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 
 /**
  * Classe PopUp qui hérite de la classe Alert de JavaFX.
@@ -68,20 +63,32 @@ public class PopUp<T> extends Dialog<T> {
         }
 
         // Définit la taille de l'image
-        mascotte.setFitHeight(150);
-        mascotte.setFitWidth(150);
+        mascotte.setFitHeight(64);
+        mascotte.setFitWidth(64);
 
         // Définit les propriétés de l'alerte
         this.setTitle(titre);
         this.setHeaderText(header);
         this.setGraphic(mascotte); // Ajoute l'image à l'alerte
+        
+
         if(this.getType() == PopUpType.PROGRESS){
             this.getDialogPane().getButtonTypes().clear();
             this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             ProgressBar pb = new ProgressBar();
             this.getDialogPane().setContent(pb);
-        }else{
+        } else {
             this.setContentText(contenu);
+        }
+
+        // Définit le style de l'alerte
+        this.getDialogPane().setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 50px;");
+        Button ok = (Button) this.getDialogPane().lookupButton(ButtonType.OK);
+        Button cancel = (Button) this.getDialogPane().lookupButton(ButtonType.CANCEL);
+        if (ok != null) {
+            ok.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 50px;");
+        } else if (cancel != null) {
+            cancel.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 50px;");
         }
     }
 
@@ -94,6 +101,5 @@ public class PopUp<T> extends Dialog<T> {
         CONFIRMATION,
         ERREUR,
         PROGRESS,
-
     }
 }

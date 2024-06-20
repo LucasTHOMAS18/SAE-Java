@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Set;
 
-import fr.aftek.*;
+import fr.aftek.Athlete;
 import fr.aftek.data.ConnexionMySQL;
+import fr.aftek.data.DataManager;
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.pages.Menu;
-import fr.aftek.ihm.pages.PageChoixSport;
 import fr.aftek.ihm.pages.PageClassementAthletes;
 import fr.aftek.ihm.pages.PageConnexion;
 import fr.aftek.ihm.pages.PopUp;
@@ -29,6 +29,7 @@ public class ApplicationJO extends Application{
     private Scene scene;
     private ConnexionMySQL connexion;
     public static final DataProvider PROVIDER = new DataProvider();
+    public static final DataManager MANAGER = PROVIDER.getManager();
 
     private Stage stage;
 
@@ -72,7 +73,7 @@ public class ApplicationJO extends Application{
     }
 
     public void classementAthletes() throws IOException, InterruptedException{
-        final Set<Athlete> set = ApplicationJO.PROVIDER.getManager().getAthletes();
+        final Set<Athlete> set = MANAGER.getAthletes();
         Task<PageClassementAthletes> task = new Task<PageClassementAthletes>() {
             protected PageClassementAthletes call() throws Exception {
                 return new PageClassementAthletes(set);
@@ -95,10 +96,6 @@ public class ApplicationJO extends Application{
                 th.interrupt();
             }
         });
-    }
-
-    public void choixSport() throws IOException{
-        stage.getScene().setRoot(new PageChoixSport(this));
     }
 
     /**

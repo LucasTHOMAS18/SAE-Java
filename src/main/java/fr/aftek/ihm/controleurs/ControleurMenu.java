@@ -22,7 +22,6 @@ public class ControleurMenu extends Controleur {
     }
 
     public void afficherAthletes() throws IOException, InterruptedException {
-        // TODO
         application.classementAthletes();
     }
 
