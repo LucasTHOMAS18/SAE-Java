@@ -29,8 +29,8 @@ public class ControleurMenu extends Controleur {
         application.classementAthletes();
     }
 
-    public void afficherEquipes() {
-        // TODO
+    public void afficherEquipes() throws IOException {
+        application.classementEquipes();
     }
 
     public void afficherEpreuves() {

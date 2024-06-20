@@ -94,6 +94,13 @@ public class Equipe {
         return pays;
     }
 
+    /**
+     * @return Le sport de l'équipe.
+     */
+    public Sport getSport() {
+        return athletes.get(0).getSport();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)

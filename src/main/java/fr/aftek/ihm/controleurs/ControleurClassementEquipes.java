@@ -2,7 +2,7 @@ package fr.aftek.ihm.controleurs;
 
 import java.util.List;
 
-import fr.aftek.Athlete;
+import fr.aftek.Equipe;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.FlagProvider;
 import javafx.fxml.FXML;
@@ -12,44 +12,41 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
-public class ControleurClassementAthlete extends Controleur {
+public class ControleurClassementEquipes extends Controleur {
     @FXML
-    private TableView<AthleteLigne> table;
+    private TableView<EpreuveLigne> table;
     @FXML
-    private TableColumn<AthleteLigne, ImageView> pays;
+    private TableColumn<EpreuveLigne, ImageView> pays;
     @FXML
-    private TableColumn<AthleteLigne, String> nom;
+    private TableColumn<EpreuveLigne, String> nom;
     @FXML
-    private TableColumn<AthleteLigne, String> prenom;
+    private TableColumn<EpreuveLigne, String> sport;
     @FXML
-    private TableColumn<AthleteLigne, String> sport;
+    private TableColumn<EpreuveLigne, Integer> or;
     @FXML
-    private TableColumn<AthleteLigne, Integer> or;
+    private TableColumn<EpreuveLigne, Integer> argent;
     @FXML
-    private TableColumn<AthleteLigne, Integer> argent;
-    @FXML
-    private TableColumn<AthleteLigne, Integer> bronze;
+    private TableColumn<EpreuveLigne, Integer> bronze;
 
-    public ControleurClassementAthlete(ApplicationJO appli) {
+    public ControleurClassementEquipes(ApplicationJO appli) {
         this.application = appli;
     }
 
-    public void init(List<Athlete> liste){
+    public void init(List<Equipe> liste){
         pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
         pays.setComparator((o1, o2) -> o1.getAccessibleText().compareTo(o2.getAccessibleText()));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         sport.setCellValueFactory(new PropertyValueFactory<>("sport"));
         or.setCellValueFactory(new PropertyValueFactory<>("or"));
         argent.setCellValueFactory(new PropertyValueFactory<>("argent"));
         bronze.setCellValueFactory(new PropertyValueFactory<>("bronze"));
         
-        for (Athlete a : liste){
-            table.getItems().add(new AthleteLigne(a.getNom(), a.getPrenom(), a.getSport().getNomSport().getNom(), a.getPays().getNom()));
+        for (Equipe a : liste) {
+            table.getItems().add( new EpreuveLigne(a.getNom(), a.getSport().getNomSport().getNom(), a.getPays().getNom()));
         }
     }
 
-    public class AthleteLigne {
+    public class EpreuveLigne {
         public ImageView pays;
         public String nom;
         public String prenom;
@@ -58,9 +55,8 @@ public class ControleurClassementAthlete extends Controleur {
         public int argent;
         public int bronze;
 
-        public AthleteLigne(String nom, String prenom, String sport, String nomPays){
+        public EpreuveLigne(String nom, String sport, String nomPays){
             this.nom = nom;
-            this.prenom = prenom;
             this.pays = new ImageView(FlagProvider.getFlag(nomPays));
             this.pays.setAccessibleHelp(nomPays);
             this.pays.setAccessibleText(nomPays);
@@ -92,7 +88,5 @@ public class ControleurClassementAthlete extends Controleur {
         public String getSport() {
             return sport;
         }
-
-
     }
 }

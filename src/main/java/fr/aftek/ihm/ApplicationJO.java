@@ -85,6 +85,7 @@ public class ApplicationJO extends Application{
                 return new PageClassementAthletes(application,set);
             };
         };
+
         PopUp<ButtonType> popUp = new PopUp<>(PopUpType.PROGRESS, "Création du classement", "Le classement est en cours de création...");
         task.setOnSucceeded((wse)->{
             stage.getScene().setRoot(task.getValue());
@@ -103,6 +104,10 @@ public class ApplicationJO extends Application{
                 th.interrupt();
             }
         });
+    }
+
+    public void classementEquipes() throws IOException{
+        // TODO
     }
 
     public void choixSport() throws IOException{
