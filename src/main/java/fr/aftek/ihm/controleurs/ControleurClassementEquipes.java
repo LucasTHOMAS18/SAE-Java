@@ -14,19 +14,19 @@ import javafx.scene.image.ImageView;
 
 public class ControleurClassementEquipes extends Controleur {
     @FXML
-    private TableView<EpreuveLigne> table;
+    private TableView<EquipeLigne> table;
     @FXML
-    private TableColumn<EpreuveLigne, ImageView> pays;
+    private TableColumn<EquipeLigne, ImageView> pays;
     @FXML
-    private TableColumn<EpreuveLigne, String> nom;
+    private TableColumn<EquipeLigne, String> nom;
     @FXML
-    private TableColumn<EpreuveLigne, String> sport;
+    private TableColumn<EquipeLigne, String> sport;
     @FXML
-    private TableColumn<EpreuveLigne, Integer> or;
+    private TableColumn<EquipeLigne, Integer> or;
     @FXML
-    private TableColumn<EpreuveLigne, Integer> argent;
+    private TableColumn<EquipeLigne, Integer> argent;
     @FXML
-    private TableColumn<EpreuveLigne, Integer> bronze;
+    private TableColumn<EquipeLigne, Integer> bronze;
 
     public ControleurClassementEquipes(ApplicationJO appli) {
         this.application = appli;
@@ -42,11 +42,11 @@ public class ControleurClassementEquipes extends Controleur {
         bronze.setCellValueFactory(new PropertyValueFactory<>("bronze"));
         
         for (Equipe a : liste) {
-            table.getItems().add( new EpreuveLigne(a.getNom(), a.getSport().getNomSport().getNom(), a.getPays().getNom()));
+            table.getItems().add( new EquipeLigne(a.getNom(), a.getSport().getNomSport().getNom(), a.getPays().getNom()));
         }
     }
 
-    public class EpreuveLigne {
+    public class EquipeLigne {
         public ImageView pays;
         public String nom;
         public String prenom;
@@ -55,7 +55,7 @@ public class ControleurClassementEquipes extends Controleur {
         public int argent;
         public int bronze;
 
-        public EpreuveLigne(String nom, String sport, String nomPays){
+        public EquipeLigne(String nom, String sport, String nomPays){
             this.nom = nom;
             this.pays = new ImageView(FlagProvider.getFlag(nomPays));
             this.pays.setAccessibleHelp(nomPays);
