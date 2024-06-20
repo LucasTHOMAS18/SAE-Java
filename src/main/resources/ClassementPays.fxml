@@ -30,7 +30,7 @@
       </HBox>
    </center>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: FFCF54;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retourAccueil" style="-fx-background-color: 00000000;">
                <graphic>
@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pays participants aux JO 2024" wrappingWidth="789.953125">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pays participants aux JO 2024" wrappingWidth="789.953125">
                <font>
                   <Font size="35.0" />
                </font>

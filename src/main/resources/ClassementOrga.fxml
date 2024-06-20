@@ -77,7 +77,7 @@
             </Button>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Voila les épreuves" wrappingWidth="631.953125">
                <font>
-                  <Font size="32.0" />
+                  <Font size="35.0" />
                </font>
             </Text>
          </children>

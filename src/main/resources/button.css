@@ -1,12 +1,12 @@
 .toggle-button, .button{
-    -fx-background-color:  ffcf54;
+    -fx-background-color:  #A9A9A9;
     -fx-background-radius: 0;
 }
 
 .toggle-button:hover, .button:hover{
-    -fx-background-color:  ffcf54;
+    -fx-background-color:  #00000088;
 }
 
 .toggle-button:armed, .toggle-button:selected{
-    -fx-background-color: B08F39;
+    -fx-background-color: #000000;
 }

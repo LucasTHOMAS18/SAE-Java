@@ -110,10 +110,10 @@
                            <children>
                               <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/trophee.png" />
+                                    <Image url="@images/admin.png" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher pannel Admin">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pannel Admin">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -124,6 +124,26 @@
                                  </font>
                               </Text>
                               <Button fx:id="btnEpreuve1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherAdmin" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: Black; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vboxAdm1" alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="176.0" prefWidth="342.0" spacing="7.0" style="-fx-padding: 20; -fx-background-radius: 16px; -fx-background-color: #F4F4F4;">
+                           <children>
+                              <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/organisateur.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pannel Organisateur">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="97.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter ou modifier des donnéese" textAlignment="CENTER" wrappingWidth="230.07339477539062">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btnEpreuve11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherAdmin" prefHeight="28.0" prefWidth="239.0" style="-fx-background-color: Black; -fx-background-radius: 50px;" text="Modifier des données" textAlignment="CENTER" textFill="WHITE" />
                            </children>
                         </VBox>
                      </children>
