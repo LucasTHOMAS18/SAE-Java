@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
  * Classe Menu qui étend BorderPane.
  * Affiche le menu principal de l'application.
  */
-public class Menu extends BorderPane {
+public class Menu extends Page {
     /**
      * Constructeur de la classe Menu.
      * 

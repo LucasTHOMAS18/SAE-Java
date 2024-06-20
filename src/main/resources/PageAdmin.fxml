@@ -15,7 +15,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retourAccueil" style="-fx-background-color: transparent;">
+            <Button mnemonicParsing="false" onAction="#retourAccueil" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="100.0" onMouseClicked="#retourAcc" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -6,6 +6,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
 import fr.aftek.NomSport;
+import fr.aftek.ihm.ApplicationJO;
 
 public class ControleurChoixSport extends Controleur{
     @FXML
@@ -14,8 +15,8 @@ public class ControleurChoixSport extends Controleur{
     private ToggleButton btnFemme;
     @FXML
     private ToggleGroup sexe;
-    public ControleurChoixSport(){
-        
+    public ControleurChoixSport(ApplicationJO appli) {
+        this.application = appli;
     }
     @FXML
     public void retourAcceuil(){

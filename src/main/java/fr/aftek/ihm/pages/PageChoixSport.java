@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
  * Classe PageChoixSport qui étend BorderPane.
  * Affiche la page de choix de sport de l'application.
  */
-public class PageChoixSport extends BorderPane {
+public class PageChoixSport extends Page {
     
     private ApplicationJO application;
 
@@ -25,7 +25,7 @@ public class PageChoixSport extends BorderPane {
         
         // Charge le fichier FXML pour la page de choix de sport et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChoixSport.fxml"));
-        ControleurChoixSport controleurChoixSport = new ControleurChoixSport();
+        ControleurChoixSport controleurChoixSport = new ControleurChoixSport(application);
         loader.setController(controleurChoixSport);
         loader.setRoot(this);
         loader.load();
