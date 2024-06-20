@@ -208,7 +208,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Quel Sport mon Reuf ?" wrappingWidth="364.953125">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Quel Sport voulez-vous consulter ?" wrappingWidth="587.953125">
                <font>
                   <Font size="32.0" />
                </font>
