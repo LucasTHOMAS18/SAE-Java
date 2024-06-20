@@ -17,10 +17,10 @@ public class Menu extends Page {
      * @param application L'application principale pour accéder aux fonctionnalités globales.
      * @throws IOException Si une erreur survient lors du chargement du fichier FXML.
      */
-    public Menu(ApplicationJO application, boolean afficherOrg, boolean afficherAdm) throws IOException {
+    public Menu(ApplicationJO application, boolean afficherAdm) throws IOException {
         // Charge le fichier FXML pour le menu et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenue.fxml"));
-        loader.setController(new ControleurMenu(application, afficherOrg, afficherAdm));
+        loader.setController(new ControleurMenu(application, afficherAdm));
         loader.setRoot(this);
         loader.load();
     }
