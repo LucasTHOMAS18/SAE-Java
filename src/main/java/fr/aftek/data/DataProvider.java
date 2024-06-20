@@ -3,6 +3,7 @@ package fr.aftek.data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -153,9 +154,125 @@ public class DataProvider {
 
     }
 
-    public void saveSQL(ConnexionMySQL connexion) throws SQLException{
-        
+    public void saveSQL(ConnexionMySQL connexion) throws SQLException {
+        int currentAthleteId = 1;
+    
+        // Sauvegarder les pays
+        for (Pays pays : manager.getPays()) {
+            String sql = "INSERT INTO Pays (nomPays) VALUES (?) ON DUPLICATE KEY UPDATE nomPays = VALUES(nomPays)";
+            try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                stmt.setString(1, pays.getNom());
+                stmt.executeUpdate();
+            }
+        }
+    
+        // Sauvegarder les sports
+        for (Sport sport : manager.getSports()) {
+            String sql = "INSERT INTO Sport (nomSport, forcesRequis, agiliteRequis, enduranceRequis, individuel, nbEquipes, nbJoueursParEquipe) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE " +
+                         "forcesRequis = VALUES(forcesRequis), agiliteRequis = VALUES(agiliteRequis), " +
+                         "enduranceRequis = VALUES(enduranceRequis), individuel = VALUES(individuel), " +
+                         "nbEquipes = VALUES(nbEquipes), nbJoueursParEquipe = VALUES(nbJoueursParEquipe)";
+            try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                stmt.setString(1, sport.getNomSport().getNom());
+                stmt.setFloat(2, sport.getForce());
+                stmt.setFloat(3, sport.getAgilite());
+                stmt.setFloat(4, sport.getEndurance());
+                stmt.setBoolean(5, sport instanceof SportCollectif);
+                if (sport instanceof SportCollectif) {
+                    SportCollectif sportCollectif = (SportCollectif) sport;
+                    stmt.setInt(6, sportCollectif.getNbEquipes());
+                    stmt.setInt(7, sportCollectif.getNbJoueursParEquipe());
+                } else {
+                    stmt.setInt(6, 0);
+                    stmt.setInt(7, 0);
+                }
+                stmt.executeUpdate();
+            }
+        }
+    
+        // Sauvegarder les athlètes
+        for (Athlete athlete : manager.getAthletes()) {
+            if (athlete.getId() == 0) {
+                athlete.setId(currentAthleteId++);
+            }
+            String sql = "INSERT INTO Athlete (idAthlete, nomAthlete, prenomAthlete, sexe, forces, agilite, endurance, nomPays, nomSport, idEquipe) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE " +
+                         "prenomAthlete = VALUES(prenomAthlete), sexe = VALUES(sexe), forces = VALUES(forces), " +
+                         "agilite = VALUES(agilite), endurance = VALUES(endurance), nomPays = VALUES(nomPays), " +
+                         "nomSport = VALUES(nomSport), idEquipe = VALUES(idEquipe)";
+            try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                stmt.setInt(1, athlete.getId());
+                stmt.setString(2, athlete.getNom());
+                stmt.setString(3, athlete.getPrenom());
+                stmt.setString(4, String.valueOf(athlete.getSexe()));
+                stmt.setFloat(5, athlete.getForce());
+                stmt.setFloat(6, athlete.getAgilite());
+                stmt.setFloat(7, athlete.getEndurance());
+                stmt.setString(8, athlete.getPays().getNom());
+                stmt.setString(9, athlete.getSport().getNomSport().getNom());
+                stmt.setObject(10, athlete.getEquipe() != null ? athlete.getEquipe().getId() : null, java.sql.Types.INTEGER);
+                stmt.executeUpdate();
+            }
+        }
+    
+        // Sauvegarder les équipes
+        for (Equipe equipe : manager.getEquipes()) {
+            String sql = "INSERT INTO Equipe (idEquipe, nomEquipe, nomPays) " +
+                         "VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE nomEquipe = VALUES(nomEquipe), nomPays = VALUES(nomPays)";
+            try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                stmt.setInt(1, equipe.getId());
+                stmt.setString(2, equipe.getNom());
+                stmt.setString(3, equipe.getPays().getNom());
+                stmt.executeUpdate();
+            }
+        }
+    
+        // Sauvegarder les épreuves
+        for (Epreuve epreuve : manager.getEpreuves()) {
+            String sql = "INSERT INTO Epreuve (idEpreuve, nomEpreuve, sexeEpreuve, nomSport, collective) " +
+                         "VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE " +
+                         "nomEpreuve = VALUES(nomEpreuve), sexeEpreuve = VALUES(sexeEpreuve), " +
+                         "nomSport = VALUES(nomSport), collective = VALUES(collective)";
+            try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                stmt.setInt(1, epreuve.getId());
+                stmt.setString(2, epreuve.getNom());
+                stmt.setString(3, String.valueOf(epreuve.getSexe()));
+                stmt.setString(4, epreuve.getSport().getNomSport().getNom());
+                stmt.setBoolean(5, epreuve.isCollective());
+                stmt.executeUpdate();
+            }
+        }
+    
+        // Sauvegarder la participation des athlètes aux épreuves
+        for (Athlete athlete : manager.getAthletes()) {
+            for (Participe participation : athlete.getParticipations()) {
+                String sql = "INSERT INTO Participe (idEpreuve, idAthlete, points) " +
+                             "VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE points = VALUES(points)";
+                try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                    stmt.setInt(1, participation.getEpreuve().getId());
+                    stmt.setInt(2, athlete.getId());
+                    stmt.setInt(3, participation.getPoints());
+                    stmt.executeUpdate();
+                }
+            }
+        }
+    
+        // Sauvegarder la participation des équipes aux épreuves collectives
+        for (Equipe equipe : manager.getEquipes()) {
+            for (ParticipeCollectif participation : equipe.getParticipations()) {
+                String sql = "INSERT INTO ParticipeCollectif (idEpreuve, idEquipe, points) " +
+                             "VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE points = VALUES(points)";
+                try (PreparedStatement stmt = connexion.prepareStatement(sql)) {
+                    stmt.setInt(1, participation.getEpreuve().getId());
+                    stmt.setInt(2, equipe.getId());
+                    stmt.setInt(3, participation.getPoints());
+                    stmt.executeUpdate();
+                }
+            }
+        }
     }
+    
 
     /**
      * Retourne le gestionnaire de données
