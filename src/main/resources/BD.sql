@@ -68,6 +68,7 @@ CREATE TABLE Athlete (
 CREATE TABLE Participe (
     idEpreuve INT,
     idAthlete INT,
+    points INT,
     PRIMARY KEY (idAthlete, idEpreuve),
     FOREIGN KEY (idAthlete) REFERENCES Athlete(idAthlete),
     FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)
@@ -77,6 +78,7 @@ CREATE TABLE Participe (
 CREATE TABLE ParticipeCollectif (
     idEpreuve INT,
     idEquipe INT,
+    points INT,
     PRIMARY KEY (idEquipe, idEpreuve),
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
     FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)

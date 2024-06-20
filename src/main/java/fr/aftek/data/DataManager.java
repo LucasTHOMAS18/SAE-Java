@@ -16,6 +16,7 @@ import fr.aftek.NomSport;
 import fr.aftek.Pays;
 import fr.aftek.Sport;
 import fr.aftek.SportCollectif;
+import fr.aftek.SportException;
 
 /**
  * Classe DataManager, gère les données des pays, athlètes, équipes, épreuves, sports et sports collectifs
@@ -183,12 +184,19 @@ public class DataManager {
         char sexe = athletes.get(0).getSexe();
         for(Athlete a : athletes) {
             if(a.getSexe() != sexe) throw new GenderException("Les athletes n'ont pas le même genre");
+            if(!a.getSport().equals(sport)) throw new SportException("Les athletes ne sont pas du même sport");;
         }
         Epreuve e = new Epreuve(nom, sexe, sport);
         for(Athlete a : athletes) {
             a.ajouteEpreuve(e);
             e.ajouteAthlete(a);
         }
+        epreuves.add(e);
+        return e;
+    }
+
+    public Epreuve createEpreuve(String nom, char sexe, Sport sport){
+        Epreuve e = new Epreuve(nom, sexe, sport);
         epreuves.add(e);
         return e;
     }
@@ -309,6 +317,15 @@ public class DataManager {
         return null;
     }    
 
+    public Equipe getEquipe(String nom, String pays){
+        for (Equipe equipe : this.equipes) {
+            if (equipe.getNom().equals(nom) && equipe.getPays().getNom().equals(pays)) {
+                return equipe;
+            }
+        }
+        return null;
+    }
+
     /**
      * Récupère un sport à partir de son nom
      * @param sport le nom du sport
@@ -320,6 +337,24 @@ public class DataManager {
         for (Sport s : this.sports) {
             if (s.getNomSport().getNom().equals(nomSport)) {
                 return s;
+            }
+        }
+        return null;
+    }
+
+    public Sport getSport(NomSport nomSport){
+        for (Sport s : this.sports) {
+            if (s.getNomSport().equals(nomSport)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public Epreuve getEpreuve(String nom, String sport){
+        for (Epreuve e : this.epreuves) {
+            if (e.getNom().equals(nom) && e.getSport().getNomSport().getNom().equals(sport)) {
+                return e;
             }
         }
         return null;

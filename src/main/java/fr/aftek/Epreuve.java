@@ -53,10 +53,18 @@ public class Epreuve {
      */
     public void ajouteAthlete(Athlete athlete) {
         this.participants.add(athlete);
+        athlete.ajouteEpreuve(this);
+    }
+
+    public void ajouteAthlete(Athlete athlete, int points){
+        this.participants.add(athlete);
+        athlete.ajouteEpreuve(this);
+        this.classement.put(athlete, points);
     }
 
     public void retireAthlete(Athlete athlete){
         this.participants.remove(athlete);
+        athlete.retireEpreuve(this);
     }
 
     /**
@@ -69,6 +77,7 @@ public class Epreuve {
         for (Athlete athlete : participants) {
             if(athlete.getNom().equals(nom) && athlete.getPrenom().equals(prenom)){
                 this.participants.remove(athlete);
+                athlete.retireEpreuve(null);
                 return;
             }
         }

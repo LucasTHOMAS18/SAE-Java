@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import fr.aftek.Athlete;
+import fr.aftek.Epreuve;
+import fr.aftek.Equipe;
 import fr.aftek.NomSport;
 import fr.aftek.Pays;
 import fr.aftek.Sport;
@@ -63,7 +65,6 @@ public class DataProvider {
             if(pays == null) pays = this.manager.addPays(new Pays(paysS));
             Athlete a = new Athlete(nom, prenom, sexe,force, agilite, endurance, pays, sport); // TODO ajouter sport
             this.manager.addAthlete(a);
-            this.manager.createEpreuve(a, sport);
         }
         scanner.close();
     }
@@ -104,6 +105,12 @@ public class DataProvider {
             manager.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), manager.getPays(athletes.getString(8)), null)); // TODO ajouter sport
         }
 
+        ResultSet equipes = st.executeQuery("SELECT nomAthlete, prenomAthlete, nomEquipe, nomPays FROM Equipe natural left join Athlete");
+        while (equipes.next()) {
+            Athlete a = manager.getAthlete(equipes.getString(1), equipes.getString(2));
+            manager.addEquipe(new Equipe(equipes.getString(3), manager.getPays(equipes.getString(3)))).ajouteAthlete(a);;
+        }
+
         ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE individuel=true");
 
         while (sports.next()) {
@@ -121,6 +128,29 @@ public class DataProvider {
         while(athleteSport.next()){
             manager.getAthlete(athletes.getString(1), athletes.getString(2)).setSport(manager.getSport(athleteSport.getString(3)));
         }
+
+        ResultSet epreuves = st.executeQuery("SELECT * FROM Epreuve");
+
+        while(epreuves.next()){
+            manager.createEpreuve(epreuves.getString(2), epreuves.getString(3).toCharArray()[0], manager.getSport(epreuves.getString(4)));
+        }
+
+        ResultSet epreuveAthlete = st.executeQuery("SELECT nomAthlete, prenomAthlete, nomEpreuve, nomSport, points FROM Epreuve natural join Participe natural join Athlete");
+        
+        while(epreuveAthlete.next()){
+            Athlete a = manager.getAthlete(epreuveAthlete.getString(1),epreuveAthlete.getString(2));
+            Epreuve e = manager.getEpreuve(epreuveAthlete.getString(3), epreuveAthlete.getString(4));
+            e.ajouteAthlete(a, epreuveAthlete.getInt(5));
+        }
+
+        /*ResultSet epreuveCollectiveAthlete = st.executeQuery("SELECT nomEpreuve, prenomAthlete, nomEpreuve, nomSport, points FROM Epreuve natural join ParticipeCollectif natural join Equipe");
+        
+        while(epreuveCollectiveAthlete.next()){
+            Equipe a = manager.getEquipe(epreuveAthlete.getString(1),epreuveAthlete.getString(2));
+            Epreuve e = manager.getEpreuve(epreuveAthlete.getString(3), epreuveAthlete.getString(4));
+            e.ajouteEquipe(a, epreuveAthlete.getInt(5));
+        }*/
+
     }
 
     public void saveSQL(ConnexionMySQL connexion) throws SQLException{

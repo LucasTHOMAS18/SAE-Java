@@ -31,7 +31,7 @@ public class ControleurMenu extends Controleur {
     }
 
     public void afficherEpreuves() {
-        // TODO
+        application.classementEpreuves();
     }
 
     public void afficherPays() {

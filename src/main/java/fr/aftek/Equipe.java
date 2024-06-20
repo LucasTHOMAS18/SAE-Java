@@ -44,18 +44,6 @@ public class Equipe {
     }
 
     /**
-     * Constructeur pour initialiser une équipe avec un nom et un nom de pays.
-     *
-     * @param nom Le nom de l'équipe.
-     * @param pays Le nom du pays de l'équipe.
-     */
-    public Equipe(String nom, String pays){
-        this.nom = nom;
-        this.pays = new Pays(pays);
-        this.athletes = new ArrayList<Athlete>();
-    }
-
-    /**
      * Ajoute un athlète à l'équipe.
      *
      * @param athlete L'athlète à ajouter.
