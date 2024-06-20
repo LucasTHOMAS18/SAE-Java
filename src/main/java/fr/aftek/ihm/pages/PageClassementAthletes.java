@@ -1,6 +1,7 @@
 package fr.aftek.ihm.pages;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import fr.aftek.ihm.*;
 import fr.aftek.ihm.controleurs.ControleurClassementAthlete;
 import fr.aftek.*;
+import fr.aftek.data.DataProvider;
 
 /**
  * Classe PageModifAthlete qui étend BorderPane.
@@ -18,7 +20,7 @@ import fr.aftek.*;
  */
 public class PageClassementAthletes extends BorderPane {
     
-    private ApplicationJO application;
+    private ControleurClassementAthlete controleurClassementAthlete;
 
     /**
      * Constructeur de la classe PageModifAthlete.
@@ -26,20 +28,22 @@ public class PageClassementAthletes extends BorderPane {
      * @param application L'application principale pour accéder aux fonctionnalités globales.
      * @throws IOException Si une erreur survient lors du chargement du fichier FXML.
      */
-    public PageClassementAthletes(ApplicationJO application, List<Athlete> liste) throws IOException {
-
-        this.application = application;
+    public PageClassementAthletes(List<Athlete> liste) throws IOException {
         
         // Charge le fichier FXML pour la page de choix de sport et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClassementAthlete.fxml"));
-        ControleurClassementAthlete controleurClassementAthlete = new ControleurClassementAthlete(application);
+        controleurClassementAthlete = new ControleurClassementAthlete();
         loader.setController(controleurClassementAthlete);
         loader.setRoot(this);
         loader.load();
         controleurClassementAthlete.init(liste);
     }
 
-    public PageClassementAthletes(ApplicationJO application, Set<Athlete> set) throws IOException {
-        this(application, set.stream().collect(Collectors.toList()));
+    public PageClassementAthletes(Set<Athlete> set) throws IOException {
+        this(set.stream().collect(Collectors.toList()));
+    }
+
+    public PageClassementAthletes() throws IOException{
+        this(ApplicationJO.PROVIDER.getManager().getAthletes());
     }
 }

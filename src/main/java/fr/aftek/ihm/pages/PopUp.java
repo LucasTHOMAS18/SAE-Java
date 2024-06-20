@@ -1,18 +1,27 @@
 package fr.aftek.ihm.pages;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 /**
  * Classe PopUp qui hérite de la classe Alert de JavaFX.
  * Cette classe est utilisée pour afficher des pop-ups personnalisées avec différentes images en fonction du type d'alerte.
  */
-public class PopUp extends Alert {
+public class PopUp<T> extends Dialog<T> {
     
     private String titre; // Titre de l'alerte
     private String header; // En-tête de l'alerte
     private String contenu; // Contenu de l'alerte
+    private PopUpType type; // Type de l'alerte
 
     /**
      * Constructeur de la classe PopUp.
@@ -22,11 +31,13 @@ public class PopUp extends Alert {
      * @param header L'en-tête de l'alerte
      * @param contenu Le contenu de l'alerte
      */
-    public PopUp(AlertType type, String titre, String header, String contenu) {
-        super(type);
+    public PopUp(PopUpType type, String titre, String header, String contenu) {
+        super();
         this.titre = titre;
         this.header = header;
         this.contenu = contenu;
+        this.type = type;
+        this.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
         style(); // Applique le style à l'alerte
     }
 
@@ -37,7 +48,7 @@ public class PopUp extends Alert {
      * @param titre Le titre de l'alerte
      * @param header L'en-tête de l'alerte
      */
-    public PopUp(AlertType type, String titre, String header){
+    public PopUp(PopUpType type, String titre, String header){
         this(type, titre, header, "");
     }
 
@@ -48,11 +59,11 @@ public class PopUp extends Alert {
     private void style() {
         ImageView mascotte = null;
         // Sélectionne l'image en fonction du type de l'alerte
-        if (this.getAlertType() == AlertType.ERROR) {
+        if (this.getType() == PopUpType.ERREUR) {
             mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_triste.png").toString()));
-        } else if (this.getAlertType() == AlertType.INFORMATION) {
+        } else if (this.getType() == PopUpType.INFORMATION) {
             mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_gentille.png").toString()));
-        } else if (this.getAlertType() == AlertType.CONFIRMATION) {
+        } else if (this.getType() == PopUpType.CONFIRMATION || this.getType() == PopUpType.PROGRESS) {
             mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_nerd.png").toString()));
         }
 
@@ -63,7 +74,26 @@ public class PopUp extends Alert {
         // Définit les propriétés de l'alerte
         this.setTitle(titre);
         this.setHeaderText(header);
-        this.setContentText(contenu);
         this.setGraphic(mascotte); // Ajoute l'image à l'alerte
+        if(this.getType() == PopUpType.PROGRESS){
+            this.getDialogPane().getButtonTypes().clear();
+            this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            ProgressBar pb = new ProgressBar();
+            this.getDialogPane().setContent(pb);
+        }else{
+            this.setContentText(contenu);
+        }
+    }
+
+    public PopUpType getType() {
+        return type;
+    }
+
+    public enum PopUpType{
+        INFORMATION,
+        CONFIRMATION,
+        ERREUR,
+        PROGRESS,
+
     }
 }

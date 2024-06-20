@@ -1,5 +1,8 @@
 package fr.aftek.ihm.controleurs;
 
+import java.io.IOException;
+
+import fr.aftek.ihm.ApplicationJO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -17,8 +20,10 @@ public class ControlleurBienvenue extends Controleur {
     @FXML
     private Button btnAdmin;
 
-    public ControlleurBienvenue(){
-        //TODO
+    private ApplicationJO application;
+
+    public ControlleurBienvenue(ApplicationJO application){
+        this.application = application;
     }
 
     @FXML
@@ -27,8 +32,9 @@ public class ControlleurBienvenue extends Controleur {
     }
 
     @FXML
-    private void afficherAthletes() {
+    private void afficherAthletes() throws IOException, InterruptedException {
         //TODO
+        application.classementAthletes();
     }
 
     @FXML

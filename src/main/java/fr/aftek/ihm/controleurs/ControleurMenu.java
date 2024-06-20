@@ -1,5 +1,7 @@
 package fr.aftek.ihm.controleurs;
 
+import java.io.IOException;
+
 import fr.aftek.ihm.ApplicationJO;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -19,8 +21,9 @@ public class ControleurMenu extends Controleur {
         vboxAdm.setVisible(afficherAdm);
     }
 
-    public void afficherAthletes() {
+    public void afficherAthletes() throws IOException, InterruptedException {
         // TODO
+        application.classementAthletes();
     }
 
     public void afficherEquipes() {

@@ -2,14 +2,22 @@ package fr.aftek.ihm;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
+import java.util.Set;
 
+import fr.aftek.*;
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.pages.Menu;
 import fr.aftek.ihm.pages.PageChoixSport;
+import fr.aftek.ihm.pages.PageClassementAthletes;
 import fr.aftek.ihm.pages.PageConnexion;
+import fr.aftek.ihm.pages.PopUp;
+import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -63,6 +71,32 @@ public class ApplicationJO extends Application{
         stage.getScene().setRoot(new Menu(this, connexion.getRole() == "admin"));
     }
 
+    public void classementAthletes() throws IOException, InterruptedException{
+        final Set<Athlete> set = ApplicationJO.PROVIDER.getManager().getAthletes();
+        Task<PageClassementAthletes> task = new Task<PageClassementAthletes>() {
+            protected PageClassementAthletes call() throws Exception {
+                return new PageClassementAthletes(set);
+            };
+        };
+        PopUp<ButtonType> popUp = new PopUp<>(PopUpType.PROGRESS, "Création du classement", "Le classement est en cours de création...");
+        task.setOnSucceeded((wse)->{
+            stage.getScene().setRoot(task.getValue());
+            popUp.close();
+        });
+        task.setOnFailed((wse)->{
+            popUp.close();
+            wse.getSource().getException().printStackTrace();
+        });
+        Thread th = new Thread(task,"Progress");
+        th.start();
+        Optional<ButtonType> res = popUp.showAndWait();
+        res.ifPresent((e)-> {
+            if(e == ButtonType.CANCEL){
+                th.interrupt();
+            }
+        });
+    }
+
     public void choixSport() throws IOException{
         stage.getScene().setRoot(new PageChoixSport(this));
     }
@@ -74,11 +108,6 @@ public class ApplicationJO extends Application{
      */
     public static void main(String[] args) {
         launch(ApplicationJO.class);
-    }
-
-    public void retourAcceuil() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retourAcceuil'");
     }
 
     public void retourAccueil() {
