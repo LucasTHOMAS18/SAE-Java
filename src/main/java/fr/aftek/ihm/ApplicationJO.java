@@ -8,12 +8,14 @@ import java.util.Optional;
 import java.util.Set;
 
 import fr.aftek.Athlete;
+import fr.aftek.Equipe;
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.pages.Menu;
 import fr.aftek.ihm.pages.Page;
 import fr.aftek.ihm.pages.PageChoixSport;
 import fr.aftek.ihm.pages.PageClassementAthletes;
+import fr.aftek.ihm.pages.PageClassementEquipes;
 import fr.aftek.ihm.pages.PageConnexion;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
@@ -89,7 +91,14 @@ public class ApplicationJO extends Application{
     }
 
     public void classementEquipes() throws IOException{
-        // TODO
+        final Set<Equipe> set = ApplicationJO.PROVIDER.getManager().getEquipes();
+        final ApplicationJO application = this;
+        Task<PageClassementEquipes> task = new Task<PageClassementEquipes>() {
+            protected PageClassementEquipes call() throws Exception {
+                return new PageClassementEquipes(application,set);
+            };
+        };
+        afficherPage(task);
     }
 
     public void choixSport() throws IOException{

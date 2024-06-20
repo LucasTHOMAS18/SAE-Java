@@ -1,18 +1,14 @@
 package fr.aftek.ihm.pages;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import fr.aftek.ihm.*;
+import fr.aftek.Athlete;
+import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurClassementAthlete;
-import fr.aftek.*;
-import fr.aftek.data.DataProvider;
+import javafx.fxml.FXMLLoader;
 
 /**
  * Classe PageModifAthlete qui étend BorderPane.
