@@ -23,12 +23,15 @@ public class PageConnexion extends Page {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageConnexion.fxml"));
         
         // Définit le contrôleur de la page de connexion
-        loader.setController(new ControleurConnexion(application));
+        ControleurConnexion controleur = new ControleurConnexion(application);
+        loader.setController(controleur);
         
         // Définit la racine du FXML à ce BorderPane
         loader.setRoot(this);
         
         // Charge le fichier FXML
         loader.load();
+
+        controleur.init();
     }
 }

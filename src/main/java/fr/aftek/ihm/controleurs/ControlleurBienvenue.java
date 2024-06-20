@@ -33,7 +33,6 @@ public class ControlleurBienvenue extends Controleur {
 
     @FXML
     private void afficherAthletes() throws IOException, InterruptedException {
-        //TODO
         application.classementAthletes();
     }
 
@@ -53,8 +52,9 @@ public class ControlleurBienvenue extends Controleur {
     }
 
     @FXML
-    private void afficherAdmin() {
+    private void afficherAdmin() throws IOException {
         //TODO
+        application.admin();
     }
 
     @FXML

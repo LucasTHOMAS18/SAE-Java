@@ -142,6 +142,10 @@ public class Athlete {
         return epreuves;
     }
 
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+
     /**
      * Ajoute une épreuve à la liste des épreuves de l'athlète.
      *

@@ -13,6 +13,7 @@ import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.pages.Menu;
 import fr.aftek.ihm.pages.Page;
+import fr.aftek.ihm.pages.PageAdmin;
 import fr.aftek.ihm.pages.PageChoixSport;
 import fr.aftek.ihm.pages.PageClassementAthletes;
 import fr.aftek.ihm.pages.PageClassementEquipes;
@@ -103,6 +104,13 @@ public class ApplicationJO extends Application{
         PageChoixSport choixSport = new PageChoixSport(this);
         stage.getScene().setRoot(choixSport);
         this.historique.add(choixSport);
+    }
+
+    public void admin() throws IOException {
+        System.out.println("hahaha");
+        PageAdmin admin = new PageAdmin(this);
+        stage.getScene().setRoot(admin);
+        this.historique.add(admin);
     }
 
     private <T extends Page> void afficherPage(Task<T> task, String titre, String header){

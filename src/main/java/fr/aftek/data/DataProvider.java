@@ -113,13 +113,18 @@ public class DataProvider {
         ResultSet sportsCollectifs = st.executeQuery("SELECT * FROM Sport WHERE individuel=false");
 
         while(sportsCollectifs.next()) {
-            ResultSet athletesConcernes = st.executeQuery("SELECT nomAthlete, prenomAthlete, sexe,forces,agilite,endurance,nomPays,idEquipe FROM Athlete natural join ParticipeCollectif WHERE idEpreuve");
             manager.addSportCollectif(new SportCollectif(NomSport.getNomSport(sports.getString(2)), sports.getInt(3), sports.getInt(4), sports.getInt(5), 0, 0));
+        }
+
+        ResultSet athleteSport = st.executeQuery("SELECT nomAthlete,prenomAthlete,nomSport FROM Athlete natural left join Sport");
+
+        while(athleteSport.next()){
+            manager.getAthlete(athletes.getString(1), athletes.getString(2)).setSport(manager.getSport(athleteSport.getString(3)));
         }
     }
 
     public void saveSQL(ConnexionMySQL connexion) throws SQLException{
-        // TODO
+        
     }
 
     /**

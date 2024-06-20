@@ -1,9 +1,14 @@
 package fr.aftek.ihm.controleurs;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.ihm.ApplicationJO;
@@ -36,14 +41,28 @@ public class ControleurConnexion extends Controleur {
     @FXML
     private Button btnConnection;
 
+    private String nomBDD = "JO2024";
+
     /**
      * Constructeur du contrôleur de connexion.
      * 
      * @param application L'application principale pour accéder aux fonctionnalités globales.
      */
+    
     public ControleurConnexion(ApplicationJO application) {
         this.application = application;
         this.connexion = application.getConnexion();
+    }
+    @SuppressWarnings("deprecation")
+    public void init(){
+        try{
+            JsonParser parser = new JsonParser();
+            JsonObject json = parser.parse(new FileReader(new File(getClass().getClassLoader().getResource("credentials.json").toURI()))).getAsJsonObject();
+            identifiantTxtField.setText(json.get("id").getAsString());
+            mdpPwrdField.setText(json.get("pass").getAsString());
+            urlTxtField.setText(json.get("host").getAsString());
+            this.nomBDD = json.get("bd").getAsString();
+        }catch(Exception e){e.printStackTrace();}
     }
 
     /**
@@ -58,7 +77,6 @@ public class ControleurConnexion extends Controleur {
         String identifiant = identifiantTxtField.getText();
         String mdp = mdpPwrdField.getText();
         String serveur = urlTxtField.getText();
-        String nomBDD = "JO2024"; 
 
         try {
             connexion.connecter(serveur, identifiant, mdp);

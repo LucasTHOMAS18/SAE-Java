@@ -93,7 +93,7 @@ public class ConnexionMySQL {
 
 		String meilleurRole = "journaliste";
 		while (grants.next()) {
-			String grant = grants.getString(1);
+			String grant = grants.getString(1).toLowerCase();
 			for (String role : this.roles.keySet()) {
 				if (grant.contains(role)) {
 					if (this.roles.get(role) > this.roles.get(meilleurRole)) {
@@ -102,7 +102,6 @@ public class ConnexionMySQL {
 				}
 			}
 		}
-
 		return meilleurRole;
 	}
 }
