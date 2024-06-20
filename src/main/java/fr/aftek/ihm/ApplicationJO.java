@@ -41,11 +41,9 @@ public class ApplicationJO extends Application{
     public void start(Stage stage) throws Exception {
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
-        PROVIDER.loadCSV("donnees1.csv");
         // Création de la scène
         Page root = new PageConnexion(this);
         this.historique.add(root);
-        PROVIDER.loadCSV("donnees.csv");
         System.out.println(PROVIDER.getManager().getAthletes().size());
         this.scene = new Scene(root, 900, 600);
         this.stage = stage;
@@ -98,7 +96,7 @@ public class ApplicationJO extends Application{
                 return new PageClassementEquipes(application,set);
             };
         };
-        afficherPage(task);
+        afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
     }
 
     public void choixSport() throws IOException{

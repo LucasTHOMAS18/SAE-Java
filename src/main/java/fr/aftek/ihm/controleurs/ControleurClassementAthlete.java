@@ -66,9 +66,10 @@ public class ControleurClassementAthlete extends Controleur {
             this.pays.setAccessibleText(nomPays);
             Tooltip.install(this.pays, new Tooltip(nomPays));
             this.sport = sport;
-            this.or = 0;
-            this.argent = 0;
-            this.bronze = 0;
+            int[] scores = ApplicationJO.PROVIDER.getManager().getNbMedailles(nom, prenom);
+            this.or = scores[0];
+            this.argent = scores[1];
+            this.bronze = scores[2];
         }
 
         public int getArgent() {

@@ -66,8 +66,8 @@ public class ControleurConnexion extends Controleur {
             try{
                 Statement st = connexion.createStatement();
                 st.execute("USE "+nomBDD);
-                System.out.println("c'est bon");
                 new PopUp<>(PopUpType.INFORMATION,"Succès !", "La connexion à la base de données a réussi", "La connexion à la base de donnée a réussi").showAndWait();
+                chargerDonnees();
             }catch(SQLException e1){
                 Optional<ButtonType> result = new PopUp<ButtonType>(PopUpType.CONFIRMATION,"Attention !", "La connexion à la base de donnée a réussi.","Cependant, nous avons détecté que votre base de donnée ne contient pas la structure nécessaire au bon fonctionnement de l'application. Voulez-vous créer toute la structure ?").showAndWait();
                 result.ifPresentOrElse((r) -> {
@@ -76,6 +76,7 @@ public class ControleurConnexion extends Controleur {
                             connexion.creerStructure();
                             connexion.connecter(serveur, nomBDD, identifiant, mdp);
                             new PopUp<>(PopUpType.INFORMATION,"Succès!", "La structure à bien été créer !", "La structure essentielle au bon fonctionnement de l'application a été créée dans la base de donnée: JO2024").showAndWait();
+                            chargerDonnees();
                         } catch (SQLException e2) {
                             System.out.println(e2.getMessage());
                             new PopUp<>(PopUpType.ERREUR,"Erreur!", "La connexion à la base de données a échouée","La connexion à la base de données a échouée.\n"+e2.getMessage()).showAndWait();
@@ -106,6 +107,15 @@ public class ControleurConnexion extends Controleur {
         if (connexion.isConnecte()) {
             System.out.println("Affichage du menu");
             application.menu();
+        }
+    }
+
+    private void chargerDonnees(){
+        try{
+            ApplicationJO.PROVIDER.loadSQL(connexion);
+        }catch (SQLException e){
+            e.printStackTrace();
+            new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur !", "Le chargement des données a échouée","Le chargement des données a échouée.\n"+e.getMessage()).showAndWait();
         }
     }
 

@@ -91,7 +91,6 @@ public class DataProvider {
      * @throws SQLException
      */
     public void loadSQL(ConnexionMySQL connexion) throws SQLException {
-        // TODO
         Statement st = connexion.createStatement();
         ResultSet pays = st.executeQuery("SELECT * FROM Pays");
 
@@ -105,13 +104,13 @@ public class DataProvider {
             manager.addAthlete(new Athlete(athletes.getString(2), athletes.getString(3), athletes.getString(4).charAt(0), athletes.getInt(5), athletes.getInt(6), athletes.getInt(7), manager.getPays(athletes.getString(8)), null)); // TODO ajouter sport
         }
 
-        ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE collectif=false");
+        ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE individuel=true");
 
         while (sports.next()) {
             manager.addSport(new Sport(NomSport.getNomSport(sports.getString(2)), sports.getInt(3), sports.getInt(4), sports.getInt(5)));
         }
 
-        ResultSet sportsCollectifs = st.executeQuery("SELECT * FROM Sport WHERE collectif=true");
+        ResultSet sportsCollectifs = st.executeQuery("SELECT * FROM Sport WHERE individuel=false");
 
         while(sportsCollectifs.next()) {
             ResultSet athletesConcernes = st.executeQuery("SELECT nomAthlete, prenomAthlete, sexe,forces,agilite,endurance,nomPays,idEquipe FROM Athlete natural join ParticipeCollectif WHERE idEpreuve");
