@@ -7,8 +7,8 @@ import fr.aftek.Equipe;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
-public class PageEquipes extends BorderPane {
-    public PageEquipes(List<Equipe> liste) throws IOException {
+public class PageClassementEquipes extends BorderPane {
+    public PageClassementEquipes(List<Equipe> liste) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Equipes.fxml"));
         loader.setRoot(this);
         loader.load();

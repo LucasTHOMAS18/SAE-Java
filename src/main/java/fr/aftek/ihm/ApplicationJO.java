@@ -72,7 +72,7 @@ public class ApplicationJO extends Application{
      * @throws SQLException Si une erreur SQL survient
      */
     public void menu() throws IOException, SQLException {
-        Menu menu = new Menu(this, connexion.getRole() == "admin");
+        Menu menu = new Menu(this, connexion.getRole().equals("admin"));
         stage.getScene().setRoot(menu);
         this.historique.add(menu);
     }

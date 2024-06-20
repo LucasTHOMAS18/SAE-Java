@@ -89,7 +89,7 @@ public class ConnexionMySQL {
 
 	public String getRole() throws SQLException {
 		Statement st = this.createStatement();
-		ResultSet grants = st.executeQuery("SHOW GRANTS");
+		ResultSet grants = st.executeQuery("SHOW GRANTS FOR CURRENT_USER()");
 
 		String meilleurRole = "journaliste";
 		while (grants.next()) {

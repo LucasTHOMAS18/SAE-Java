@@ -14,6 +14,7 @@ public class ControleurMenu extends Controleur {
 
     public ControleurMenu(ApplicationJO application, boolean afficherAdm) {
         this.application = application;
+        this.afficherAdm = afficherAdm;
     }
 
     @FXML
