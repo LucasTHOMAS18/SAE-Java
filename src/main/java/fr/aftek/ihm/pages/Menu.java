@@ -5,15 +5,12 @@ import java.io.IOException;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurMenu;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 /**
  * Classe Menu qui étend BorderPane.
  * Affiche le menu principal de l'application.
  */
-public class Menu extends BorderPane {
-    ApplicationJO application;
-
+public class Menu extends Page {
     /**
      * Constructeur de la classe Menu.
      * 
@@ -21,8 +18,6 @@ public class Menu extends BorderPane {
      * @throws IOException Si une erreur survient lors du chargement du fichier FXML.
      */
     public Menu(ApplicationJO application, boolean afficherAdm) throws IOException {
-        this.application = application;
-        
         // Charge le fichier FXML pour le menu et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PageBienvenue.fxml"));
         loader.setController(new ControleurMenu(application, afficherAdm));

@@ -12,7 +12,7 @@ import fr.aftek.ihm.controleurs.ControleurModifAthlete;
  * Classe PageModifAthlete qui étend BorderPane.
  * Affiche la page de choix de sport de l'application.
  */
-public class PageModifAthlete extends BorderPane {
+public class PageModifAthlete extends Page {
     
     private ApplicationJO application;
 

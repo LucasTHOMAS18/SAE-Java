@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
  * Classe PageConnexion qui étend BorderPane.
  * Cette classe est utilisée pour afficher la page de connexion de l'application.
  */
-public class PageConnexion extends BorderPane {
+public class PageConnexion extends Page {
 
     /**
      * Constructeur de la classe PageConnexion.

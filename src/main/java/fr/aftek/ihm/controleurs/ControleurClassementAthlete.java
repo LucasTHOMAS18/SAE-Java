@@ -30,7 +30,8 @@ public class ControleurClassementAthlete extends Controleur {
     @FXML
     private TableColumn<AthleteLigne, Integer> bronze;
 
-    public ControleurClassementAthlete() {
+    public ControleurClassementAthlete(ApplicationJO appli) {
+        this.application = appli;
     }
 
     public void init(List<Athlete> liste){

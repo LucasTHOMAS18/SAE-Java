@@ -1,5 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
+import fr.aftek.ihm.ApplicationJO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -31,7 +32,8 @@ public class ControleurAdmin extends Controleur{
     @FXML
     private Button btnModifierData;
 
-    public ControleurAdmin() {
+    public ControleurAdmin(ApplicationJO appli) {
+        this.application = appli;
     }
 
     @FXML

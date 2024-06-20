@@ -18,7 +18,7 @@ import fr.aftek.data.DataProvider;
  * Classe PageModifAthlete qui étend BorderPane.
  * Affiche la page de choix de sport de l'application.
  */
-public class PageClassementAthletes extends BorderPane {
+public class PageClassementAthletes extends Page {
     
     private ControleurClassementAthlete controleurClassementAthlete;
 
@@ -28,22 +28,22 @@ public class PageClassementAthletes extends BorderPane {
      * @param application L'application principale pour accéder aux fonctionnalités globales.
      * @throws IOException Si une erreur survient lors du chargement du fichier FXML.
      */
-    public PageClassementAthletes(List<Athlete> liste) throws IOException {
+    public PageClassementAthletes(ApplicationJO application, List<Athlete> liste) throws IOException {
         
         // Charge le fichier FXML pour la page de choix de sport et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClassementAthlete.fxml"));
-        controleurClassementAthlete = new ControleurClassementAthlete();
+        controleurClassementAthlete = new ControleurClassementAthlete(application);
         loader.setController(controleurClassementAthlete);
         loader.setRoot(this);
         loader.load();
         controleurClassementAthlete.init(liste);
     }
 
-    public PageClassementAthletes(Set<Athlete> set) throws IOException {
-        this(set.stream().collect(Collectors.toList()));
+    public PageClassementAthletes(ApplicationJO application, Set<Athlete> set) throws IOException {
+        this(application, set.stream().collect(Collectors.toList()));
     }
 
-    public PageClassementAthletes() throws IOException{
-        this(ApplicationJO.PROVIDER.getManager().getAthletes());
+    public PageClassementAthletes(ApplicationJO application) throws IOException{
+        this(application, ApplicationJO.PROVIDER.getManager().getAthletes());
     }
 }
