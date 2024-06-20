@@ -87,7 +87,7 @@ public class ApplicationJO extends Application{
                 return new PageClassementAthletes(application,set);
             };
         };
-        afficherPage(task);
+        afficherPage(task, "Création du classement des athlètes", "Veuillez patienter...");
     }
 
     public void classementEquipes() throws IOException{
@@ -107,8 +107,8 @@ public class ApplicationJO extends Application{
         this.historique.add(choixSport);
     }
 
-    private <T extends Page> void afficherPage(Task<T> task){
-        PopUp<ButtonType> popUp = new PopUp<>(PopUpType.PROGRESS, "Création du classement", "Le classement est en cours de création...");
+    private <T extends Page> void afficherPage(Task<T> task, String titre, String header){
+        PopUp<ButtonType> popUp = new PopUp<>(PopUpType.PROGRESS, titre, header);
         task.setOnSucceeded((wse)->{
             stage.getScene().setRoot(task.getValue());
             this.historique.add(task.getValue());

@@ -11,51 +11,6 @@ DROP TABLE IF EXISTS Epreuve;
 DROP TABLE IF EXISTS Equipe;
 DROP TABLE IF EXISTS Sport;
 DROP TABLE IF EXISTS Pays;
-DROP TABLE IF EXISTS Journaliste;
-DROP TABLE IF EXISTS Organisateur;
-DROP TABLE IF EXISTS Admin;
-
--- Création des tables pour les administrateurs, organisateurs et journalistes
-CREATE TABLE Admin(
-    idAdmin int PRIMARY KEY,
-    mdpAdmi VARCHAR(25)
-);
-
-CREATE TABLE Organisateur(
-    idOrga int PRIMARY KEY,
-    mdpOrga VARCHAR(25)
-);
-
-CREATE TABLE Journaliste(
-    idJourna int PRIMARY KEY,
-    mdpJourna VARCHAR(25)
-);
-
--- Création des rôles
-CREATE ROLE Admin;
-CREATE ROLE Organisateur;
-CREATE ROLE Journaliste;
-
--- Affectation pour Admin
-GRANT ALL PRIVILEGES ON DATABASE JO2024 TO Admin;
-
--- Affectation pour OrganisateurJO2024.
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Pays TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Sport TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Equipe TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Epreuve TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Athlete TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.Participe TO Organisateur;
-GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.ParticipeCollectif TO Organisateur;
-
--- Affectation pour Journaliste
-GRANT SELECT ON JO2024.Pays TO Journaliste;
-GRANT SELECT ON JO2024.Sport TO Journaliste;
-GRANT SELECT ON JO2024.Equipe TO Journaliste;
-GRANT SELECT ON JO2024.Epreuve TO Journaliste;
-GRANT SELECT ON JO2024.Athlete TO Journaliste;
-GRANT SELECT ON JO2024.Participe TO Journaliste;
-GRANT SELECT ON JO2024.ParticipeCollectif TO Journaliste;
 
 -- Création de la table Pays
 CREATE TABLE Pays (
@@ -86,9 +41,9 @@ CREATE TABLE Epreuve (
     idEpreuve INT PRIMARY KEY AUTO_INCREMENT,
     nomEpreuve VARCHAR(25),
     sexeEpreuve CHAR(1),
-    idSport INT,
+    nomSport VARCHAR(25),
     collective BOOLEAN,
-    FOREIGN KEY (idSport) REFERENCES Sport(idSport)
+    FOREIGN KEY (nomSport) REFERENCES Sport(nomSport)
 );
 
 -- Création de la table Athlete
@@ -126,3 +81,26 @@ CREATE TABLE ParticipeCollectif (
     FOREIGN KEY (idEquipe) REFERENCES Equipe(idEquipe),
     FOREIGN KEY (idEpreuve) REFERENCES Epreuve(idEpreuve)
 );
+
+DROP ROLE IF EXISTS Admin;
+DROP ROLE IF EXISTS Organisateur;
+DROP ROLE IF EXISTS Journaliste;
+
+CREATE ROLE Admin;
+CREATE ROLE Organisateur;
+CREATE ROLE Journaliste;
+
+GRANT ALL PRIVILEGES ON JO2024.* TO Admin;
+GRANT USAGE ON JO2024.* TO Admin;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.* TO Organisateur;
+GRANT USAGE ON JO2024.* TO Organisateur;
+
+GRANT SELECT ON JO2024.Pays TO Journaliste;
+GRANT SELECT ON JO2024.Sport TO Journaliste;
+GRANT SELECT ON JO2024.Equipe TO Journaliste;
+GRANT SELECT ON JO2024.Epreuve TO Journaliste;
+GRANT SELECT ON JO2024.Athlete TO Journaliste;
+GRANT SELECT ON JO2024.Participe TO Journaliste;
+GRANT SELECT ON JO2024.ParticipeCollectif TO Journaliste;
+GRANT USAGE ON JO2024.* TO Journaliste;
