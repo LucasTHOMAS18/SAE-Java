@@ -15,7 +15,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: transparent">
                <image>
                   <Image url="@images/logo.png" />
                </image>

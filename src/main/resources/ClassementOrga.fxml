@@ -63,7 +63,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRetour1" mnemonicParsing="false" style="-fx-background-color: 00000000;">
+            <Button fx:id="btnRetour1" mnemonicParsing="false" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
