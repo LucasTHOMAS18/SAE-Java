@@ -1,6 +1,7 @@
 package fr.aftek;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,13 @@ public class Epreuve {
     public void retireAthlete(Athlete athlete){
         this.participants.remove(athlete);
         athlete.retireEpreuve(this);
+    }
+
+    public void ajouteAthletes(Collection<Athlete> athletes){
+        for (Athlete athlete : athletes) {
+            this.participants.add(athlete);
+            athlete.ajouteEpreuve(this);
+        }
     }
 
     /**

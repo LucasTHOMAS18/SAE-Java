@@ -146,6 +146,35 @@ public class Athlete {
         this.sport = sport;
     }
 
+    public void setAgilite(int agilite) {
+        this.agilite = agilite;
+    }
+    public void setEndurance(int endurance) {
+        this.endurance = endurance;
+    }
+    public void setEpreuves(List<Epreuve> epreuves) {
+        this.epreuves = epreuves;
+    }
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
+    public void setForce(int force) {
+        this.force = force;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    public void setSexe(char sexe) {
+        this.sexe = sexe;
+    }
+    
+
     /**
      * Ajoute une épreuve à la liste des épreuves de l'athlète.
      *

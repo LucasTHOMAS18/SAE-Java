@@ -21,6 +21,8 @@ public class ControleurClassementEpreuve extends Controleur {
     private TableColumn<EpreuveLigne, String> nom;
     @FXML
     private TableColumn<EpreuveLigne, Character> sexe;
+    @FXML
+    private TableColumn<EpreuveLigne, Integer> nbAthletes;
 
     public ControleurClassementEpreuve(ApplicationJO appli){
         this.application = appli;
@@ -30,6 +32,7 @@ public class ControleurClassementEpreuve extends Controleur {
         sport.setCellValueFactory(new PropertyValueFactory<>("sport"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+        nbAthletes.setCellValueFactory(new PropertyValueFactory<>("nbAthletes"));
         table.setRowFactory( tv -> {
             TableRow<EpreuveLigne> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -47,7 +50,7 @@ public class ControleurClassementEpreuve extends Controleur {
         });
 
         for (Epreuve e : liste){
-            table.getItems().add(new EpreuveLigne(e.getSport().getNomSport().getNom(), e.getNom(), e.getSexe()));
+            table.getItems().add(new EpreuveLigne(e.getSport().getNomSport().getNom(), e.getNom(), e.getSexe(), e.getParticipants().size()));
         }
     }
 
@@ -70,16 +73,17 @@ public class ControleurClassementEpreuve extends Controleur {
 
     }
 
-    public class EpreuveLigne{
+    public static class EpreuveLigne{
         public String sport;
         public String nom;
         public Character sexe;
-    
+        public Integer nbAthletes;
 
-        public EpreuveLigne(String sport, String nom, Character sexe){
+        public EpreuveLigne(String sport, String nom, Character sexe, Integer nbAthletes){
             this.sport = sport;
             this.nom = nom;
             this.sexe = sexe;
+            this.nbAthletes = nbAthletes;
         }
 
         public String getSport(){
@@ -92,6 +96,9 @@ public class ControleurClassementEpreuve extends Controleur {
 
         public Character getSexe(){
             return sexe;
+        }
+        public Integer getNbAthletes() {
+            return nbAthletes;
         }
     }
 }

@@ -7,6 +7,7 @@ import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.pages.PageClassementEquipes;
 import fr.aftek.ihm.pages.PopUp;
+import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 
 public class ControleurAdmin extends Controleur{
@@ -24,23 +26,14 @@ public class ControleurAdmin extends Controleur{
     @FXML
     private Button btnExportData;
     @FXML
-    private RadioButton btnAjouterEpreuve;
-    @FXML
-    private RadioButton btnAjouterAthlete;
-    @FXML
-    private RadioButton btnAjouterPays;
-    @FXML
     private Button btnAjouterData;
-    
-    @FXML
-    private RadioButton btnModifierEpreuve;
-    @FXML
-    private RadioButton btnModifierAthlete;
-    @FXML
-    private RadioButton btnModifierPays;
     @FXML
     private Button btnModifierData;
-
+    @FXML
+    private ToggleGroup modif;
+    @FXML
+    private ToggleGroup ajout;
+    
     public ControleurAdmin(ApplicationJO appli) {
         this.application = appli;
     }
@@ -90,34 +83,17 @@ public class ControleurAdmin extends Controleur{
     }
 
     @FXML
-    private void ajouterEpreuve() {
+    private void ajouter() {
+        
     }
 
     @FXML
-    private void ajouterAthlete() {
-    }
-
-    @FXML
-    private void ajouterPays() {
-    }
-
-    @FXML
-    private void ajouterData() {
-    }
-
-    @FXML
-    private void modifierEpreuve() {
-    }
-
-    @FXML
-    private void modifierAthlete() {
-    }
-
-    @FXML
-    private void modifierPays() {
-    }
-
-    @FXML
-    private void modifierData() {
+    private void modifier() {
+        String text = ((RadioButton) modif.getSelectedToggle()).getText();
+        if(text.equals("Epreuve")){
+            application.modifier(TypeModification.EPREUVE);
+        }else if(text.equals("Athlete")){
+            application.modifier(TypeModification.ATHLETE);
+        }
     }
 }

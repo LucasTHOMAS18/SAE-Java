@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,6 +18,7 @@ public class PopUp<T> extends Dialog<T> {
     private String header; // En-tête de l'alerte
     private String contenu; // Contenu de l'alerte
     private PopUpType type; // Type de l'alerte
+    private TextField tf;
 
     /**
      * Constructeur de la classe PopUp.
@@ -52,12 +54,10 @@ public class PopUp<T> extends Dialog<T> {
      * Ajoute une image spécifique pour chaque type d'alerte.
      */
     private void style() {
-        ImageView mascotte = null;
+        ImageView mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_gentille.png").toString()));
         // Sélectionne l'image en fonction du type de l'alerte
         if (this.getType() == PopUpType.ERREUR) {
             mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_triste.png").toString()));
-        } else if (this.getType() == PopUpType.INFORMATION) {
-            mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_gentille.png").toString()));
         } else if (this.getType() == PopUpType.CONFIRMATION || this.getType() == PopUpType.PROGRESS) {
             mascotte = new ImageView(new Image(getClass().getClassLoader().getResource("images/mascotte_nerd.png").toString()));
         }
@@ -81,6 +81,9 @@ public class PopUp<T> extends Dialog<T> {
             this.getDialogPane().getButtonTypes().remove(0);
             this.getDialogPane().getButtonTypes().addAll(ButtonType.OK,ButtonType.CANCEL);
             this.setContentText(contenu);
+        }else if(this.getType() == PopUpType.DEMANDER){
+            tf = new TextField();
+            this.getDialogPane().setContent(tf);
         } else {
             this.setContentText(contenu);
         }
@@ -101,10 +104,15 @@ public class PopUp<T> extends Dialog<T> {
         return type;
     }
 
+    public TextField getTf() {
+        return tf;
+    }
+
     public enum PopUpType{
         INFORMATION,
         CONFIRMATION,
         ERREUR,
         PROGRESS,
+        DEMANDER
     }
 }
