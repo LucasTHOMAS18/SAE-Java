@@ -1,7 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +8,8 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import fr.aftek.Athlete;
-import fr.aftek.Epreuve;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurClassementAthlete.AthleteLigne;
-import fr.aftek.ihm.controleurs.ControleurClassementEpreuve.EpreuveLigne;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.collections.ObservableList;

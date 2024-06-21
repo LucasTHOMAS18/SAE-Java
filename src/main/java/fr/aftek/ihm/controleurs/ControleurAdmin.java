@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.ApplicationJO;
-import fr.aftek.ihm.pages.PageClassementEquipes;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp.PopUpType;

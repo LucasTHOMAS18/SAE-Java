@@ -4,7 +4,6 @@ import java.io.IOException;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurChoixSport;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 /**
  * Classe PageChoixSport qui étend BorderPane.
@@ -12,6 +11,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class PageChoixSport extends Page {
     
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     /**

@@ -258,7 +258,7 @@ public class DataManager {
      * @param epreuve l'épreuve à supprimer
      */
     public void removeEpreuve(Epreuve epreuve) {
-        this.sports.remove(epreuve);
+        this.epreuves.remove(epreuve);
     }
 
     /**
@@ -267,10 +267,6 @@ public class DataManager {
      */
     public void removeSportCollectif(SportCollectif sportCollectif) {
         this.sportsCollectifs.remove(sportCollectif);
-    }
-
-    public void removeEpreuve(Epreuve e){
-        this.epreuves.remove(e);
     }
 
     /**

@@ -2,7 +2,6 @@ package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.stream.Collectors;
 
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.Controleur;
@@ -12,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 public class PageModifier extends Page{
 
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     public PageModifier(ApplicationJO application, TypeModification type) throws IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {

@@ -1,7 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 

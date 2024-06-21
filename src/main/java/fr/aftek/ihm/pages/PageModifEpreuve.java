@@ -8,6 +8,7 @@ import fr.aftek.ihm.*;
 import fr.aftek.ihm.controleurs.ControleurModifEpreuve;
 
 public class PageModifEpreuve extends Page{
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     /**

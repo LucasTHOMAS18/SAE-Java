@@ -15,7 +15,6 @@ import fr.aftek.NomSport;
 import fr.aftek.Pays;
 import fr.aftek.Sport;
 import fr.aftek.SportCollectif;
-import java.sql.*;
 import java.util.*;
 /**
  * Classe DataProvider, permet de charger et sauvegarder les données des athlètes, pays et sports à partir d'une BD ou d'un fichier CSV

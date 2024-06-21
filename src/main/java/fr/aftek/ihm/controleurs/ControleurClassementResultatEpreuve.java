@@ -9,7 +9,6 @@ import fr.aftek.Athlete;
 import fr.aftek.Epreuve;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.FlagProvider;
-import fr.aftek.ihm.controleurs.ControleurClassementEpreuve.EpreuveLigne;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;

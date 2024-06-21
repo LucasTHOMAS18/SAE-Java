@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import fr.aftek.Pays;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurClassementPays;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 public class PageClassementPays extends Page{

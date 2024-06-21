@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Optional;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -15,7 +13,6 @@ import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;

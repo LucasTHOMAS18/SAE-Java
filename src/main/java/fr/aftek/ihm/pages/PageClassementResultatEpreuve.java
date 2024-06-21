@@ -1,13 +1,9 @@
 package fr.aftek.ihm.pages;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import fr.aftek.Epreuve;
 import fr.aftek.ihm.ApplicationJO;
-import fr.aftek.ihm.controleurs.ControleurClassementEpreuve;
 import fr.aftek.ihm.controleurs.ControleurClassementResultatEpreuve;
 import javafx.fxml.FXMLLoader;
 

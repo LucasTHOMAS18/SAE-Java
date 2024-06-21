@@ -2,7 +2,6 @@ package fr.aftek.ihm.controleurs;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import fr.aftek.Epreuve;
 import fr.aftek.Sport;
 import fr.aftek.ihm.*;
 import fr.aftek.ihm.controleurs.ControleurClassementEpreuve.EpreuveLigne;
-import fr.aftek.ihm.pages.PageClassementResultatEpreuve;
 import fr.aftek.ihm.pages.PageSelectionAthlete;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
@@ -19,7 +17,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
