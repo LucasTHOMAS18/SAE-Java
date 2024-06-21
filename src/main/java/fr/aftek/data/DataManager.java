@@ -269,6 +269,10 @@ public class DataManager {
         this.sportsCollectifs.remove(sportCollectif);
     }
 
+    public void removeEpreuve(Epreuve e){
+        this.epreuves.remove(e);
+    }
+
     /**
      * Récupère un pays à partir de son nom
      * @param nom le nom du pays

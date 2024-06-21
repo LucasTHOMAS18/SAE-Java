@@ -84,7 +84,6 @@ public class ControleurAdmin extends Controleur{
 
     @FXML
     private void ajouter() {
-        
     }
 
     @FXML
