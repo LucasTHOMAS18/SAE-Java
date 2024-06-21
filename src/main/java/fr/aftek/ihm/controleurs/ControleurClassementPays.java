@@ -1,5 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class ControleurClassementPays extends Controleur {
         this.application = appli;
     }
 
-    public void init(List<Pays> liste) {
+    public void init(Collection<Pays> liste) {
         pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
         pays.setComparator((o1, o2) -> o1.getAccessibleText().compareTo(o2.getAccessibleText()));
         or.setCellValueFactory(new PropertyValueFactory<>("or"));
@@ -42,8 +43,9 @@ public class ControleurClassementPays extends Controleur {
         total.setCellValueFactory(new PropertyValueFactory<>("total"));
 
         Map<String, int[]> medalCounts = new HashMap<>();
-
+        System.out.println(liste);
         for (Pays p : liste) {
+            System.out.println(p);
             String countryName = p.getNom();
             int[] medals = medalCounts.getOrDefault(countryName, new int[3]);
             

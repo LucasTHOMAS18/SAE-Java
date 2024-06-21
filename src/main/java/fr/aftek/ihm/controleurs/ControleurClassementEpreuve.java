@@ -1,6 +1,7 @@
 package fr.aftek.ihm.controleurs;
 
-import java.util.List;
+import java.sql.SQLException;
+import java.util.Collection;
 
 import fr.aftek.Epreuve;
 import fr.aftek.ihm.ApplicationJO;
@@ -11,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 
 public class ControleurClassementEpreuve extends Controleur {
     @FXML
@@ -23,16 +25,21 @@ public class ControleurClassementEpreuve extends Controleur {
     private TableColumn<EpreuveLigne, Character> sexe;
     @FXML
     private TableColumn<EpreuveLigne, Integer> nbAthletes;
+    @FXML
+    private HBox hBoxOrga;
+    private boolean orga;
 
-    public ControleurClassementEpreuve(ApplicationJO appli){
+    public ControleurClassementEpreuve(ApplicationJO appli, boolean orga){
         this.application = appli;
+        this.orga = orga;
     }
 
-    public void init(List<Epreuve> liste){
+    public void init(Collection<Epreuve> liste){
         sport.setCellValueFactory(new PropertyValueFactory<>("sport"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         nbAthletes.setCellValueFactory(new PropertyValueFactory<>("nbAthletes"));
+        hBoxOrga.setVisible(orga);
         table.setRowFactory( tv -> {
             TableRow<EpreuveLigne> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -56,10 +63,12 @@ public class ControleurClassementEpreuve extends Controleur {
 
     @FXML
     public void lancerEpreuve(){
-        EpreuveLigne el = table.getSelectionModel().getSelectedItem();
-        Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.nom, el.sport);
-        e.simuleEpreuve();
-        new PopUp<>(PopUpType.INFORMATION, "Simulation terminée !", "La simulation de l'épreuve " + e.getNom() + " est terminée").showAndWait();
+        if(selectionner()){
+            EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+            Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.nom, el.sport);
+            e.simuleEpreuve();
+            new PopUp<>(PopUpType.INFORMATION, "Simulation terminée !", "La simulation de l'épreuve " + e.getNom() + " est terminée").showAndWait();
+        }
     }
     @FXML
     public void lancerTout(){
@@ -70,7 +79,21 @@ public class ControleurClassementEpreuve extends Controleur {
     }
     @FXML
     public void saveEpreuve(){
+        try{
+            ApplicationJO.PROVIDER.saveSQL(application.getConnexionSQL());
+            new PopUp<>(PopUpType.INFORMATION, "Succès !", "Les données ont été sauvegardées").showAndWait();
+        }catch(SQLException e){
+            new PopUp<>(PopUpType.ERREUR, "Erreur ", "les données n'ont pas pu être sauvegardées: "+e.getMessage()).showAndWait();
+        }
+    }
 
+    private boolean selectionner(){
+        EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+        if(el == null){
+            new PopUp<>(PopUpType.INFORMATION, "Erreur", "Veuillez sélectionner une épreuve").showAndWait();
+            return false;
+        }
+        return true;
     }
 
     public static class EpreuveLigne{

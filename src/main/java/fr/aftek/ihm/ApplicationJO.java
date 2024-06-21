@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import fr.aftek.Athlete;
 import fr.aftek.Epreuve;
 import fr.aftek.Equipe;
-import fr.aftek.NomSport;
+import fr.aftek.Pays;
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
-import fr.aftek.ihm.pages.Menu;
+import fr.aftek.ihm.pages.PageMenu;
 import fr.aftek.ihm.pages.Page;
 import fr.aftek.ihm.pages.PageAdmin;
 import fr.aftek.ihm.pages.PageChoixSport;
 import fr.aftek.ihm.pages.PageClassementAthletes;
 import fr.aftek.ihm.pages.PageClassementEpreuve;
 import fr.aftek.ihm.pages.PageClassementEquipes;
+import fr.aftek.ihm.pages.PageClassementPays;
 import fr.aftek.ihm.pages.PageClassementResultatEpreuve;
 import fr.aftek.ihm.pages.PageConnexion;
 import fr.aftek.ihm.pages.PageModifier;
@@ -117,17 +117,6 @@ public class ApplicationJO extends Application{
         afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
     }
 
-    public void classementEpreuves() {
-        final Set<Epreuve> set = ApplicationJO.PROVIDER.getManager().getEpreuves();
-        final ApplicationJO application = this;
-        Task<PageClassementEpreuve> task = new Task<PageClassementEpreuve>() {
-            protected PageClassementEpreuve call() throws Exception {
-                return new PageClassementEpreuve(application,set);
-            };
-        };
-        afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
-    }
-
     public void choixSport() throws IOException{
         PageChoixSport choixSport = new PageChoixSport(this);
         stage.getScene().setRoot(choixSport);
@@ -138,6 +127,17 @@ public class ApplicationJO extends Application{
         PageAdmin admin = new PageAdmin(this);
         stage.getScene().setRoot(admin);
         this.historique.add(admin);
+    }
+
+    public void classementEpreuves() {
+        final Set<Epreuve> set = ApplicationJO.PROVIDER.getManager().getEpreuves();
+        final ApplicationJO application = this;
+        Task<PageClassementEpreuve> task = new Task<PageClassementEpreuve>() {
+            protected PageClassementEpreuve call() throws Exception {
+                return new PageClassementEpreuve(application,set);
+            };
+        };
+        afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
     }
 
     public void afficherResultatsEpreuve(Epreuve e) {
@@ -239,6 +239,10 @@ public class ApplicationJO extends Application{
 
     public Stage getStage() {
         return stage;
+    }
+
+    public ConnexionMySQL getConnexionSQL() {
+        return connexion;
     }
 
     /**

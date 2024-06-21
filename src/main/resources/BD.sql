@@ -98,11 +98,5 @@ GRANT USAGE ON JO2024.* TO Admin;
 GRANT SELECT, INSERT, UPDATE, DELETE ON JO2024.* TO Organisateur;
 GRANT USAGE ON JO2024.* TO Organisateur;
 
-GRANT SELECT ON JO2024.Pays TO Journaliste;
-GRANT SELECT ON JO2024.Sport TO Journaliste;
-GRANT SELECT ON JO2024.Equipe TO Journaliste;
-GRANT SELECT ON JO2024.Epreuve TO Journaliste;
-GRANT SELECT ON JO2024.Athlete TO Journaliste;
-GRANT SELECT ON JO2024.Participe TO Journaliste;
-GRANT SELECT ON JO2024.ParticipeCollectif TO Journaliste;
+GRANT SELECT ON JO2024.* TO Journaliste;
 GRANT USAGE ON JO2024.* TO Journaliste;

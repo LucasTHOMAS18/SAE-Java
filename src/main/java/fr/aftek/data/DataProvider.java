@@ -108,7 +108,7 @@ public class DataProvider {
         ResultSet equipes = st.executeQuery("SELECT nomAthlete, prenomAthlete, nomEquipe, nomPays FROM Equipe natural left join Athlete");
         while (equipes.next()) {
             Athlete a = manager.getAthlete(equipes.getString(1), equipes.getString(2));
-            manager.addEquipe(new Equipe(equipes.getString(3), manager.getPays(equipes.getString(3)))).ajouteAthlete(a);;
+            manager.addEquipe(new Equipe(equipes.getString(3), null, manager.getPays(equipes.getString(3)))).ajouteAthlete(a);;
         }
 
         ResultSet sports = st.executeQuery("SELECT * FROM Sport WHERE individuel=true");

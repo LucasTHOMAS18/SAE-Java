@@ -35,11 +35,10 @@ public class ControleurMenu extends Controleur {
     }
 
     public void afficherPays() {
-        // TODO
+        application.classementPays();
     }
     
     public void afficherAdmin() throws IOException {
-        // TODO
         application.admin();
     }
 }

@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import fr.aftek.ihm.ApplicationJO;
+
 public class Equipe {
     private String nom;
     private Pays pays;
     private List<Athlete> athletes;
+    private Sport sport;
 
     /**
      * Constructeur pour initialiser une équipe avec un pays.
      *
      * @param pays Le pays de l'équipe.
      */
-    public Equipe(Pays pays) {
+    public Equipe(Sport sport, Pays pays) {
         this.nom = pays.getNom();
         this.pays = pays;
+        this.sport = sport;
         this.athletes = new ArrayList<Athlete>();
     }
 
@@ -25,9 +29,10 @@ public class Equipe {
      *
      * @param pays Le nom du pays de l'équipe.
      */
-    public Equipe(String pays){
-        this.pays = new Pays(pays);
-        this.nom = this.pays.getNom();
+    public Equipe(String sport, String pays){
+        this.pays = ApplicationJO.PROVIDER.getManager().getPays(pays);
+        this.sport = ApplicationJO.PROVIDER.getManager().getSport(sport);
+        this.nom = "Equipe de "+this.pays.getNom();
         this.athletes = new ArrayList<Athlete>();
     }
 
@@ -37,8 +42,9 @@ public class Equipe {
      * @param nom Le nom de l'équipe.
      * @param pays Le pays de l'équipe.
      */
-    public Equipe(String nom, Pays pays) {
+    public Equipe(String nom, String sport, Pays pays) {
         this.nom = nom;
+        this.sport = ApplicationJO.PROVIDER.getManager().getSport(sport);
         this.pays = pays;
         this.athletes = new ArrayList<Athlete>();
     }
@@ -86,7 +92,7 @@ public class Equipe {
      * @return Le sport de l'équipe.
      */
     public Sport getSport() {
-        return athletes.get(0).getSport();
+        return sport;
     }
 
     @Override

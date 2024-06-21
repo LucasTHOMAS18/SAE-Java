@@ -82,6 +82,7 @@ public class ControleurConnexion extends Controleur {
         } catch (SQLException e) {
             System.out.println("Erreur de connexion à la base de données : " + e.getMessage());
             new PopUp<ButtonType>(PopUpType.ERREUR,"Erreur !", "La connexion à la base de données a échouée","La connexion à la base de données a échouée.\n"+e.getMessage()).showAndWait();
+            return;
         }
 
         if (connexion.isConnecte()) {
