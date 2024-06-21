@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import fr.aftek.Athlete;
 import fr.aftek.Pays;
+import fr.aftek.Sport;
 import fr.aftek.ihm.*;
 import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp;
@@ -95,31 +96,56 @@ public class ControleurModifAthlete extends Controleur {
         }
     }
     @FXML
-    public void modifierStats(){
-        if(selectionner()){
-            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier nom", "Quel nom voulez-vous donner à cet athlète?");
+    public void modifierStats() {
+        if (selectionner()) {
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier stats", "Quel stat voulez-vous donner à cet athlète? (Force;Agilité;Endurance)");
             popUp.showAndWait();
-            if(!popUp.getTf().getText().isBlank()){
-                AthleteLigne al = table.getSelectionModel().getSelectedItem();
-                Athlete a = ApplicationJO.PROVIDER.getManager().getAthlete(al.getNom(), al.getPrenom());
-                a.setNom(popUp.getTf().getText());
-                init(liste);
+            if (!popUp.getTf().getText().isBlank()) {
+                String[] stats = popUp.getTf().getText().split(";");
+                if (stats.length == 3) {
+                    try {
+                        int force = Integer.parseInt(stats[0]);
+                        int agilite = Integer.parseInt(stats[1]);
+                        int endurance = Integer.parseInt(stats[2]);
+                        
+                        AthleteLigne al = table.getSelectionModel().getSelectedItem();
+                        Athlete a = ApplicationJO.PROVIDER.getManager().getAthlete(al.getNom(), al.getPrenom());
+                        a.setForce(force);
+                        a.setAgilite(agilite);
+                        a.setEndurance(endurance);
+                        init(liste);
+                    } catch (NumberFormatException e) {
+                        popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Veuillez entrer des valeurs numériques pour les statistiques.");
+                        popUp.showAndWait();
+                    }
+                } else {
+                    popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Veuillez entrer trois valeurs séparées par des points-virgules.");
+                    popUp.showAndWait();
+                }
             }
         }
     }
     @FXML
     public void modifierSport(){
         if(selectionner()){
-            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier nom", "Quel nom voulez-vous donner à cet athlète?");
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier Sport", "Quel sport voulez-vous attribuer à cet athlète?");
             popUp.showAndWait();
             if(!popUp.getTf().getText().isBlank()){
                 AthleteLigne al = table.getSelectionModel().getSelectedItem();
                 Athlete a = ApplicationJO.PROVIDER.getManager().getAthlete(al.getNom(), al.getPrenom());
-                a.setNom(popUp.getTf().getText());
+                Sport s = ApplicationJO.PROVIDER.getManager().getSport(popUp.getTf().getText());
+                if (s == null){
+                    popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Ce sport n'existe pas");
+                    popUp.showAndWait();
+                    return;
+
+                }
+                a.setSport(s);
                 init(liste);
             }
         }
     }
+
     @FXML
     public void supprimerAthlete(){
         if(selectionner()){
