@@ -148,6 +148,18 @@ public class Epreuve {
         return sport;
     }
 
+    public void setNom(String newNom) {
+        this.nom = newNom;
+    }
+
+    public void setSport(Sport newSport) {
+        this.sport = newSport;
+    }
+
+    public void setSexe(char newSexe) {
+        this.sexe = newSexe;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(nom, classement, participants, sport, sexe);

@@ -254,6 +254,14 @@ public class DataManager {
     }
 
     /**
+     * Supprime une épreuve de la liste des épreuves
+     * @param epreuve l'épreuve à supprimer
+     */
+    public void removeEpreuve(Epreuve epreuve) {
+        this.sports.remove(epreuve);
+    }
+
+    /**
      * Supprime un sport collectif de la liste des sports collectifs
      * @param sportCollectif le sport collectif à supprimer
      */

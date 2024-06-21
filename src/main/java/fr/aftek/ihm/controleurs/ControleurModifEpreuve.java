@@ -2,7 +2,9 @@ package fr.aftek.ihm.controleurs;
 import java.util.Collection;
 import java.util.List;
 
+import fr.aftek.Athlete;
 import fr.aftek.Epreuve;
+import fr.aftek.Sport;
 import fr.aftek.ihm.*;
 import fr.aftek.ihm.controleurs.ControleurClassementEpreuve.EpreuveLigne;
 import fr.aftek.ihm.pages.PopUp;
@@ -24,6 +26,7 @@ public class ControleurModifEpreuve extends Controleur {
     private TableColumn<EpreuveLigne, Character> sexe;
     @FXML
     private TableColumn<EpreuveLigne, Integer> nbAthletes;
+    private Collection<Epreuve> liste;
 
     public ControleurModifEpreuve(ApplicationJO application) {
         this.application = application;
@@ -41,21 +44,75 @@ public class ControleurModifEpreuve extends Controleur {
     }
 
     public void modifierNom(){
-
+        if(selectionner()){
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier nom", "Quel nom voulez-vous donner à cette Epreuve?");
+            popUp.showAndWait();
+            if(!popUp.getTf().getText().isBlank()){
+                EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+                Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.getNom(), el.getSport());
+                e.setNom(popUp.getTf().getText());
+                init(liste);
+            }
+        } 
     }
+
     public void modifierSport(){
-
+        if(selectionner()){
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier sport", "Quel sport voulez-vous attribuer à cette Epreuve?");
+            popUp.showAndWait();
+            if(!popUp.getTf().getText().isBlank()){
+                EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+                Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.getNom(), el.getSport());
+                Sport s = ApplicationJO.PROVIDER.getManager().getSport(popUp.getTf().getText());
+                if (s == null){
+                    popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Ce sport n'existe pas");
+                    popUp.showAndWait();
+                    return;
+                }
+                e.setSport(s);
+                init(liste);
+            }
+        }
     }
-    public void modifierSexe(){
-
+    
+    public void modifierSexe() {
+        if (selectionner()) {
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier sexe", "Quel sexe voulez-vous attribuer à cette Epreuve? (H/F)");
+            popUp.showAndWait();
+            if (!popUp.getTf().getText().isBlank()) {
+                EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+                Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.getNom(), el.getSport());
+                char sexe = popUp.getTf().getText().charAt(0);
+                if (sexe == 'H' || sexe == 'F') {
+                    e.setSexe(sexe);
+                    init(liste);
+                } else {
+                    popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Sexe invalide. Veuillez entrer 'H' pour Homme ou 'F' pour Femme.");
+                    popUp.showAndWait();
+                }
+            }
+        }
     }
-    public void ajouterAthlete(){
-
+    public void ajouterAthlete() {
     }
-    public void supprimerAthlete(){
-        
+    public void supprimerAthlete() {
     }
-    public void supprimerEpreuve(){
+    public void supprimerEpreuve() {
+        if (selectionner()) {
+            EpreuveLigne el = table.getSelectionModel().getSelectedItem();
+            Epreuve e = ApplicationJO.PROVIDER.getManager().getEpreuve(el.getNom(), el.getSport());
+            ApplicationJO.PROVIDER.getManager().removeEpreuve(e); 
+            liste.remove(e);
+            init(liste);
+        }
+    }
 
+    private boolean selectionner(){
+        EpreuveLigne al = table.getSelectionModel().getSelectedItem();
+        if(al == null){
+            new PopUp<>(PopUpType.INFORMATION, "Erreur", "Veuillez sélectionner une épreuve").showAndWait();
+            return false;
+        }
+        return true;
     }
 }
