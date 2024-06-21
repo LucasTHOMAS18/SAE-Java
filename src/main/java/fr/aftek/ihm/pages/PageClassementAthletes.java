@@ -1,6 +1,7 @@
 package fr.aftek.ihm.pages;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class PageClassementAthletes extends Page {
      * @param application L'application principale pour accéder aux fonctionnalités globales.
      * @throws IOException Si une erreur survient lors du chargement du fichier FXML.
      */
-    public PageClassementAthletes(ApplicationJO application, List<Athlete> liste) throws IOException {
+    public PageClassementAthletes(ApplicationJO application, Collection<Athlete> liste) throws IOException {
         
         // Charge le fichier FXML pour la page de choix de sport et initialise le contrôleur
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClassementAthlete.fxml"));
@@ -33,10 +34,6 @@ public class PageClassementAthletes extends Page {
         loader.setRoot(this);
         loader.load();
         controleurClassementAthlete.init(liste);
-    }
-
-    public PageClassementAthletes(ApplicationJO application, Set<Athlete> set) throws IOException {
-        this(application, set.stream().collect(Collectors.toList()));
     }
 
     public PageClassementAthletes(ApplicationJO application) throws IOException{

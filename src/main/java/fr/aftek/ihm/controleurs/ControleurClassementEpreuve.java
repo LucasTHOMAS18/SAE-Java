@@ -73,7 +73,7 @@ public class ControleurClassementEpreuve extends Controleur {
 
     }
 
-    public class EpreuveLigne{
+    public static class EpreuveLigne{
         public String sport;
         public String nom;
         public Character sexe;

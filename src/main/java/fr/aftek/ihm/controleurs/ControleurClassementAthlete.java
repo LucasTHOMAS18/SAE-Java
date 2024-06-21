@@ -1,5 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
+import java.util.Collection;
 import java.util.List;
 
 import fr.aftek.Athlete;
@@ -34,7 +35,7 @@ public class ControleurClassementAthlete extends Controleur {
         this.application = appli;
     }
 
-    public void init(List<Athlete> liste){
+    public void init(Collection<Athlete> liste){
         pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
         pays.setComparator((o1, o2) -> o1.getAccessibleText().compareTo(o2.getAccessibleText()));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -49,7 +50,7 @@ public class ControleurClassementAthlete extends Controleur {
         }
     }
 
-    public class AthleteLigne {
+    public static class AthleteLigne {
         public ImageView pays;
         public String nom;
         public String prenom;
