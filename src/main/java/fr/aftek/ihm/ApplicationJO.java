@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import fr.aftek.Athlete;
 import fr.aftek.Epreuve;
 import fr.aftek.Equipe;
+import fr.aftek.NomSport;
 import fr.aftek.Pays;
 import fr.aftek.data.ConnexionMySQL;
 import fr.aftek.data.DataProvider;
@@ -54,7 +56,7 @@ public class ApplicationJO extends Application{
         Epreuve ep = PROVIDER.getManager().createEpreuve("Athlètisme", 'F', PROVIDER.getManager().getSport(NomSport.ATHLETISME));
         ep.ajouteAthletes(athletes);
 
-        Equipe eq = new Equipe("L'équipe trop bien", PROVIDER.getManager().getPays("France"));
+        Equipe eq = new Equipe("L'équipe trop bien", NomSport.VOLLEY_BALL.getNom(), PROVIDER.getManager().getPays("France"));
         eq.ajouteAthlete(athletes.get(0));
         eq.ajouteAthlete(athletes.get(1));
         PROVIDER.getManager().addEquipe(eq);
@@ -90,7 +92,7 @@ public class ApplicationJO extends Application{
      */
     public void menu() throws IOException, SQLException {
         System.out.println("Connecté en tant que " + connexion.getRole());
-        Menu menu = new Menu(this, connexion.getRole().equals("admin"));
+        PageMenu menu = new PageMenu(this, connexion.getRole().equals("admin"));
         stage.getScene().setRoot(menu);
         this.historique.add(menu);
     }
@@ -134,7 +136,7 @@ public class ApplicationJO extends Application{
         final ApplicationJO application = this;
         Task<PageClassementEpreuve> task = new Task<PageClassementEpreuve>() {
             protected PageClassementEpreuve call() throws Exception {
-                return new PageClassementEpreuve(application,set);
+                return new PageClassementEpreuve(application,set,connexion.getRole().equals("admin") || connexion.getRole().equals("organisateur"));
             };
         };
         afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
