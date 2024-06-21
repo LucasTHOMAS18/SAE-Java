@@ -99,6 +99,16 @@ public class DataManager {
         return pays;
     }
 
+    /**
+     * Ajoute une epreuve à la liste des epreuves
+     * @param epreuve l'epreuve à ajouter
+     * @return l'epreuve ajoutée
+     */
+    public Epreuve addEpreuve(Epreuve epreuve) {
+        this.epreuves.add(epreuve);
+        return epreuve;
+    }
+
     public List<Epreuve> getEpreuvesByPays(String nomPays) {
         List<Epreuve> epreuvesPays = new ArrayList<>();
         Pays pays = getPays(nomPays);

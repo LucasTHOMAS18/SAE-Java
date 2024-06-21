@@ -2,7 +2,6 @@ package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.stream.Collectors;
 
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.Controleur;

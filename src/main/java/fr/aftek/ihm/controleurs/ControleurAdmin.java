@@ -5,9 +5,8 @@ import java.util.Optional;
 
 import fr.aftek.data.DataProvider;
 import fr.aftek.ihm.ApplicationJO;
-import fr.aftek.ihm.pages.PageClassementEquipes;
-import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PageModifier.TypeModification;
+import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -84,7 +83,12 @@ public class ControleurAdmin extends Controleur{
 
     @FXML
     private void ajouter() {
-        
+        String text = ((RadioButton) ajout.getSelectedToggle()).getText();
+        if(text.equals("Epreuve")){
+            application.ajouter(TypeModification.EPREUVE);
+        }else if(text.equals("Athlete")){
+            application.ajouter(TypeModification.ATHLETE);
+        }
     }
 
     @FXML

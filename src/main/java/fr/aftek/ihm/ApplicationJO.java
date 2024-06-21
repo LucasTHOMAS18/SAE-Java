@@ -24,8 +24,8 @@ import fr.aftek.ihm.pages.PageClassementEquipes;
 import fr.aftek.ihm.pages.PageClassementResultatEpreuve;
 import fr.aftek.ihm.pages.PageConnexion;
 import fr.aftek.ihm.pages.PageModifier;
-import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PageModifier.TypeModification;
+import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -155,6 +155,62 @@ public class ApplicationJO extends Application{
             };
         };
         afficherPage(task, "Chargement des données", "Veuillez patienter...");
+    }
+
+    public void ajouter(TypeModification type) {
+        // Get Sport
+        PopUp<String> popUpSport = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le sport");
+        popUpSport.showAndWait();
+        String resSport = popUpSport.getTf().getText();
+
+        while (PROVIDER.getManager().getSport(NomSport.getNomSport(resSport)) == null) {
+            new PopUp<>(PopUpType.ERREUR, "Erreur", "Le sport n'existe pas").showAndWait();
+            popUpSport = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le sport");
+            popUpSport.showAndWait();
+            resSport = popUpSport.getTf().getText();
+        }
+
+        // Get sexe
+        PopUp<String> popUpSexe = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le sexe de l'athlète (M/F)");
+        popUpSexe.showAndWait();
+        String resSexe = popUpSexe.getTf().getText();
+
+        while (resSexe.equals("M") && resSexe.equals("F")) {
+            new PopUp<>(PopUpType.ERREUR, "Erreur", "Le sexe n'est pas valide").showAndWait();
+            popUpSexe = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le sexe de l'athlète (M/F)");
+            popUpSexe.showAndWait();
+            resSexe = popUpSexe.getTf().getText();
+        }
+
+        // Get nom
+        PopUp<String> popUpNom = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le nom de l'élément à ajouter");
+        popUpNom.showAndWait();
+        String resNom = popUpNom.getTf().getText();
+
+        if (type.equals(TypeModification.ATHLETE)) {
+            // Get prenom
+            PopUp<String> popUpPrenom = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le prénom de l'athlète");
+            popUpPrenom.showAndWait();
+            String resPrenom = popUpPrenom.getTf().getText();
+
+            // Get Pays
+            PopUp<String> popUpPays = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le pays de l'athlète");
+            popUpPays.showAndWait();
+            String resPays = popUpPays.getTf().getText();
+
+            while (PROVIDER.getManager().getPays(resPays) == null) {
+                new PopUp<>(PopUpType.ERREUR, "Erreur", "Le pays n'existe pas").showAndWait();
+                popUpPays = new PopUp<>(PopUpType.DEMANDER, "Ajout", "Veuillez saisir le pays de l'athlète");
+                popUpPays.showAndWait();
+                resPays = popUpPays.getTf().getText();
+            }
+
+            Athlete a = new Athlete(resNom, resPrenom, resSexe.charAt(0), PROVIDER.getManager().getPays(resPays), PROVIDER.getManager().getSport(NomSport.valueOf(resSport.toUpperCase())));
+            PROVIDER.getManager().addAthlete(a);
+        } else {
+            Epreuve e = new Epreuve(resNom, resSexe.charAt(0), PROVIDER.getManager().getSport(NomSport.valueOf(resSport.toUpperCase())));
+            PROVIDER.getManager().addEpreuve(e);
+        }
     }
 
     public <T extends Page> void afficherPage(Task<T> task, String titre, String header){
