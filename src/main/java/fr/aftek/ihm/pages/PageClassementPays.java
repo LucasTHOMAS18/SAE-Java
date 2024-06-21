@@ -2,9 +2,6 @@ package fr.aftek.ihm.pages;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import fr.aftek.Pays;
 import fr.aftek.ihm.ApplicationJO;
