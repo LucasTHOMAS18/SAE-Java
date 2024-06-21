@@ -4,7 +4,6 @@ import java.io.IOException;
 import fr.aftek.ihm.ApplicationJO;
 import fr.aftek.ihm.controleurs.ControleurConnexion;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 /**
  * Classe PageConnexion qui étend BorderPane.

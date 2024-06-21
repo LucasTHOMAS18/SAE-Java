@@ -53,9 +53,6 @@ public class ApplicationJO extends Application{
         List<Athlete> athletes = PROVIDER.getManager().athletes.stream().collect(Collectors.toList());
         Epreuve ep = PROVIDER.getManager().createEpreuve("Athlètisme", 'F', PROVIDER.getManager().getSport(NomSport.ATHLETISME));
         ep.ajouteAthletes(athletes);
-        /*ep.ajouteAthlete(athletes.get(0));
-        ep.ajouteAthlete(athletes.get(1));
-        ep.ajouteAthlete(athletes.get(2));*/
         // Création de la scène
         Page root = new PageConnexion(this);
         this.historique.add(root);
@@ -64,7 +61,6 @@ public class ApplicationJO extends Application{
         stage.setScene(scene);
         stage.setTitle("Jeux IUT'Olympiques"); // Titre de la fenêtre
         stage.setResizable(false); // Empêche le redimensionnement de la fenêtre
-        
         stage.show(); // Affiche la fenêtre
         // Définit l'action à réaliser lors de la fermeture de la fenêtre
         stage.setOnCloseRequest((e)->System.exit(0));
@@ -247,7 +243,7 @@ public class ApplicationJO extends Application{
         launch(ApplicationJO.class);
     }
 
-    public void retourAccueil() {
+    public void retour() {
         if(this.historique.size() > 1){
             this.stage.getScene().setRoot(this.historique.get(this.historique.size()-2));
             this.historique.remove(this.historique.size()-1);

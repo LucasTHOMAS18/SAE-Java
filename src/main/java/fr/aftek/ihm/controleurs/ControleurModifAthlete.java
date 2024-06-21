@@ -1,20 +1,17 @@
 package fr.aftek.ihm.controleurs;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import fr.aftek.Athlete;
 import fr.aftek.Pays;
 import fr.aftek.Sport;
 import fr.aftek.ihm.*;
-import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp;
 import fr.aftek.ihm.pages.PopUp.PopUpType;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 

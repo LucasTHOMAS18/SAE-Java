@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 public class PageModifier extends Page{
 
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     public PageModifier(ApplicationJO application, TypeModification type) throws IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {

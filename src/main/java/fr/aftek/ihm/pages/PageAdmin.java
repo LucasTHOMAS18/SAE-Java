@@ -1,16 +1,14 @@
 package fr.aftek.ihm.pages;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
 import fr.aftek.ihm.ApplicationJO;
-import fr.aftek.ihm.pages.Page;
 import fr.aftek.ihm.controleurs.ControleurAdmin;
-import fr.aftek.ihm.controleurs.ControlleurBienvenue;
 
 public class PageAdmin extends Page {
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     public PageAdmin(ApplicationJO application) throws IOException {

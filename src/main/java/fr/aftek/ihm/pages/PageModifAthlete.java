@@ -1,7 +1,6 @@
 package fr.aftek.ihm.pages;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
@@ -14,6 +13,7 @@ import fr.aftek.ihm.controleurs.ControleurModifAthlete;
  */
 public class PageModifAthlete extends Page {
     
+    @SuppressWarnings("unused")
     private ApplicationJO application;
 
     /**

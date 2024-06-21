@@ -7,6 +7,6 @@ public class Controleur {
     protected ApplicationJO application;
     @FXML
     public void retourAccueil(){
-        application.retourAccueil();
+        application.retour();
     }
 }

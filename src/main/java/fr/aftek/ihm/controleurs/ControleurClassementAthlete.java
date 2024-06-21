@@ -1,7 +1,6 @@
 package fr.aftek.ihm.controleurs;
 
 import java.util.Collection;
-import java.util.List;
 
 import fr.aftek.Athlete;
 import fr.aftek.ihm.ApplicationJO;
