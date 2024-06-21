@@ -1,11 +1,16 @@
-.table-view .column-header {
-    -fx-background-color: transparent;
-}
 .table-view {
     -fx-background-radius: 16px;
     -fx-background-color:  #F4F4F4
 }
-/*
-* {
+
+.table-view .column-header-background {
     -fx-background-color: transparent;
-}*/
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    color: red;
+    -fx-background-color: #F4F4F4;
+    -fx-background-radius: 16px;
+}

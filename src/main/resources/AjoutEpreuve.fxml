@@ -44,13 +44,13 @@
    <right>
       <VBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="256.0" prefWidth="167.0" spacing="20.0" style="-fx-background-color: black;">
+            <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="256.0" prefWidth="167.0" spacing="20.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 16px;">
                <children>
-                  <Label text="Ajouter:" textFill="WHITE">
+                  <Label text="Ajouter:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterNom" style="-fx-background-color: #ffffff;" text="Nom" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterNom" style="-fx-background-color: #ffffff; -fx-background-radius: 10px;" text="Nom" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -58,7 +58,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterSport" style="-fx-background-color: ffffff;" text="Sport" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterSport" style="-fx-background-color: ffffff; -fx-background-radius: 10px;" text="Sport" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -66,7 +66,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterSexe" style="-fx-background-color: ffffff;" text="Sexe" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterSexe" style="-fx-background-color: ffffff; -fx-background-radius: 10px;" text="Sexe" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -82,7 +82,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <Button fx:id="btnAjouterEpreuve" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterEpreuve" style="-fx-background-color: #5B8930; -fx-background-radius: 5px; -fx-text-fill: black;" text="Ajouter">
+            <Button fx:id="btnAjouterEpreuve" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ajouterEpreuve" style="-fx-background-color: black; -fx-background-radius: 50px; -fx-text-fill: white;" text="Ajouter">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -93,7 +93,7 @@
       </VBox>
    </right>
    <center>
-      <TableView fx:id="tableNomAthlete" maxWidth="-Infinity" prefHeight="512.0" prefWidth="591.0" stylesheets="@table.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableNomAthlete" maxWidth="-Infinity" prefHeight="512.0" prefWidth="591.0" style="-fx-background-radius: 16px;" stylesheets="@table.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nom" editable="false" maxWidth="1.7976931348623157E308" prefWidth="212.0" text="Nom" />
             <TableColumn fx:id="sport" editable="false" maxWidth="1.7976931348623157E308" prefWidth="268.0" text="Sport" />
