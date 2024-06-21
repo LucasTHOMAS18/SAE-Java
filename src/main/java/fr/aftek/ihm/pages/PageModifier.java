@@ -30,9 +30,9 @@ public class PageModifier extends Page{
         loader.setRoot(this);
         loader.load();
         if(type == TypeModification.ATHLETE){
-            ((ControleurModifAthlete) controleur).init(ApplicationJO.PROVIDER.getManager().getAthletes().stream().collect(Collectors.toList()));
+            ((ControleurModifAthlete) controleur).init(ApplicationJO.PROVIDER.getManager().getAthletes());
         }else{
-            
+            ((ControleurModifEpreuve) controleur).init(ApplicationJO.PROVIDER.getManager().getEpreuves());
         }
     }
     

@@ -1,8 +1,10 @@
 package fr.aftek.ihm.controleurs;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 import fr.aftek.Athlete;
+import fr.aftek.Pays;
 import fr.aftek.ihm.*;
 import fr.aftek.ihm.pages.PageModifier.TypeModification;
 import fr.aftek.ihm.pages.PopUp;
@@ -26,13 +28,13 @@ public class ControleurModifAthlete extends Controleur {
     private TableColumn<AthleteLigne, String> prenom;
     @FXML
     private TableColumn<AthleteLigne, String> sport;
-    private List<Athlete> liste;
+    private Collection<Athlete> liste;
 
     public ControleurModifAthlete(ApplicationJO application) {
         this.application = application;
     }
 
-    public void init(List<Athlete> liste){
+    public void init(Collection<Athlete> liste){
         this.liste = liste;
         table.getItems().clear();
         pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
@@ -75,12 +77,19 @@ public class ControleurModifAthlete extends Controleur {
     @FXML
     public void modifierPays(){
         if(selectionner()){
-            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier nom", "Quel nom voulez-vous donner à cet athlète?");
+            PopUp<String> popUp = new PopUp<>(PopUpType.DEMANDER, "Modifier pays", "Quel pays voulez-vous donner à cet athlète?");
             popUp.showAndWait();
             if(!popUp.getTf().getText().isBlank()){
                 AthleteLigne al = table.getSelectionModel().getSelectedItem();
                 Athlete a = ApplicationJO.PROVIDER.getManager().getAthlete(al.getNom(), al.getPrenom());
-                a.setNom(popUp.getTf().getText());
+                Pays p = ApplicationJO.PROVIDER.getManager().getPays(popUp.getTf().getText());
+                if(p == null){
+                    popUp = new PopUp<>(PopUpType.ERREUR, "Erreur", "Ce pays n'existe pas");
+                    popUp.showAndWait();
+                    return;
+                }
+                a.setPays(p);
+                p.ajouteAthlete(a);
                 init(liste);
             }
         }
@@ -145,9 +154,6 @@ public class ControleurModifAthlete extends Controleur {
             this.nom = nom;
             this.prenom = prenom;
             this.pays = new ImageView(FlagProvider.getFlag(nomPays));
-            this.pays.setAccessibleHelp(nomPays);
-            this.pays.setAccessibleText(nomPays);
-            Tooltip.install(this.pays, new Tooltip(nomPays));
             this.sport = sport;
         }
         public String getNom() {

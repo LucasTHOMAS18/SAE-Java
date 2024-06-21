@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import fr.aftek.Athlete;
@@ -51,15 +50,15 @@ public class ApplicationJO extends Application{
         // Connexion à la base de données
         this.connexion = new ConnexionMySQL();
         PROVIDER.loadCSV(getClass().getClassLoader().getResource("donnees.csv").getFile());
-        Epreuve ep = PROVIDER.getManager().createEpreuve("Athlètisme", 'F', PROVIDER.getManager().getSport(NomSport.ATHLETISME));
         List<Athlete> athletes = PROVIDER.getManager().athletes.stream().collect(Collectors.toList());
-        ep.ajouteAthlete(athletes.get(0));
+        Epreuve ep = PROVIDER.getManager().createEpreuve("Athlètisme", 'F', PROVIDER.getManager().getSport(NomSport.ATHLETISME));
+        ep.ajouteAthletes(athletes);
+        /*ep.ajouteAthlete(athletes.get(0));
         ep.ajouteAthlete(athletes.get(1));
-        ep.ajouteAthlete(athletes.get(2));
+        ep.ajouteAthlete(athletes.get(2));*/
         // Création de la scène
         Page root = new PageConnexion(this);
         this.historique.add(root);
-        System.out.println(PROVIDER.getManager().getAthletes().size());
         this.scene = new Scene(root, 900, 600);
         this.stage = stage;
         stage.setScene(scene);
@@ -122,7 +121,6 @@ public class ApplicationJO extends Application{
     }
 
     public void admin() throws IOException {
-        System.out.println("hahaha");
         PageAdmin admin = new PageAdmin(this);
         stage.getScene().setRoot(admin);
         this.historique.add(admin);
