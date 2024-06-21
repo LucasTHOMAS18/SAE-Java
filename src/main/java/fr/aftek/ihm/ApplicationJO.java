@@ -89,6 +89,7 @@ public class ApplicationJO extends Application{
      * @throws SQLException Si une erreur SQL survient
      */
     public void menu() throws IOException, SQLException {
+        System.out.println("Connecté en tant que " + connexion.getRole());
         Menu menu = new Menu(this, connexion.getRole().equals("admin"));
         stage.getScene().setRoot(menu);
         this.historique.add(menu);
