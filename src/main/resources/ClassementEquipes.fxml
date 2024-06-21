@@ -19,7 +19,6 @@
               <columns>
                 <TableColumn fx:id="pays" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Pays" />
                 <TableColumn fx:id="nom" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Nom" />
-                  <TableColumn fx:id="prenom" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Prénom" />
                   <TableColumn fx:id="sport" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Sport" />
                   <TableColumn fx:id="or" editable="false" maxWidth="80.0" prefWidth="200.0" text="Or" />
                   <TableColumn fx:id="argent" editable="false" maxWidth="80.0" prefWidth="200.0" text="Arg." />
@@ -50,7 +49,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Classement des athlètes" wrappingWidth="631.953125">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Classement des équipes" wrappingWidth="631.953125">
                <font>
                   <Font size="32.0" />
                </font>

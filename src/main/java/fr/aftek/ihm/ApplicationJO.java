@@ -53,6 +53,12 @@ public class ApplicationJO extends Application{
         List<Athlete> athletes = PROVIDER.getManager().athletes.stream().collect(Collectors.toList());
         Epreuve ep = PROVIDER.getManager().createEpreuve("Athlètisme", 'F', PROVIDER.getManager().getSport(NomSport.ATHLETISME));
         ep.ajouteAthletes(athletes);
+
+        Equipe eq = new Equipe("L'équipe trop bien", PROVIDER.getManager().getPays("France"));
+        eq.ajouteAthlete(athletes.get(0));
+        eq.ajouteAthlete(athletes.get(1));
+        PROVIDER.getManager().addEquipe(eq);
+
         // Création de la scène
         Page root = new PageConnexion(this);
         this.historique.add(root);
@@ -99,12 +105,23 @@ public class ApplicationJO extends Application{
         afficherPage(task, "Création du classement des athlètes", "Veuillez patienter...");
     }
 
-    public void classementEquipes() throws IOException{
+    public void classementEquipes() {
         final Set<Equipe> set = ApplicationJO.PROVIDER.getManager().getEquipes();
         final ApplicationJO application = this;
         Task<PageClassementEquipes> task = new Task<PageClassementEquipes>() {
             protected PageClassementEquipes call() throws Exception {
                 return new PageClassementEquipes(application,set);
+            };
+        };
+        afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
+    }
+
+    public void classementEpreuves() {
+        final Set<Epreuve> set = ApplicationJO.PROVIDER.getManager().getEpreuves();
+        final ApplicationJO application = this;
+        Task<PageClassementEpreuve> task = new Task<PageClassementEpreuve>() {
+            protected PageClassementEpreuve call() throws Exception {
+                return new PageClassementEpreuve(application,set);
             };
         };
         afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
@@ -120,17 +137,6 @@ public class ApplicationJO extends Application{
         PageAdmin admin = new PageAdmin(this);
         stage.getScene().setRoot(admin);
         this.historique.add(admin);
-    }
-
-    public void classementEpreuves() {
-        final Set<Epreuve> set = ApplicationJO.PROVIDER.getManager().getEpreuves();
-        final ApplicationJO application = this;
-        Task<PageClassementEpreuve> task = new Task<PageClassementEpreuve>() {
-            protected PageClassementEpreuve call() throws Exception {
-                return new PageClassementEpreuve(application,set);
-            };
-        };
-        afficherPage(task, "Création du classement des Equipes", "Veuillez patienter...");
     }
 
     public void afficherResultatsEpreuve(Epreuve e) {
