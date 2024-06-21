@@ -15,7 +15,7 @@
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="64.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="300.0" prefWidth="865.0" stylesheets="@table.css" HBox.hgrow="ALWAYS">
+            <TableView fx:id="table" prefHeight="300.0" prefWidth="865.0" stylesheets="@table.css" HBox.hgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="pays" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Pays" />
                 <TableColumn fx:id="or" maxWidth="1.7976931348623157E308" prefWidth="200.0" text="Médailles d'or" />

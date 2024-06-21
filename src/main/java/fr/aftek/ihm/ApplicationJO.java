@@ -161,6 +161,16 @@ public class ApplicationJO extends Application{
         };
         afficherPage(task, "Chargement des données", "Veuillez patienter...");
     }
+    public void classementPays() {
+        final Set<Pays> set = ApplicationJO.PROVIDER.getManager().getPays();
+        final ApplicationJO application = this;
+        Task<PageClassementPays> task = new Task<PageClassementPays>() {
+            protected PageClassementPays call() throws Exception {
+                return new PageClassementPays(application,set);
+            };
+        };
+        afficherPage(task, "Création du classement des Pays", "Veuillez patienter...");
+    }
 
     public void ajouter(TypeModification type) {
         // Get Sport
