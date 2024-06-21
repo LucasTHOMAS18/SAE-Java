@@ -59,7 +59,7 @@ public class ControleurConnexion extends Controleur {
             mdpPwrdField.setText(json.get("pass").getAsString());
             urlTxtField.setText(json.get("host").getAsString());
             this.nomBDD = json.get("bd").getAsString();
-        }catch(Exception e){e.printStackTrace();}
+        }catch(Exception e){}
     }
 
     /**

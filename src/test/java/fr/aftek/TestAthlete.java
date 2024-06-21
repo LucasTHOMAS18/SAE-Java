@@ -70,7 +70,7 @@ public class TestAthlete
         Pays france = new Pays("France");
         Athlete athlete = new Athlete("Michel", "Jean", 'M', france, null); // TODO ajouter sport
         Athlete raphou = new Athlete("Cochet", "Raphaël", 'F', 20, 2, 5, france, null); // TODO ajouter sport
-        Equipe equipefr = new Equipe("Equipe de france", france);
+        Equipe equipefr = new Equipe("Equipe de france", null, france);
         assertEquals("Equipe de france", equipefr.getNom());
         assertEquals(france, equipefr.getPays());
         assertEquals(0, equipefr.getAthletes().size());
